@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model lomba {
+  id           String         @id @db.VarChar(20)
+  tanggal      DateTime       @db.Date
+  lokasi       String         @db.VarChar(50)
+  nama         String         @db.VarChar(40)
+  bataswaktu   DateTime       @db.Date
+  deskripsi    String?        @db.VarChar(200)
+  juri         juri[]
+  pesertalomba pesertalomba[]
+  sertifikat   sertifikat[]
+}
+
+model sertifikat {
+  id       String @id @db.VarChar(20)
+  url      String @db.VarChar(50)
+  lomba_id String @db.VarChar(10)
+  lomba    lomba  @relation(fields: [lomba_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "sertifikat_lomba_fk")
+}
+
+model users {
+  id       Int       @id @default(autoincrement())
+  email    String    @unique @db.VarChar(30)
+  password String    @db.VarChar(255)
+  nama     String    @db.VarChar(30)
+  role     String    @db.VarChar(20)
+  juri     juri[]
+  peserta  peserta[]
+  admin    admin[]
+}
+
+model admin {
+  id         Int      @id @default(autoincrement())
+  users_id   Int
+  created_at DateTime @default(now())
+  users      users    @relation(fields: [users_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "admin_users_fk")
+}
+
+model juri {
+  id         String      @id @db.VarChar(10)
+  lomba_id   String      @db.VarChar(10)
+  created_at DateTime    @default(now())
+  users_id   Int
+  lomba      lomba       @relation(fields: [lomba_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "juri_lomba_fk")
+  users      users       @relation(fields: [users_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "juri_users_fk")
+  penilaian  penilaian[]
+}
+
+model penilaian {
+  juri_id                     String       @db.VarChar(10)
+  pesertalomba_id             Int
+  pesertalomba_id1            String       @db.VarChar(20)
+  pesertalomba_id_pesetalomba String       @db.VarChar(10)
+  status_penilaian            String       @db.Char(1)
+  nilai_penilaian             Decimal?     @db.Decimal(5, 2)
+  deskripsi_penilaian         String?      @db.VarChar(100)
+  juri                        juri         @relation(fields: [juri_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "penilaian_juri_fk")
+  pesertalomba                pesertalomba @relation(fields: [pesertalomba_id, pesertalomba_id1, pesertalomba_id_pesetalomba], references: [peserta_id, lomba_id, id_pesertalomba], onDelete: Cascade, onUpdate: NoAction, map: "penilaian_pesertalomba_fk")
+
+  @@id([juri_id, pesertalomba_id, pesertalomba_id1, pesertalomba_id_pesetalomba])
+}
+
+model peserta {
+  id           Int            @id @default(autoincrement())
+  users_id     Int
+  created_at   DateTime       @default(now())
+  users        users          @relation(fields: [users_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "peserta_users_fk")
+  pesertalomba pesertalomba[]
+}
+
+model pesertalomba {
+  id              Int         @default(autoincrement())
+  peserta_id      Int
+  lomba_id        String      @db.VarChar(20)
+  id_pesertalomba String      @db.VarChar(20)
+  submit          String?     @db.VarChar(60)
+  submission_time DateTime?   @default(now()) @db.Timestamptz(6)
+  penilaian       penilaian[]
+  lomba           lomba       @relation(fields: [lomba_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "pesertalomba_lomba_fk")
+  peserta         peserta     @relation(fields: [peserta_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "pesertalomba_peserta_fk")
+
+  @@id([peserta_id, lomba_id, id_pesertalomba])
+}
