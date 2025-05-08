@@ -3,6 +3,8 @@ import prisma from "../db";
 import { cors } from "hono/cors";
 import * as bcrypt from "bcryptjs";
 import * as EmailValidator from "email-validator";
+import authadmin from "../middleware/authadmin";
+import authmiddleware from "../middleware/authmiddleware";
 
 const register = new Hono();
 register.use(
