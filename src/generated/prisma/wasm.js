@@ -151,6 +151,7 @@ exports.Prisma.AdminScalarFieldEnum = {
 
 exports.Prisma.JuriScalarFieldEnum = {
   id: 'id',
+  nama: 'nama',
   lomba_id: 'lomba_id',
   created_at: 'created_at',
   users_id: 'users_id'
@@ -168,6 +169,7 @@ exports.Prisma.PenilaianScalarFieldEnum = {
 
 exports.Prisma.PesertaScalarFieldEnum = {
   id: 'id',
+  nama: 'nama',
   users_id: 'users_id',
   created_at: 'created_at'
 };

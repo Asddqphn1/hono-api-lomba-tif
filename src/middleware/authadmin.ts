@@ -24,7 +24,7 @@ const authadmin : MiddlewareHandler = async (c, next) => {
         if(role !== "admin"){
             return c.json({
                 status : "error",
-                message : "You are not admin"
+                message : "Anda bukan admin"
             },401)  
         }
         await next()
