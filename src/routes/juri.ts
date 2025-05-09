@@ -14,25 +14,105 @@ juri.use(
     allowHeaders: ["Authorization", "Content-Type"],
   })
 );
+//get all juri
+juri.get("/daftarjuri", authadmin, authmiddleware, async (c) => {
+  try {
+    const namajuri = c.req.query("nama");
+    const namalomba = c.req.query("lomba");
+    if (namajuri) {
+      const juriList = await prisma.juri.findMany({
+        where: {
+          nama: namajuri,
+        },
+        select: {
+          id: true,
+          nama: true,
+          lomba_id: true,
+          created_at: true,
+          lomba: {
+            select: {
+              nama: true,
+              tanggal: true,
+              lokasi: true,
+            },
+          },
+          users: {
+            select: {
+              email: true,
+              role: true,
+            },
+          },
+        },
+      });
+      return c.json(
+        {
+          status: "succes",
+          message: "Berhasil ambil data juri",
+          data: juriList,
+        },
+        200
+      );
+    }
+    if (namalomba) {
+      const juriList = await prisma.juri.findMany({
+        where: {
+          lomba : {
+            nama : namalomba 
+          },
+        },
+        select: {
+          id: true,
+          nama: true,
+          lomba_id: true,
+          created_at: true,
+          lomba: {
+            select: {
+              nama: true,
+              tanggal: true,
+              lokasi: true,
+            },
+          },
+          users: {
+            select: {
+              email: true,
+              role: true,
+            },
+          },
+        },
+      });
+      return c.json({
+        status : "succes",
+        message : "Berhasil ambil data juri",
+        data : juriList
+      }, 200)
+    }
+  } catch (error) {
+    return c.json({
+      status: "error",
+      message: error,
+    });
+  }
+});
 
+//ubah role users --> juri
 juri.patch("/:id", authadmin, authmiddleware, async (c) => {
   try {
-    const idjuri = parseInt(c.req.param("id")); // ubah data ke number
+    const idjuri = c.req.param("id"); // ubah data ke number
 
     const { namaJuri, id_lomba } = await c.req.json();
     const existJuri = await prisma.juri.findFirst({
       where: { users_id: idjuri },
     });
-    // cek angka
-    if (isNaN(idjuri)) {
-      return c.json({ error: "ID harus berupa angka" }, 400);
-    }
 
+    // cek angka
     if (existJuri) {
-      return c.json({
-        status: "Gagal",
-        message: "Sudah menjadi juri",
-      });
+      return c.json(
+        {
+          status: "Gagal",
+          message: "Sudah menjadi juri",
+        },
+        400
+      );
     }
 
     // update role
@@ -41,7 +121,7 @@ juri.patch("/:id", authadmin, authmiddleware, async (c) => {
         id: idjuri,
       },
       data: {
-        role: "juri",
+        role: "JURI",
       },
     });
     // insert tabel juri
@@ -53,14 +133,49 @@ juri.patch("/:id", authadmin, authmiddleware, async (c) => {
       },
     });
 
-    return c.json({
-      success: true,
-      message: `berhasil menambah ${tambahJuri.nama} sebagai juri`,
-      data: updatedUser.nama,
-    });
+    return c.json(
+      {
+        success: true,
+        message: `berhasil menambah ${tambahJuri.nama} sebagai juri`,
+        data: updatedUser.nama,
+      },
+      200
+    );
   } catch (error) {
     console.error(error);
     return c.json({ error: "Gagal mengupdate data" }, 500);
+  }
+});
+juri.patch("/hapusjuri/:id", authadmin, authmiddleware, async (c) => {
+  try {
+    const idJuri = c.req.param("id");
+    const deletejuri =
+      await prisma.$queryRaw`DELETE FROM JURI WHERE id = ${idJuri}`;
+    const updatejuri = await prisma.users.update({
+      where: {
+        id: idJuri,
+      },
+      data: {
+        role: "USERS",
+      },
+    });
+
+    return c.json(
+      {
+        status: "succes",
+        message: `Berhasil hapus juri ${updatejuri.nama}`,
+        data: deletejuri,
+      },
+      200
+    );
+  } catch (error) {
+    return c.json(
+      {
+        status: "error",
+        message: "Internal server error",
+      },
+      500
+    );
   }
 });
 

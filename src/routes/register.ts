@@ -3,18 +3,15 @@ import prisma from "../db";
 import { cors } from "hono/cors";
 import * as bcrypt from "bcryptjs";
 import * as EmailValidator from "email-validator";
-import authadmin from "../middleware/authadmin";
-import authmiddleware from "../middleware/authmiddleware";
+
 
 const register = new Hono();
-register.use(
-  "*",
-  cors({
-    origin: "*",
-    allowMethods: ["GET", "POST", "PUT", "DELETE"],
+register.use("*", cors({
+    origin: "http://localhost:5173",
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowHeaders: ["Authorization", "Content-Type"],
-  })
-);
+    credentials: true
+}));
 
 register.post("/", async (c) => {
   const { nama, email, password } = await c.req.json();
@@ -58,8 +55,8 @@ register.post("/", async (c) => {
         data: {
           email : email,
           password : hashPassword,
-          nama : nama,
-          role : "admin"
+          nama : nama.toUpperCase(),
+          role : "ADMIN"
         },
       });
       admin = await prisma.admin.create({
@@ -82,10 +79,10 @@ register.post("/", async (c) => {
     } else {
       user = await prisma.users.create({
         data: {
-          nama: nama,
+          nama: nama.toUpperCase(),
           email: email,
           password: hashPassword,
-          role: "user",
+          role: "USERS",
         },
       });
       return c.json(
