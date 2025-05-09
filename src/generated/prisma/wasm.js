@@ -125,6 +125,7 @@ exports.Prisma.LombaScalarFieldEnum = {
   tanggal: 'tanggal',
   lokasi: 'lokasi',
   nama: 'nama',
+  url: 'url',
   bataswaktu: 'bataswaktu',
   deskripsi: 'deskripsi'
 };
@@ -197,7 +198,12 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.Role = exports.$Enums.Role = {
+  PESERTA: 'PESERTA',
+  USERS: 'USERS',
+  JURI: 'JURI',
+  ADMIN: 'ADMIN'
+};
 
 exports.Prisma.ModelName = {
   lomba: 'lomba',

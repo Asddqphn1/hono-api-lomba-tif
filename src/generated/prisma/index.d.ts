@@ -55,6 +55,25 @@ export type peserta = $Result.DefaultSelection<Prisma.$pesertaPayload>
 export type pesertalomba = $Result.DefaultSelection<Prisma.$pesertalombaPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const Role: {
+  PESERTA: 'PESERTA',
+  USERS: 'USERS',
+  JURI: 'JURI',
+  ADMIN: 'ADMIN'
+};
+
+export type Role = (typeof Role)[keyof typeof Role]
+
+}
+
+export type Role = $Enums.Role
+
+export const Role: typeof $Enums.Role
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -1711,6 +1730,7 @@ export namespace Prisma {
     tanggal: Date | null
     lokasi: string | null
     nama: string | null
+    url: string | null
     bataswaktu: Date | null
     deskripsi: string | null
   }
@@ -1720,6 +1740,7 @@ export namespace Prisma {
     tanggal: Date | null
     lokasi: string | null
     nama: string | null
+    url: string | null
     bataswaktu: Date | null
     deskripsi: string | null
   }
@@ -1729,6 +1750,7 @@ export namespace Prisma {
     tanggal: number
     lokasi: number
     nama: number
+    url: number
     bataswaktu: number
     deskripsi: number
     _all: number
@@ -1740,6 +1762,7 @@ export namespace Prisma {
     tanggal?: true
     lokasi?: true
     nama?: true
+    url?: true
     bataswaktu?: true
     deskripsi?: true
   }
@@ -1749,6 +1772,7 @@ export namespace Prisma {
     tanggal?: true
     lokasi?: true
     nama?: true
+    url?: true
     bataswaktu?: true
     deskripsi?: true
   }
@@ -1758,6 +1782,7 @@ export namespace Prisma {
     tanggal?: true
     lokasi?: true
     nama?: true
+    url?: true
     bataswaktu?: true
     deskripsi?: true
     _all?: true
@@ -1840,6 +1865,7 @@ export namespace Prisma {
     tanggal: Date
     lokasi: string
     nama: string
+    url: string
     bataswaktu: Date
     deskripsi: string | null
     _count: LombaCountAggregateOutputType | null
@@ -1866,6 +1892,7 @@ export namespace Prisma {
     tanggal?: boolean
     lokasi?: boolean
     nama?: boolean
+    url?: boolean
     bataswaktu?: boolean
     deskripsi?: boolean
     juri?: boolean | lomba$juriArgs<ExtArgs>
@@ -1879,6 +1906,7 @@ export namespace Prisma {
     tanggal?: boolean
     lokasi?: boolean
     nama?: boolean
+    url?: boolean
     bataswaktu?: boolean
     deskripsi?: boolean
   }, ExtArgs["result"]["lomba"]>
@@ -1888,6 +1916,7 @@ export namespace Prisma {
     tanggal?: boolean
     lokasi?: boolean
     nama?: boolean
+    url?: boolean
     bataswaktu?: boolean
     deskripsi?: boolean
   }, ExtArgs["result"]["lomba"]>
@@ -1897,11 +1926,12 @@ export namespace Prisma {
     tanggal?: boolean
     lokasi?: boolean
     nama?: boolean
+    url?: boolean
     bataswaktu?: boolean
     deskripsi?: boolean
   }
 
-  export type lombaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tanggal" | "lokasi" | "nama" | "bataswaktu" | "deskripsi", ExtArgs["result"]["lomba"]>
+  export type lombaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tanggal" | "lokasi" | "nama" | "url" | "bataswaktu" | "deskripsi", ExtArgs["result"]["lomba"]>
   export type lombaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     juri?: boolean | lomba$juriArgs<ExtArgs>
     pesertalomba?: boolean | lomba$pesertalombaArgs<ExtArgs>
@@ -1923,6 +1953,7 @@ export namespace Prisma {
       tanggal: Date
       lokasi: string
       nama: string
+      url: string
       bataswaktu: Date
       deskripsi: string | null
     }, ExtArgs["result"]["lomba"]>
@@ -2355,6 +2386,7 @@ export namespace Prisma {
     readonly tanggal: FieldRef<"lomba", 'DateTime'>
     readonly lokasi: FieldRef<"lomba", 'String'>
     readonly nama: FieldRef<"lomba", 'String'>
+    readonly url: FieldRef<"lomba", 'String'>
     readonly bataswaktu: FieldRef<"lomba", 'DateTime'>
     readonly deskripsi: FieldRef<"lomba", 'String'>
   }
@@ -3873,34 +3905,24 @@ export namespace Prisma {
 
   export type AggregateUsers = {
     _count: UsersCountAggregateOutputType | null
-    _avg: UsersAvgAggregateOutputType | null
-    _sum: UsersSumAggregateOutputType | null
     _min: UsersMinAggregateOutputType | null
     _max: UsersMaxAggregateOutputType | null
   }
 
-  export type UsersAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type UsersSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type UsersMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     email: string | null
     password: string | null
     nama: string | null
-    role: string | null
+    role: $Enums.Role | null
   }
 
   export type UsersMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     email: string | null
     password: string | null
     nama: string | null
-    role: string | null
+    role: $Enums.Role | null
   }
 
   export type UsersCountAggregateOutputType = {
@@ -3912,14 +3934,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type UsersAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type UsersSumAggregateInputType = {
-    id?: true
-  }
 
   export type UsersMinAggregateInputType = {
     id?: true
@@ -3984,18 +3998,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: UsersAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UsersSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: UsersMinAggregateInputType
@@ -4026,21 +4028,17 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UsersCountAggregateInputType | true
-    _avg?: UsersAvgAggregateInputType
-    _sum?: UsersSumAggregateInputType
     _min?: UsersMinAggregateInputType
     _max?: UsersMaxAggregateInputType
   }
 
   export type UsersGroupByOutputType = {
-    id: number
+    id: string
     email: string
     password: string
     nama: string
-    role: string
+    role: $Enums.Role
     _count: UsersCountAggregateOutputType | null
-    _avg: UsersAvgAggregateOutputType | null
-    _sum: UsersSumAggregateOutputType | null
     _min: UsersMinAggregateOutputType | null
     _max: UsersMaxAggregateOutputType | null
   }
@@ -4113,11 +4111,11 @@ export namespace Prisma {
       admin: Prisma.$adminPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       email: string
       password: string
       nama: string
-      role: string
+      role: $Enums.Role
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -4544,11 +4542,11 @@ export namespace Prisma {
    * Fields of the users model
    */
   interface usersFieldRefs {
-    readonly id: FieldRef<"users", 'Int'>
+    readonly id: FieldRef<"users", 'String'>
     readonly email: FieldRef<"users", 'String'>
     readonly password: FieldRef<"users", 'String'>
     readonly nama: FieldRef<"users", 'String'>
-    readonly role: FieldRef<"users", 'String'>
+    readonly role: FieldRef<"users", 'Role'>
   }
     
 
@@ -5033,31 +5031,19 @@ export namespace Prisma {
 
   export type AggregateAdmin = {
     _count: AdminCountAggregateOutputType | null
-    _avg: AdminAvgAggregateOutputType | null
-    _sum: AdminSumAggregateOutputType | null
     _min: AdminMinAggregateOutputType | null
     _max: AdminMaxAggregateOutputType | null
   }
 
-  export type AdminAvgAggregateOutputType = {
-    id: number | null
-    users_id: number | null
-  }
-
-  export type AdminSumAggregateOutputType = {
-    id: number | null
-    users_id: number | null
-  }
-
   export type AdminMinAggregateOutputType = {
-    id: number | null
-    users_id: number | null
+    id: string | null
+    users_id: string | null
     created_at: Date | null
   }
 
   export type AdminMaxAggregateOutputType = {
-    id: number | null
-    users_id: number | null
+    id: string | null
+    users_id: string | null
     created_at: Date | null
   }
 
@@ -5068,16 +5054,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type AdminAvgAggregateInputType = {
-    id?: true
-    users_id?: true
-  }
-
-  export type AdminSumAggregateInputType = {
-    id?: true
-    users_id?: true
-  }
 
   export type AdminMinAggregateInputType = {
     id?: true
@@ -5136,18 +5112,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: AdminAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: AdminSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: AdminMinAggregateInputType
@@ -5178,19 +5142,15 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: AdminCountAggregateInputType | true
-    _avg?: AdminAvgAggregateInputType
-    _sum?: AdminSumAggregateInputType
     _min?: AdminMinAggregateInputType
     _max?: AdminMaxAggregateInputType
   }
 
   export type AdminGroupByOutputType = {
-    id: number
-    users_id: number
+    id: string
+    users_id: string
     created_at: Date
     _count: AdminCountAggregateOutputType | null
-    _avg: AdminAvgAggregateOutputType | null
-    _sum: AdminSumAggregateOutputType | null
     _min: AdminMinAggregateOutputType | null
     _max: AdminMaxAggregateOutputType | null
   }
@@ -5253,8 +5213,8 @@ export namespace Prisma {
       users: Prisma.$usersPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      users_id: number
+      id: string
+      users_id: string
       created_at: Date
     }, ExtArgs["result"]["admin"]>
     composites: {}
@@ -5680,8 +5640,8 @@ export namespace Prisma {
    * Fields of the admin model
    */
   interface adminFieldRefs {
-    readonly id: FieldRef<"admin", 'Int'>
-    readonly users_id: FieldRef<"admin", 'Int'>
+    readonly id: FieldRef<"admin", 'String'>
+    readonly users_id: FieldRef<"admin", 'String'>
     readonly created_at: FieldRef<"admin", 'DateTime'>
   }
     
@@ -6103,36 +6063,24 @@ export namespace Prisma {
 
   export type AggregateJuri = {
     _count: JuriCountAggregateOutputType | null
-    _avg: JuriAvgAggregateOutputType | null
-    _sum: JuriSumAggregateOutputType | null
     _min: JuriMinAggregateOutputType | null
     _max: JuriMaxAggregateOutputType | null
   }
 
-  export type JuriAvgAggregateOutputType = {
-    id: number | null
-    users_id: number | null
-  }
-
-  export type JuriSumAggregateOutputType = {
-    id: number | null
-    users_id: number | null
-  }
-
   export type JuriMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     nama: string | null
     lomba_id: string | null
     created_at: Date | null
-    users_id: number | null
+    users_id: string | null
   }
 
   export type JuriMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     nama: string | null
     lomba_id: string | null
     created_at: Date | null
-    users_id: number | null
+    users_id: string | null
   }
 
   export type JuriCountAggregateOutputType = {
@@ -6144,16 +6092,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type JuriAvgAggregateInputType = {
-    id?: true
-    users_id?: true
-  }
-
-  export type JuriSumAggregateInputType = {
-    id?: true
-    users_id?: true
-  }
 
   export type JuriMinAggregateInputType = {
     id?: true
@@ -6218,18 +6156,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: JuriAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: JuriSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: JuriMinAggregateInputType
@@ -6260,21 +6186,17 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: JuriCountAggregateInputType | true
-    _avg?: JuriAvgAggregateInputType
-    _sum?: JuriSumAggregateInputType
     _min?: JuriMinAggregateInputType
     _max?: JuriMaxAggregateInputType
   }
 
   export type JuriGroupByOutputType = {
-    id: number
+    id: string
     nama: string
     lomba_id: string
     created_at: Date
-    users_id: number
+    users_id: string
     _count: JuriCountAggregateOutputType | null
-    _avg: JuriAvgAggregateOutputType | null
-    _sum: JuriSumAggregateOutputType | null
     _min: JuriMinAggregateOutputType | null
     _max: JuriMaxAggregateOutputType | null
   }
@@ -6357,11 +6279,11 @@ export namespace Prisma {
       penilaian: Prisma.$penilaianPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       nama: string
       lomba_id: string
       created_at: Date
-      users_id: number
+      users_id: string
     }, ExtArgs["result"]["juri"]>
     composites: {}
   }
@@ -6788,11 +6710,11 @@ export namespace Prisma {
    * Fields of the juri model
    */
   interface juriFieldRefs {
-    readonly id: FieldRef<"juri", 'Int'>
+    readonly id: FieldRef<"juri", 'String'>
     readonly nama: FieldRef<"juri", 'String'>
     readonly lomba_id: FieldRef<"juri", 'String'>
     readonly created_at: FieldRef<"juri", 'DateTime'>
-    readonly users_id: FieldRef<"juri", 'Int'>
+    readonly users_id: FieldRef<"juri", 'String'>
   }
     
 
@@ -7244,20 +7166,16 @@ export namespace Prisma {
   }
 
   export type PenilaianAvgAggregateOutputType = {
-    juri_id: number | null
-    pesertalomba_id: number | null
     nilai_penilaian: Decimal | null
   }
 
   export type PenilaianSumAggregateOutputType = {
-    juri_id: number | null
-    pesertalomba_id: number | null
     nilai_penilaian: Decimal | null
   }
 
   export type PenilaianMinAggregateOutputType = {
-    juri_id: number | null
-    pesertalomba_id: number | null
+    juri_id: string | null
+    pesertalomba_id: string | null
     pesertalomba_id1: string | null
     pesertalomba_id_pesetalomba: string | null
     status_penilaian: string | null
@@ -7266,8 +7184,8 @@ export namespace Prisma {
   }
 
   export type PenilaianMaxAggregateOutputType = {
-    juri_id: number | null
-    pesertalomba_id: number | null
+    juri_id: string | null
+    pesertalomba_id: string | null
     pesertalomba_id1: string | null
     pesertalomba_id_pesetalomba: string | null
     status_penilaian: string | null
@@ -7288,14 +7206,10 @@ export namespace Prisma {
 
 
   export type PenilaianAvgAggregateInputType = {
-    juri_id?: true
-    pesertalomba_id?: true
     nilai_penilaian?: true
   }
 
   export type PenilaianSumAggregateInputType = {
-    juri_id?: true
-    pesertalomba_id?: true
     nilai_penilaian?: true
   }
 
@@ -7417,8 +7331,8 @@ export namespace Prisma {
   }
 
   export type PenilaianGroupByOutputType = {
-    juri_id: number
-    pesertalomba_id: number
+    juri_id: string
+    pesertalomba_id: string
     pesertalomba_id1: string
     pesertalomba_id_pesetalomba: string
     status_penilaian: string
@@ -7512,8 +7426,8 @@ export namespace Prisma {
       pesertalomba: Prisma.$pesertalombaPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      juri_id: number
-      pesertalomba_id: number
+      juri_id: string
+      pesertalomba_id: string
       pesertalomba_id1: string
       pesertalomba_id_pesetalomba: string
       status_penilaian: string
@@ -7944,8 +7858,8 @@ export namespace Prisma {
    * Fields of the penilaian model
    */
   interface penilaianFieldRefs {
-    readonly juri_id: FieldRef<"penilaian", 'Int'>
-    readonly pesertalomba_id: FieldRef<"penilaian", 'Int'>
+    readonly juri_id: FieldRef<"penilaian", 'String'>
+    readonly pesertalomba_id: FieldRef<"penilaian", 'String'>
     readonly pesertalomba_id1: FieldRef<"penilaian", 'String'>
     readonly pesertalomba_id_pesetalomba: FieldRef<"penilaian", 'String'>
     readonly status_penilaian: FieldRef<"penilaian", 'String'>
@@ -8371,33 +8285,21 @@ export namespace Prisma {
 
   export type AggregatePeserta = {
     _count: PesertaCountAggregateOutputType | null
-    _avg: PesertaAvgAggregateOutputType | null
-    _sum: PesertaSumAggregateOutputType | null
     _min: PesertaMinAggregateOutputType | null
     _max: PesertaMaxAggregateOutputType | null
   }
 
-  export type PesertaAvgAggregateOutputType = {
-    id: number | null
-    users_id: number | null
-  }
-
-  export type PesertaSumAggregateOutputType = {
-    id: number | null
-    users_id: number | null
-  }
-
   export type PesertaMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     nama: string | null
-    users_id: number | null
+    users_id: string | null
     created_at: Date | null
   }
 
   export type PesertaMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     nama: string | null
-    users_id: number | null
+    users_id: string | null
     created_at: Date | null
   }
 
@@ -8409,16 +8311,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type PesertaAvgAggregateInputType = {
-    id?: true
-    users_id?: true
-  }
-
-  export type PesertaSumAggregateInputType = {
-    id?: true
-    users_id?: true
-  }
 
   export type PesertaMinAggregateInputType = {
     id?: true
@@ -8480,18 +8372,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: PesertaAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PesertaSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: PesertaMinAggregateInputType
@@ -8522,20 +8402,16 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: PesertaCountAggregateInputType | true
-    _avg?: PesertaAvgAggregateInputType
-    _sum?: PesertaSumAggregateInputType
     _min?: PesertaMinAggregateInputType
     _max?: PesertaMaxAggregateInputType
   }
 
   export type PesertaGroupByOutputType = {
-    id: number
+    id: string
     nama: string
-    users_id: number
+    users_id: string
     created_at: Date
     _count: PesertaCountAggregateOutputType | null
-    _avg: PesertaAvgAggregateOutputType | null
-    _sum: PesertaSumAggregateOutputType | null
     _min: PesertaMinAggregateOutputType | null
     _max: PesertaMaxAggregateOutputType | null
   }
@@ -8607,9 +8483,9 @@ export namespace Prisma {
       pesertalomba: Prisma.$pesertalombaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       nama: string
-      users_id: number
+      users_id: string
       created_at: Date
     }, ExtArgs["result"]["peserta"]>
     composites: {}
@@ -9036,9 +8912,9 @@ export namespace Prisma {
    * Fields of the peserta model
    */
   interface pesertaFieldRefs {
-    readonly id: FieldRef<"peserta", 'Int'>
+    readonly id: FieldRef<"peserta", 'String'>
     readonly nama: FieldRef<"peserta", 'String'>
-    readonly users_id: FieldRef<"peserta", 'Int'>
+    readonly users_id: FieldRef<"peserta", 'String'>
     readonly created_at: FieldRef<"peserta", 'DateTime'>
   }
     
@@ -9492,17 +9368,15 @@ export namespace Prisma {
 
   export type PesertalombaAvgAggregateOutputType = {
     id: number | null
-    peserta_id: number | null
   }
 
   export type PesertalombaSumAggregateOutputType = {
     id: number | null
-    peserta_id: number | null
   }
 
   export type PesertalombaMinAggregateOutputType = {
     id: number | null
-    peserta_id: number | null
+    peserta_id: string | null
     lomba_id: string | null
     id_pesertalomba: string | null
     submit: string | null
@@ -9511,7 +9385,7 @@ export namespace Prisma {
 
   export type PesertalombaMaxAggregateOutputType = {
     id: number | null
-    peserta_id: number | null
+    peserta_id: string | null
     lomba_id: string | null
     id_pesertalomba: string | null
     submit: string | null
@@ -9531,12 +9405,10 @@ export namespace Prisma {
 
   export type PesertalombaAvgAggregateInputType = {
     id?: true
-    peserta_id?: true
   }
 
   export type PesertalombaSumAggregateInputType = {
     id?: true
-    peserta_id?: true
   }
 
   export type PesertalombaMinAggregateInputType = {
@@ -9655,7 +9527,7 @@ export namespace Prisma {
 
   export type PesertalombaGroupByOutputType = {
     id: number
-    peserta_id: number
+    peserta_id: string
     lomba_id: string
     id_pesertalomba: string
     submit: string | null
@@ -9750,7 +9622,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      peserta_id: number
+      peserta_id: string
       lomba_id: string
       id_pesertalomba: string
       submit: string | null
@@ -10182,7 +10054,7 @@ export namespace Prisma {
    */
   interface pesertalombaFieldRefs {
     readonly id: FieldRef<"pesertalomba", 'Int'>
-    readonly peserta_id: FieldRef<"pesertalomba", 'Int'>
+    readonly peserta_id: FieldRef<"pesertalomba", 'String'>
     readonly lomba_id: FieldRef<"pesertalomba", 'String'>
     readonly id_pesertalomba: FieldRef<"pesertalomba", 'String'>
     readonly submit: FieldRef<"pesertalomba", 'String'>
@@ -10644,6 +10516,7 @@ export namespace Prisma {
     tanggal: 'tanggal',
     lokasi: 'lokasi',
     nama: 'nama',
+    url: 'url',
     bataswaktu: 'bataswaktu',
     deskripsi: 'deskripsi'
   };
@@ -10784,16 +10657,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'Role'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'Role[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
     
 
 
@@ -10808,6 +10681,20 @@ export namespace Prisma {
    * Reference to a field of type 'Decimal[]'
    */
   export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -10836,6 +10723,7 @@ export namespace Prisma {
     tanggal?: DateTimeFilter<"lomba"> | Date | string
     lokasi?: StringFilter<"lomba"> | string
     nama?: StringFilter<"lomba"> | string
+    url?: StringFilter<"lomba"> | string
     bataswaktu?: DateTimeFilter<"lomba"> | Date | string
     deskripsi?: StringNullableFilter<"lomba"> | string | null
     juri?: JuriListRelationFilter
@@ -10848,6 +10736,7 @@ export namespace Prisma {
     tanggal?: SortOrder
     lokasi?: SortOrder
     nama?: SortOrder
+    url?: SortOrder
     bataswaktu?: SortOrder
     deskripsi?: SortOrderInput | SortOrder
     juri?: juriOrderByRelationAggregateInput
@@ -10863,6 +10752,7 @@ export namespace Prisma {
     tanggal?: DateTimeFilter<"lomba"> | Date | string
     lokasi?: StringFilter<"lomba"> | string
     nama?: StringFilter<"lomba"> | string
+    url?: StringFilter<"lomba"> | string
     bataswaktu?: DateTimeFilter<"lomba"> | Date | string
     deskripsi?: StringNullableFilter<"lomba"> | string | null
     juri?: JuriListRelationFilter
@@ -10875,6 +10765,7 @@ export namespace Prisma {
     tanggal?: SortOrder
     lokasi?: SortOrder
     nama?: SortOrder
+    url?: SortOrder
     bataswaktu?: SortOrder
     deskripsi?: SortOrderInput | SortOrder
     _count?: lombaCountOrderByAggregateInput
@@ -10890,6 +10781,7 @@ export namespace Prisma {
     tanggal?: DateTimeWithAggregatesFilter<"lomba"> | Date | string
     lokasi?: StringWithAggregatesFilter<"lomba"> | string
     nama?: StringWithAggregatesFilter<"lomba"> | string
+    url?: StringWithAggregatesFilter<"lomba"> | string
     bataswaktu?: DateTimeWithAggregatesFilter<"lomba"> | Date | string
     deskripsi?: StringNullableWithAggregatesFilter<"lomba"> | string | null
   }
@@ -10943,11 +10835,11 @@ export namespace Prisma {
     AND?: usersWhereInput | usersWhereInput[]
     OR?: usersWhereInput[]
     NOT?: usersWhereInput | usersWhereInput[]
-    id?: IntFilter<"users"> | number
+    id?: UuidFilter<"users"> | string
     email?: StringFilter<"users"> | string
     password?: StringFilter<"users"> | string
     nama?: StringFilter<"users"> | string
-    role?: StringFilter<"users"> | string
+    role?: EnumRoleFilter<"users"> | $Enums.Role
     juri?: JuriListRelationFilter
     peserta?: PesertaListRelationFilter
     admin?: AdminListRelationFilter
@@ -10965,14 +10857,14 @@ export namespace Prisma {
   }
 
   export type usersWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     email?: string
     AND?: usersWhereInput | usersWhereInput[]
     OR?: usersWhereInput[]
     NOT?: usersWhereInput | usersWhereInput[]
     password?: StringFilter<"users"> | string
     nama?: StringFilter<"users"> | string
-    role?: StringFilter<"users"> | string
+    role?: EnumRoleFilter<"users"> | $Enums.Role
     juri?: JuriListRelationFilter
     peserta?: PesertaListRelationFilter
     admin?: AdminListRelationFilter
@@ -10985,29 +10877,27 @@ export namespace Prisma {
     nama?: SortOrder
     role?: SortOrder
     _count?: usersCountOrderByAggregateInput
-    _avg?: usersAvgOrderByAggregateInput
     _max?: usersMaxOrderByAggregateInput
     _min?: usersMinOrderByAggregateInput
-    _sum?: usersSumOrderByAggregateInput
   }
 
   export type usersScalarWhereWithAggregatesInput = {
     AND?: usersScalarWhereWithAggregatesInput | usersScalarWhereWithAggregatesInput[]
     OR?: usersScalarWhereWithAggregatesInput[]
     NOT?: usersScalarWhereWithAggregatesInput | usersScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"users"> | number
+    id?: UuidWithAggregatesFilter<"users"> | string
     email?: StringWithAggregatesFilter<"users"> | string
     password?: StringWithAggregatesFilter<"users"> | string
     nama?: StringWithAggregatesFilter<"users"> | string
-    role?: StringWithAggregatesFilter<"users"> | string
+    role?: EnumRoleWithAggregatesFilter<"users"> | $Enums.Role
   }
 
   export type adminWhereInput = {
     AND?: adminWhereInput | adminWhereInput[]
     OR?: adminWhereInput[]
     NOT?: adminWhereInput | adminWhereInput[]
-    id?: IntFilter<"admin"> | number
-    users_id?: IntFilter<"admin"> | number
+    id?: UuidFilter<"admin"> | string
+    users_id?: UuidFilter<"admin"> | string
     created_at?: DateTimeFilter<"admin"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
@@ -11020,11 +10910,11 @@ export namespace Prisma {
   }
 
   export type adminWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: adminWhereInput | adminWhereInput[]
     OR?: adminWhereInput[]
     NOT?: adminWhereInput | adminWhereInput[]
-    users_id?: IntFilter<"admin"> | number
+    users_id?: UuidFilter<"admin"> | string
     created_at?: DateTimeFilter<"admin"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }, "id">
@@ -11034,18 +10924,16 @@ export namespace Prisma {
     users_id?: SortOrder
     created_at?: SortOrder
     _count?: adminCountOrderByAggregateInput
-    _avg?: adminAvgOrderByAggregateInput
     _max?: adminMaxOrderByAggregateInput
     _min?: adminMinOrderByAggregateInput
-    _sum?: adminSumOrderByAggregateInput
   }
 
   export type adminScalarWhereWithAggregatesInput = {
     AND?: adminScalarWhereWithAggregatesInput | adminScalarWhereWithAggregatesInput[]
     OR?: adminScalarWhereWithAggregatesInput[]
     NOT?: adminScalarWhereWithAggregatesInput | adminScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"admin"> | number
-    users_id?: IntWithAggregatesFilter<"admin"> | number
+    id?: UuidWithAggregatesFilter<"admin"> | string
+    users_id?: UuidWithAggregatesFilter<"admin"> | string
     created_at?: DateTimeWithAggregatesFilter<"admin"> | Date | string
   }
 
@@ -11053,11 +10941,11 @@ export namespace Prisma {
     AND?: juriWhereInput | juriWhereInput[]
     OR?: juriWhereInput[]
     NOT?: juriWhereInput | juriWhereInput[]
-    id?: IntFilter<"juri"> | number
+    id?: UuidFilter<"juri"> | string
     nama?: StringFilter<"juri"> | string
     lomba_id?: StringFilter<"juri"> | string
     created_at?: DateTimeFilter<"juri"> | Date | string
-    users_id?: IntFilter<"juri"> | number
+    users_id?: UuidFilter<"juri"> | string
     lomba?: XOR<LombaScalarRelationFilter, lombaWhereInput>
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     penilaian?: PenilaianListRelationFilter
@@ -11075,14 +10963,14 @@ export namespace Prisma {
   }
 
   export type juriWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: juriWhereInput | juriWhereInput[]
     OR?: juriWhereInput[]
     NOT?: juriWhereInput | juriWhereInput[]
     nama?: StringFilter<"juri"> | string
     lomba_id?: StringFilter<"juri"> | string
     created_at?: DateTimeFilter<"juri"> | Date | string
-    users_id?: IntFilter<"juri"> | number
+    users_id?: UuidFilter<"juri"> | string
     lomba?: XOR<LombaScalarRelationFilter, lombaWhereInput>
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     penilaian?: PenilaianListRelationFilter
@@ -11095,29 +10983,27 @@ export namespace Prisma {
     created_at?: SortOrder
     users_id?: SortOrder
     _count?: juriCountOrderByAggregateInput
-    _avg?: juriAvgOrderByAggregateInput
     _max?: juriMaxOrderByAggregateInput
     _min?: juriMinOrderByAggregateInput
-    _sum?: juriSumOrderByAggregateInput
   }
 
   export type juriScalarWhereWithAggregatesInput = {
     AND?: juriScalarWhereWithAggregatesInput | juriScalarWhereWithAggregatesInput[]
     OR?: juriScalarWhereWithAggregatesInput[]
     NOT?: juriScalarWhereWithAggregatesInput | juriScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"juri"> | number
+    id?: UuidWithAggregatesFilter<"juri"> | string
     nama?: StringWithAggregatesFilter<"juri"> | string
     lomba_id?: StringWithAggregatesFilter<"juri"> | string
     created_at?: DateTimeWithAggregatesFilter<"juri"> | Date | string
-    users_id?: IntWithAggregatesFilter<"juri"> | number
+    users_id?: UuidWithAggregatesFilter<"juri"> | string
   }
 
   export type penilaianWhereInput = {
     AND?: penilaianWhereInput | penilaianWhereInput[]
     OR?: penilaianWhereInput[]
     NOT?: penilaianWhereInput | penilaianWhereInput[]
-    juri_id?: IntFilter<"penilaian"> | number
-    pesertalomba_id?: IntFilter<"penilaian"> | number
+    juri_id?: UuidFilter<"penilaian"> | string
+    pesertalomba_id?: UuidFilter<"penilaian"> | string
     pesertalomba_id1?: StringFilter<"penilaian"> | string
     pesertalomba_id_pesetalomba?: StringFilter<"penilaian"> | string
     status_penilaian?: StringFilter<"penilaian"> | string
@@ -11144,8 +11030,8 @@ export namespace Prisma {
     AND?: penilaianWhereInput | penilaianWhereInput[]
     OR?: penilaianWhereInput[]
     NOT?: penilaianWhereInput | penilaianWhereInput[]
-    juri_id?: IntFilter<"penilaian"> | number
-    pesertalomba_id?: IntFilter<"penilaian"> | number
+    juri_id?: UuidFilter<"penilaian"> | string
+    pesertalomba_id?: UuidFilter<"penilaian"> | string
     pesertalomba_id1?: StringFilter<"penilaian"> | string
     pesertalomba_id_pesetalomba?: StringFilter<"penilaian"> | string
     status_penilaian?: StringFilter<"penilaian"> | string
@@ -11174,8 +11060,8 @@ export namespace Prisma {
     AND?: penilaianScalarWhereWithAggregatesInput | penilaianScalarWhereWithAggregatesInput[]
     OR?: penilaianScalarWhereWithAggregatesInput[]
     NOT?: penilaianScalarWhereWithAggregatesInput | penilaianScalarWhereWithAggregatesInput[]
-    juri_id?: IntWithAggregatesFilter<"penilaian"> | number
-    pesertalomba_id?: IntWithAggregatesFilter<"penilaian"> | number
+    juri_id?: UuidWithAggregatesFilter<"penilaian"> | string
+    pesertalomba_id?: UuidWithAggregatesFilter<"penilaian"> | string
     pesertalomba_id1?: StringWithAggregatesFilter<"penilaian"> | string
     pesertalomba_id_pesetalomba?: StringWithAggregatesFilter<"penilaian"> | string
     status_penilaian?: StringWithAggregatesFilter<"penilaian"> | string
@@ -11187,9 +11073,9 @@ export namespace Prisma {
     AND?: pesertaWhereInput | pesertaWhereInput[]
     OR?: pesertaWhereInput[]
     NOT?: pesertaWhereInput | pesertaWhereInput[]
-    id?: IntFilter<"peserta"> | number
+    id?: UuidFilter<"peserta"> | string
     nama?: StringFilter<"peserta"> | string
-    users_id?: IntFilter<"peserta"> | number
+    users_id?: UuidFilter<"peserta"> | string
     created_at?: DateTimeFilter<"peserta"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     pesertalomba?: PesertalombaListRelationFilter
@@ -11205,12 +11091,12 @@ export namespace Prisma {
   }
 
   export type pesertaWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: pesertaWhereInput | pesertaWhereInput[]
     OR?: pesertaWhereInput[]
     NOT?: pesertaWhereInput | pesertaWhereInput[]
     nama?: StringFilter<"peserta"> | string
-    users_id?: IntFilter<"peserta"> | number
+    users_id?: UuidFilter<"peserta"> | string
     created_at?: DateTimeFilter<"peserta"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     pesertalomba?: PesertalombaListRelationFilter
@@ -11222,19 +11108,17 @@ export namespace Prisma {
     users_id?: SortOrder
     created_at?: SortOrder
     _count?: pesertaCountOrderByAggregateInput
-    _avg?: pesertaAvgOrderByAggregateInput
     _max?: pesertaMaxOrderByAggregateInput
     _min?: pesertaMinOrderByAggregateInput
-    _sum?: pesertaSumOrderByAggregateInput
   }
 
   export type pesertaScalarWhereWithAggregatesInput = {
     AND?: pesertaScalarWhereWithAggregatesInput | pesertaScalarWhereWithAggregatesInput[]
     OR?: pesertaScalarWhereWithAggregatesInput[]
     NOT?: pesertaScalarWhereWithAggregatesInput | pesertaScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"peserta"> | number
+    id?: UuidWithAggregatesFilter<"peserta"> | string
     nama?: StringWithAggregatesFilter<"peserta"> | string
-    users_id?: IntWithAggregatesFilter<"peserta"> | number
+    users_id?: UuidWithAggregatesFilter<"peserta"> | string
     created_at?: DateTimeWithAggregatesFilter<"peserta"> | Date | string
   }
 
@@ -11243,7 +11127,7 @@ export namespace Prisma {
     OR?: pesertalombaWhereInput[]
     NOT?: pesertalombaWhereInput | pesertalombaWhereInput[]
     id?: IntFilter<"pesertalomba"> | number
-    peserta_id?: IntFilter<"pesertalomba"> | number
+    peserta_id?: UuidFilter<"pesertalomba"> | string
     lomba_id?: StringFilter<"pesertalomba"> | string
     id_pesertalomba?: StringFilter<"pesertalomba"> | string
     submit?: StringNullableFilter<"pesertalomba"> | string | null
@@ -11271,7 +11155,7 @@ export namespace Prisma {
     OR?: pesertalombaWhereInput[]
     NOT?: pesertalombaWhereInput | pesertalombaWhereInput[]
     id?: IntFilter<"pesertalomba"> | number
-    peserta_id?: IntFilter<"pesertalomba"> | number
+    peserta_id?: UuidFilter<"pesertalomba"> | string
     lomba_id?: StringFilter<"pesertalomba"> | string
     id_pesertalomba?: StringFilter<"pesertalomba"> | string
     submit?: StringNullableFilter<"pesertalomba"> | string | null
@@ -11300,7 +11184,7 @@ export namespace Prisma {
     OR?: pesertalombaScalarWhereWithAggregatesInput[]
     NOT?: pesertalombaScalarWhereWithAggregatesInput | pesertalombaScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"pesertalomba"> | number
-    peserta_id?: IntWithAggregatesFilter<"pesertalomba"> | number
+    peserta_id?: UuidWithAggregatesFilter<"pesertalomba"> | string
     lomba_id?: StringWithAggregatesFilter<"pesertalomba"> | string
     id_pesertalomba?: StringWithAggregatesFilter<"pesertalomba"> | string
     submit?: StringNullableWithAggregatesFilter<"pesertalomba"> | string | null
@@ -11312,6 +11196,7 @@ export namespace Prisma {
     tanggal: Date | string
     lokasi: string
     nama: string
+    url: string
     bataswaktu: Date | string
     deskripsi?: string | null
     juri?: juriCreateNestedManyWithoutLombaInput
@@ -11324,6 +11209,7 @@ export namespace Prisma {
     tanggal: Date | string
     lokasi: string
     nama: string
+    url: string
     bataswaktu: Date | string
     deskripsi?: string | null
     juri?: juriUncheckedCreateNestedManyWithoutLombaInput
@@ -11336,6 +11222,7 @@ export namespace Prisma {
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     juri?: juriUpdateManyWithoutLombaNestedInput
@@ -11348,6 +11235,7 @@ export namespace Prisma {
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     juri?: juriUncheckedUpdateManyWithoutLombaNestedInput
@@ -11360,6 +11248,7 @@ export namespace Prisma {
     tanggal: Date | string
     lokasi: string
     nama: string
+    url: string
     bataswaktu: Date | string
     deskripsi?: string | null
   }
@@ -11369,6 +11258,7 @@ export namespace Prisma {
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -11378,6 +11268,7 @@ export namespace Prisma {
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -11424,109 +11315,116 @@ export namespace Prisma {
   }
 
   export type usersCreateInput = {
+    id?: string
     email: string
     password: string
     nama: string
-    role: string
+    role?: $Enums.Role
     juri?: juriCreateNestedManyWithoutUsersInput
     peserta?: pesertaCreateNestedManyWithoutUsersInput
     admin?: adminCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateInput = {
-    id?: number
+    id?: string
     email: string
     password: string
     nama: string
-    role: string
+    role?: $Enums.Role
     juri?: juriUncheckedCreateNestedManyWithoutUsersInput
     peserta?: pesertaUncheckedCreateNestedManyWithoutUsersInput
     admin?: adminUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     juri?: juriUpdateManyWithoutUsersNestedInput
     peserta?: pesertaUpdateManyWithoutUsersNestedInput
     admin?: adminUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     juri?: juriUncheckedUpdateManyWithoutUsersNestedInput
     peserta?: pesertaUncheckedUpdateManyWithoutUsersNestedInput
     admin?: adminUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersCreateManyInput = {
-    id?: number
+    id?: string
     email: string
     password: string
     nama: string
-    role: string
+    role?: $Enums.Role
   }
 
   export type usersUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type usersUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type adminCreateInput = {
+    id?: string
     created_at?: Date | string
     users: usersCreateNestedOneWithoutAdminInput
   }
 
   export type adminUncheckedCreateInput = {
-    id?: number
-    users_id: number
+    id?: string
+    users_id: string
     created_at?: Date | string
   }
 
   export type adminUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutAdminNestedInput
   }
 
   export type adminUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    users_id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    users_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type adminCreateManyInput = {
-    id?: number
-    users_id: number
+    id?: string
+    users_id: string
     created_at?: Date | string
   }
 
   export type adminUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type adminUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    users_id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    users_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type juriCreateInput = {
+    id?: string
     nama: string
     created_at?: Date | string
     lomba: lombaCreateNestedOneWithoutJuriInput
@@ -11535,15 +11433,16 @@ export namespace Prisma {
   }
 
   export type juriUncheckedCreateInput = {
-    id?: number
+    id?: string
     nama: string
     lomba_id: string
     created_at?: Date | string
-    users_id: number
+    users_id: string
     penilaian?: penilaianUncheckedCreateNestedManyWithoutJuriInput
   }
 
   export type juriUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     lomba?: lombaUpdateOneRequiredWithoutJuriNestedInput
@@ -11552,33 +11451,34 @@ export namespace Prisma {
   }
 
   export type juriUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     lomba_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    users_id?: IntFieldUpdateOperationsInput | number
+    users_id?: StringFieldUpdateOperationsInput | string
     penilaian?: penilaianUncheckedUpdateManyWithoutJuriNestedInput
   }
 
   export type juriCreateManyInput = {
-    id?: number
+    id?: string
     nama: string
     lomba_id: string
     created_at?: Date | string
-    users_id: number
+    users_id: string
   }
 
   export type juriUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type juriUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     lomba_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    users_id?: IntFieldUpdateOperationsInput | number
+    users_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type penilaianCreateInput = {
@@ -11590,8 +11490,8 @@ export namespace Prisma {
   }
 
   export type penilaianUncheckedCreateInput = {
-    juri_id: number
-    pesertalomba_id: number
+    juri_id: string
+    pesertalomba_id: string
     pesertalomba_id1: string
     pesertalomba_id_pesetalomba: string
     status_penilaian: string
@@ -11608,8 +11508,8 @@ export namespace Prisma {
   }
 
   export type penilaianUncheckedUpdateInput = {
-    juri_id?: IntFieldUpdateOperationsInput | number
-    pesertalomba_id?: IntFieldUpdateOperationsInput | number
+    juri_id?: StringFieldUpdateOperationsInput | string
+    pesertalomba_id?: StringFieldUpdateOperationsInput | string
     pesertalomba_id1?: StringFieldUpdateOperationsInput | string
     pesertalomba_id_pesetalomba?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
@@ -11618,8 +11518,8 @@ export namespace Prisma {
   }
 
   export type penilaianCreateManyInput = {
-    juri_id: number
-    pesertalomba_id: number
+    juri_id: string
+    pesertalomba_id: string
     pesertalomba_id1: string
     pesertalomba_id_pesetalomba: string
     status_penilaian: string
@@ -11634,8 +11534,8 @@ export namespace Prisma {
   }
 
   export type penilaianUncheckedUpdateManyInput = {
-    juri_id?: IntFieldUpdateOperationsInput | number
-    pesertalomba_id?: IntFieldUpdateOperationsInput | number
+    juri_id?: StringFieldUpdateOperationsInput | string
+    pesertalomba_id?: StringFieldUpdateOperationsInput | string
     pesertalomba_id1?: StringFieldUpdateOperationsInput | string
     pesertalomba_id_pesetalomba?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
@@ -11644,6 +11544,7 @@ export namespace Prisma {
   }
 
   export type pesertaCreateInput = {
+    id?: string
     nama: string
     created_at?: Date | string
     users: usersCreateNestedOneWithoutPesertaInput
@@ -11651,14 +11552,15 @@ export namespace Prisma {
   }
 
   export type pesertaUncheckedCreateInput = {
-    id?: number
+    id?: string
     nama: string
-    users_id: number
+    users_id: string
     created_at?: Date | string
     pesertalomba?: pesertalombaUncheckedCreateNestedManyWithoutPesertaInput
   }
 
   export type pesertaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutPesertaNestedInput
@@ -11666,29 +11568,30 @@ export namespace Prisma {
   }
 
   export type pesertaUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    users_id?: IntFieldUpdateOperationsInput | number
+    users_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     pesertalomba?: pesertalombaUncheckedUpdateManyWithoutPesertaNestedInput
   }
 
   export type pesertaCreateManyInput = {
-    id?: number
+    id?: string
     nama: string
-    users_id: number
+    users_id: string
     created_at?: Date | string
   }
 
   export type pesertaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type pesertaUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    users_id?: IntFieldUpdateOperationsInput | number
+    users_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11704,7 +11607,7 @@ export namespace Prisma {
 
   export type pesertalombaUncheckedCreateInput = {
     id?: number
-    peserta_id: number
+    peserta_id: string
     lomba_id: string
     id_pesertalomba: string
     submit?: string | null
@@ -11724,7 +11627,7 @@ export namespace Prisma {
 
   export type pesertalombaUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    peserta_id?: IntFieldUpdateOperationsInput | number
+    peserta_id?: StringFieldUpdateOperationsInput | string
     lomba_id?: StringFieldUpdateOperationsInput | string
     id_pesertalomba?: StringFieldUpdateOperationsInput | string
     submit?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11734,7 +11637,7 @@ export namespace Prisma {
 
   export type pesertalombaCreateManyInput = {
     id?: number
-    peserta_id: number
+    peserta_id: string
     lomba_id: string
     id_pesertalomba: string
     submit?: string | null
@@ -11750,7 +11653,7 @@ export namespace Prisma {
 
   export type pesertalombaUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    peserta_id?: IntFieldUpdateOperationsInput | number
+    peserta_id?: StringFieldUpdateOperationsInput | string
     lomba_id?: StringFieldUpdateOperationsInput | string
     id_pesertalomba?: StringFieldUpdateOperationsInput | string
     submit?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11838,6 +11741,7 @@ export namespace Prisma {
     tanggal?: SortOrder
     lokasi?: SortOrder
     nama?: SortOrder
+    url?: SortOrder
     bataswaktu?: SortOrder
     deskripsi?: SortOrder
   }
@@ -11847,6 +11751,7 @@ export namespace Prisma {
     tanggal?: SortOrder
     lokasi?: SortOrder
     nama?: SortOrder
+    url?: SortOrder
     bataswaktu?: SortOrder
     deskripsi?: SortOrder
   }
@@ -11856,6 +11761,7 @@ export namespace Prisma {
     tanggal?: SortOrder
     lokasi?: SortOrder
     nama?: SortOrder
+    url?: SortOrder
     bataswaktu?: SortOrder
     deskripsi?: SortOrder
   }
@@ -11933,15 +11839,23 @@ export namespace Prisma {
     lomba_id?: SortOrder
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type UuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidFilter<$PrismaModel> | string
+  }
+
+  export type EnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
   export type PesertaListRelationFilter = {
@@ -11972,10 +11886,6 @@ export namespace Prisma {
     role?: SortOrder
   }
 
-  export type usersAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
   export type usersMaxOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
@@ -11992,24 +11902,29 @@ export namespace Prisma {
     role?: SortOrder
   }
 
-  export type usersSumOrderByAggregateInput = {
-    id?: SortOrder
+  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+  export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
   export type UsersScalarRelationFilter = {
@@ -12023,11 +11938,6 @@ export namespace Prisma {
     created_at?: SortOrder
   }
 
-  export type adminAvgOrderByAggregateInput = {
-    id?: SortOrder
-    users_id?: SortOrder
-  }
-
   export type adminMaxOrderByAggregateInput = {
     id?: SortOrder
     users_id?: SortOrder
@@ -12038,11 +11948,6 @@ export namespace Prisma {
     id?: SortOrder
     users_id?: SortOrder
     created_at?: SortOrder
-  }
-
-  export type adminSumOrderByAggregateInput = {
-    id?: SortOrder
-    users_id?: SortOrder
   }
 
   export type PenilaianListRelationFilter = {
@@ -12063,11 +11968,6 @@ export namespace Prisma {
     users_id?: SortOrder
   }
 
-  export type juriAvgOrderByAggregateInput = {
-    id?: SortOrder
-    users_id?: SortOrder
-  }
-
   export type juriMaxOrderByAggregateInput = {
     id?: SortOrder
     nama?: SortOrder
@@ -12081,11 +11981,6 @@ export namespace Prisma {
     nama?: SortOrder
     lomba_id?: SortOrder
     created_at?: SortOrder
-    users_id?: SortOrder
-  }
-
-  export type juriSumOrderByAggregateInput = {
-    id?: SortOrder
     users_id?: SortOrder
   }
 
@@ -12111,8 +12006,8 @@ export namespace Prisma {
   }
 
   export type penilaianJuri_idPesertalomba_idPesertalomba_id1Pesertalomba_id_pesetalombaCompoundUniqueInput = {
-    juri_id: number
-    pesertalomba_id: number
+    juri_id: string
+    pesertalomba_id: string
     pesertalomba_id1: string
     pesertalomba_id_pesetalomba: string
   }
@@ -12128,8 +12023,6 @@ export namespace Prisma {
   }
 
   export type penilaianAvgOrderByAggregateInput = {
-    juri_id?: SortOrder
-    pesertalomba_id?: SortOrder
     nilai_penilaian?: SortOrder
   }
 
@@ -12154,8 +12047,6 @@ export namespace Prisma {
   }
 
   export type penilaianSumOrderByAggregateInput = {
-    juri_id?: SortOrder
-    pesertalomba_id?: SortOrder
     nilai_penilaian?: SortOrder
   }
 
@@ -12182,11 +12073,6 @@ export namespace Prisma {
     created_at?: SortOrder
   }
 
-  export type pesertaAvgOrderByAggregateInput = {
-    id?: SortOrder
-    users_id?: SortOrder
-  }
-
   export type pesertaMaxOrderByAggregateInput = {
     id?: SortOrder
     nama?: SortOrder
@@ -12201,9 +12087,15 @@ export namespace Prisma {
     created_at?: SortOrder
   }
 
-  export type pesertaSumOrderByAggregateInput = {
-    id?: SortOrder
-    users_id?: SortOrder
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -12223,7 +12115,7 @@ export namespace Prisma {
   }
 
   export type pesertalombaPeserta_idLomba_idId_pesertalombaCompoundUniqueInput = {
-    peserta_id: number
+    peserta_id: string
     lomba_id: string
     id_pesertalomba: string
   }
@@ -12239,7 +12131,6 @@ export namespace Prisma {
 
   export type pesertalombaAvgOrderByAggregateInput = {
     id?: SortOrder
-    peserta_id?: SortOrder
   }
 
   export type pesertalombaMaxOrderByAggregateInput = {
@@ -12262,7 +12153,22 @@ export namespace Prisma {
 
   export type pesertalombaSumOrderByAggregateInput = {
     id?: SortOrder
-    peserta_id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12473,6 +12379,10 @@ export namespace Prisma {
     connect?: adminWhereUniqueInput | adminWhereUniqueInput[]
   }
 
+  export type EnumRoleFieldUpdateOperationsInput = {
+    set?: $Enums.Role
+  }
+
   export type juriUpdateManyWithoutUsersNestedInput = {
     create?: XOR<juriCreateWithoutUsersInput, juriUncheckedCreateWithoutUsersInput> | juriCreateWithoutUsersInput[] | juriUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: juriCreateOrConnectWithoutUsersInput | juriCreateOrConnectWithoutUsersInput[]
@@ -12513,14 +12423,6 @@ export namespace Prisma {
     update?: adminUpdateWithWhereUniqueWithoutUsersInput | adminUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: adminUpdateManyWithWhereWithoutUsersInput | adminUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: adminScalarWhereInput | adminScalarWhereInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type juriUncheckedUpdateManyWithoutUsersNestedInput = {
@@ -12767,6 +12669,14 @@ export namespace Prisma {
     connect?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
   }
@@ -12924,31 +12834,46 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+  export type NestedUuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidFilter<$PrismaModel> | string
   }
 
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+  export type NestedEnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
+  export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
   export type NestedDecimalNullableFilter<$PrismaModel = never> = {
@@ -12989,6 +12914,33 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -13004,6 +12956,7 @@ export namespace Prisma {
   }
 
   export type juriCreateWithoutLombaInput = {
+    id?: string
     nama: string
     created_at?: Date | string
     users: usersCreateNestedOneWithoutJuriInput
@@ -13011,10 +12964,10 @@ export namespace Prisma {
   }
 
   export type juriUncheckedCreateWithoutLombaInput = {
-    id?: number
+    id?: string
     nama: string
     created_at?: Date | string
-    users_id: number
+    users_id: string
     penilaian?: penilaianUncheckedCreateNestedManyWithoutJuriInput
   }
 
@@ -13039,7 +12992,7 @@ export namespace Prisma {
 
   export type pesertalombaUncheckedCreateWithoutLombaInput = {
     id?: number
-    peserta_id: number
+    peserta_id: string
     id_pesertalomba: string
     submit?: string | null
     submission_time?: Date | string | null
@@ -13096,11 +13049,11 @@ export namespace Prisma {
     AND?: juriScalarWhereInput | juriScalarWhereInput[]
     OR?: juriScalarWhereInput[]
     NOT?: juriScalarWhereInput | juriScalarWhereInput[]
-    id?: IntFilter<"juri"> | number
+    id?: UuidFilter<"juri"> | string
     nama?: StringFilter<"juri"> | string
     lomba_id?: StringFilter<"juri"> | string
     created_at?: DateTimeFilter<"juri"> | Date | string
-    users_id?: IntFilter<"juri"> | number
+    users_id?: UuidFilter<"juri"> | string
   }
 
   export type pesertalombaUpsertWithWhereUniqueWithoutLombaInput = {
@@ -13124,7 +13077,7 @@ export namespace Prisma {
     OR?: pesertalombaScalarWhereInput[]
     NOT?: pesertalombaScalarWhereInput | pesertalombaScalarWhereInput[]
     id?: IntFilter<"pesertalomba"> | number
-    peserta_id?: IntFilter<"pesertalomba"> | number
+    peserta_id?: UuidFilter<"pesertalomba"> | string
     lomba_id?: StringFilter<"pesertalomba"> | string
     id_pesertalomba?: StringFilter<"pesertalomba"> | string
     submit?: StringNullableFilter<"pesertalomba"> | string | null
@@ -13161,6 +13114,7 @@ export namespace Prisma {
     tanggal: Date | string
     lokasi: string
     nama: string
+    url: string
     bataswaktu: Date | string
     deskripsi?: string | null
     juri?: juriCreateNestedManyWithoutLombaInput
@@ -13172,6 +13126,7 @@ export namespace Prisma {
     tanggal: Date | string
     lokasi: string
     nama: string
+    url: string
     bataswaktu: Date | string
     deskripsi?: string | null
     juri?: juriUncheckedCreateNestedManyWithoutLombaInput
@@ -13199,6 +13154,7 @@ export namespace Prisma {
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     juri?: juriUpdateManyWithoutLombaNestedInput
@@ -13210,6 +13166,7 @@ export namespace Prisma {
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     juri?: juriUncheckedUpdateManyWithoutLombaNestedInput
@@ -13217,6 +13174,7 @@ export namespace Prisma {
   }
 
   export type juriCreateWithoutUsersInput = {
+    id?: string
     nama: string
     created_at?: Date | string
     lomba: lombaCreateNestedOneWithoutJuriInput
@@ -13224,7 +13182,7 @@ export namespace Prisma {
   }
 
   export type juriUncheckedCreateWithoutUsersInput = {
-    id?: number
+    id?: string
     nama: string
     lomba_id: string
     created_at?: Date | string
@@ -13242,13 +13200,14 @@ export namespace Prisma {
   }
 
   export type pesertaCreateWithoutUsersInput = {
+    id?: string
     nama: string
     created_at?: Date | string
     pesertalomba?: pesertalombaCreateNestedManyWithoutPesertaInput
   }
 
   export type pesertaUncheckedCreateWithoutUsersInput = {
-    id?: number
+    id?: string
     nama: string
     created_at?: Date | string
     pesertalomba?: pesertalombaUncheckedCreateNestedManyWithoutPesertaInput
@@ -13265,11 +13224,12 @@ export namespace Prisma {
   }
 
   export type adminCreateWithoutUsersInput = {
+    id?: string
     created_at?: Date | string
   }
 
   export type adminUncheckedCreateWithoutUsersInput = {
-    id?: number
+    id?: string
     created_at?: Date | string
   }
 
@@ -13319,9 +13279,9 @@ export namespace Prisma {
     AND?: pesertaScalarWhereInput | pesertaScalarWhereInput[]
     OR?: pesertaScalarWhereInput[]
     NOT?: pesertaScalarWhereInput | pesertaScalarWhereInput[]
-    id?: IntFilter<"peserta"> | number
+    id?: UuidFilter<"peserta"> | string
     nama?: StringFilter<"peserta"> | string
-    users_id?: IntFilter<"peserta"> | number
+    users_id?: UuidFilter<"peserta"> | string
     created_at?: DateTimeFilter<"peserta"> | Date | string
   }
 
@@ -13345,26 +13305,27 @@ export namespace Prisma {
     AND?: adminScalarWhereInput | adminScalarWhereInput[]
     OR?: adminScalarWhereInput[]
     NOT?: adminScalarWhereInput | adminScalarWhereInput[]
-    id?: IntFilter<"admin"> | number
-    users_id?: IntFilter<"admin"> | number
+    id?: UuidFilter<"admin"> | string
+    users_id?: UuidFilter<"admin"> | string
     created_at?: DateTimeFilter<"admin"> | Date | string
   }
 
   export type usersCreateWithoutAdminInput = {
+    id?: string
     email: string
     password: string
     nama: string
-    role: string
+    role?: $Enums.Role
     juri?: juriCreateNestedManyWithoutUsersInput
     peserta?: pesertaCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutAdminInput = {
-    id?: number
+    id?: string
     email: string
     password: string
     nama: string
-    role: string
+    role?: $Enums.Role
     juri?: juriUncheckedCreateNestedManyWithoutUsersInput
     peserta?: pesertaUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -13386,20 +13347,21 @@ export namespace Prisma {
   }
 
   export type usersUpdateWithoutAdminInput = {
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     juri?: juriUpdateManyWithoutUsersNestedInput
     peserta?: pesertaUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutAdminInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     juri?: juriUncheckedUpdateManyWithoutUsersNestedInput
     peserta?: pesertaUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -13409,6 +13371,7 @@ export namespace Prisma {
     tanggal: Date | string
     lokasi: string
     nama: string
+    url: string
     bataswaktu: Date | string
     deskripsi?: string | null
     pesertalomba?: pesertalombaCreateNestedManyWithoutLombaInput
@@ -13420,6 +13383,7 @@ export namespace Prisma {
     tanggal: Date | string
     lokasi: string
     nama: string
+    url: string
     bataswaktu: Date | string
     deskripsi?: string | null
     pesertalomba?: pesertalombaUncheckedCreateNestedManyWithoutLombaInput
@@ -13432,20 +13396,21 @@ export namespace Prisma {
   }
 
   export type usersCreateWithoutJuriInput = {
+    id?: string
     email: string
     password: string
     nama: string
-    role: string
+    role?: $Enums.Role
     peserta?: pesertaCreateNestedManyWithoutUsersInput
     admin?: adminCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutJuriInput = {
-    id?: number
+    id?: string
     email: string
     password: string
     nama: string
-    role: string
+    role?: $Enums.Role
     peserta?: pesertaUncheckedCreateNestedManyWithoutUsersInput
     admin?: adminUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -13463,7 +13428,7 @@ export namespace Prisma {
   }
 
   export type penilaianUncheckedCreateWithoutJuriInput = {
-    pesertalomba_id: number
+    pesertalomba_id: string
     pesertalomba_id1: string
     pesertalomba_id_pesetalomba: string
     status_penilaian: string
@@ -13497,6 +13462,7 @@ export namespace Prisma {
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     pesertalomba?: pesertalombaUpdateManyWithoutLombaNestedInput
@@ -13508,6 +13474,7 @@ export namespace Prisma {
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     pesertalomba?: pesertalombaUncheckedUpdateManyWithoutLombaNestedInput
@@ -13526,20 +13493,21 @@ export namespace Prisma {
   }
 
   export type usersUpdateWithoutJuriInput = {
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     peserta?: pesertaUpdateManyWithoutUsersNestedInput
     admin?: adminUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutJuriInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     peserta?: pesertaUncheckedUpdateManyWithoutUsersNestedInput
     admin?: adminUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -13564,8 +13532,8 @@ export namespace Prisma {
     AND?: penilaianScalarWhereInput | penilaianScalarWhereInput[]
     OR?: penilaianScalarWhereInput[]
     NOT?: penilaianScalarWhereInput | penilaianScalarWhereInput[]
-    juri_id?: IntFilter<"penilaian"> | number
-    pesertalomba_id?: IntFilter<"penilaian"> | number
+    juri_id?: UuidFilter<"penilaian"> | string
+    pesertalomba_id?: UuidFilter<"penilaian"> | string
     pesertalomba_id1?: StringFilter<"penilaian"> | string
     pesertalomba_id_pesetalomba?: StringFilter<"penilaian"> | string
     status_penilaian?: StringFilter<"penilaian"> | string
@@ -13574,6 +13542,7 @@ export namespace Prisma {
   }
 
   export type juriCreateWithoutPenilaianInput = {
+    id?: string
     nama: string
     created_at?: Date | string
     lomba: lombaCreateNestedOneWithoutJuriInput
@@ -13581,11 +13550,11 @@ export namespace Prisma {
   }
 
   export type juriUncheckedCreateWithoutPenilaianInput = {
-    id?: number
+    id?: string
     nama: string
     lomba_id: string
     created_at?: Date | string
-    users_id: number
+    users_id: string
   }
 
   export type juriCreateOrConnectWithoutPenilaianInput = {
@@ -13604,7 +13573,7 @@ export namespace Prisma {
 
   export type pesertalombaUncheckedCreateWithoutPenilaianInput = {
     id?: number
-    peserta_id: number
+    peserta_id: string
     lomba_id: string
     id_pesertalomba: string
     submit?: string | null
@@ -13628,6 +13597,7 @@ export namespace Prisma {
   }
 
   export type juriUpdateWithoutPenilaianInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     lomba?: lombaUpdateOneRequiredWithoutJuriNestedInput
@@ -13635,11 +13605,11 @@ export namespace Prisma {
   }
 
   export type juriUncheckedUpdateWithoutPenilaianInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     lomba_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    users_id?: IntFieldUpdateOperationsInput | number
+    users_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type pesertalombaUpsertWithoutPenilaianInput = {
@@ -13664,7 +13634,7 @@ export namespace Prisma {
 
   export type pesertalombaUncheckedUpdateWithoutPenilaianInput = {
     id?: IntFieldUpdateOperationsInput | number
-    peserta_id?: IntFieldUpdateOperationsInput | number
+    peserta_id?: StringFieldUpdateOperationsInput | string
     lomba_id?: StringFieldUpdateOperationsInput | string
     id_pesertalomba?: StringFieldUpdateOperationsInput | string
     submit?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13672,20 +13642,21 @@ export namespace Prisma {
   }
 
   export type usersCreateWithoutPesertaInput = {
+    id?: string
     email: string
     password: string
     nama: string
-    role: string
+    role?: $Enums.Role
     juri?: juriCreateNestedManyWithoutUsersInput
     admin?: adminCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutPesertaInput = {
-    id?: number
+    id?: string
     email: string
     password: string
     nama: string
-    role: string
+    role?: $Enums.Role
     juri?: juriUncheckedCreateNestedManyWithoutUsersInput
     admin?: adminUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -13735,20 +13706,21 @@ export namespace Prisma {
   }
 
   export type usersUpdateWithoutPesertaInput = {
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     juri?: juriUpdateManyWithoutUsersNestedInput
     admin?: adminUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutPesertaInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     juri?: juriUncheckedUpdateManyWithoutUsersNestedInput
     admin?: adminUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -13777,7 +13749,7 @@ export namespace Prisma {
   }
 
   export type penilaianUncheckedCreateWithoutPesertalombaInput = {
-    juri_id: number
+    juri_id: string
     status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
@@ -13798,6 +13770,7 @@ export namespace Prisma {
     tanggal: Date | string
     lokasi: string
     nama: string
+    url: string
     bataswaktu: Date | string
     deskripsi?: string | null
     juri?: juriCreateNestedManyWithoutLombaInput
@@ -13809,6 +13782,7 @@ export namespace Prisma {
     tanggal: Date | string
     lokasi: string
     nama: string
+    url: string
     bataswaktu: Date | string
     deskripsi?: string | null
     juri?: juriUncheckedCreateNestedManyWithoutLombaInput
@@ -13821,15 +13795,16 @@ export namespace Prisma {
   }
 
   export type pesertaCreateWithoutPesertalombaInput = {
+    id?: string
     nama: string
     created_at?: Date | string
     users: usersCreateNestedOneWithoutPesertaInput
   }
 
   export type pesertaUncheckedCreateWithoutPesertalombaInput = {
-    id?: number
+    id?: string
     nama: string
-    users_id: number
+    users_id: string
     created_at?: Date | string
   }
 
@@ -13870,6 +13845,7 @@ export namespace Prisma {
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     juri?: juriUpdateManyWithoutLombaNestedInput
@@ -13881,6 +13857,7 @@ export namespace Prisma {
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     juri?: juriUncheckedUpdateManyWithoutLombaNestedInput
@@ -13899,28 +13876,29 @@ export namespace Prisma {
   }
 
   export type pesertaUpdateWithoutPesertalombaInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutPesertaNestedInput
   }
 
   export type pesertaUncheckedUpdateWithoutPesertalombaInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    users_id?: IntFieldUpdateOperationsInput | number
+    users_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type juriCreateManyLombaInput = {
-    id?: number
+    id?: string
     nama: string
     created_at?: Date | string
-    users_id: number
+    users_id: string
   }
 
   export type pesertalombaCreateManyLombaInput = {
     id?: number
-    peserta_id: number
+    peserta_id: string
     id_pesertalomba: string
     submit?: string | null
     submission_time?: Date | string | null
@@ -13932,6 +13910,7 @@ export namespace Prisma {
   }
 
   export type juriUpdateWithoutLombaInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutJuriNestedInput
@@ -13939,18 +13918,18 @@ export namespace Prisma {
   }
 
   export type juriUncheckedUpdateWithoutLombaInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    users_id?: IntFieldUpdateOperationsInput | number
+    users_id?: StringFieldUpdateOperationsInput | string
     penilaian?: penilaianUncheckedUpdateManyWithoutJuriNestedInput
   }
 
   export type juriUncheckedUpdateManyWithoutLombaInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    users_id?: IntFieldUpdateOperationsInput | number
+    users_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type pesertalombaUpdateWithoutLombaInput = {
@@ -13964,7 +13943,7 @@ export namespace Prisma {
 
   export type pesertalombaUncheckedUpdateWithoutLombaInput = {
     id?: IntFieldUpdateOperationsInput | number
-    peserta_id?: IntFieldUpdateOperationsInput | number
+    peserta_id?: StringFieldUpdateOperationsInput | string
     id_pesertalomba?: StringFieldUpdateOperationsInput | string
     submit?: NullableStringFieldUpdateOperationsInput | string | null
     submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13973,7 +13952,7 @@ export namespace Prisma {
 
   export type pesertalombaUncheckedUpdateManyWithoutLombaInput = {
     id?: IntFieldUpdateOperationsInput | number
-    peserta_id?: IntFieldUpdateOperationsInput | number
+    peserta_id?: StringFieldUpdateOperationsInput | string
     id_pesertalomba?: StringFieldUpdateOperationsInput | string
     submit?: NullableStringFieldUpdateOperationsInput | string | null
     submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13995,24 +13974,25 @@ export namespace Prisma {
   }
 
   export type juriCreateManyUsersInput = {
-    id?: number
+    id?: string
     nama: string
     lomba_id: string
     created_at?: Date | string
   }
 
   export type pesertaCreateManyUsersInput = {
-    id?: number
+    id?: string
     nama: string
     created_at?: Date | string
   }
 
   export type adminCreateManyUsersInput = {
-    id?: number
+    id?: string
     created_at?: Date | string
   }
 
   export type juriUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     lomba?: lombaUpdateOneRequiredWithoutJuriNestedInput
@@ -14020,7 +14000,7 @@ export namespace Prisma {
   }
 
   export type juriUncheckedUpdateWithoutUsersInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     lomba_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14028,47 +14008,49 @@ export namespace Prisma {
   }
 
   export type juriUncheckedUpdateManyWithoutUsersInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     lomba_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type pesertaUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     pesertalomba?: pesertalombaUpdateManyWithoutPesertaNestedInput
   }
 
   export type pesertaUncheckedUpdateWithoutUsersInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     pesertalomba?: pesertalombaUncheckedUpdateManyWithoutPesertaNestedInput
   }
 
   export type pesertaUncheckedUpdateManyWithoutUsersInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type adminUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type adminUncheckedUpdateWithoutUsersInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type adminUncheckedUpdateManyWithoutUsersInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type penilaianCreateManyJuriInput = {
-    pesertalomba_id: number
+    pesertalomba_id: string
     pesertalomba_id1: string
     pesertalomba_id_pesetalomba: string
     status_penilaian: string
@@ -14084,7 +14066,7 @@ export namespace Prisma {
   }
 
   export type penilaianUncheckedUpdateWithoutJuriInput = {
-    pesertalomba_id?: IntFieldUpdateOperationsInput | number
+    pesertalomba_id?: StringFieldUpdateOperationsInput | string
     pesertalomba_id1?: StringFieldUpdateOperationsInput | string
     pesertalomba_id_pesetalomba?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
@@ -14093,7 +14075,7 @@ export namespace Prisma {
   }
 
   export type penilaianUncheckedUpdateManyWithoutJuriInput = {
-    pesertalomba_id?: IntFieldUpdateOperationsInput | number
+    pesertalomba_id?: StringFieldUpdateOperationsInput | string
     pesertalomba_id1?: StringFieldUpdateOperationsInput | string
     pesertalomba_id_pesetalomba?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
@@ -14136,7 +14118,7 @@ export namespace Prisma {
   }
 
   export type penilaianCreateManyPesertalombaInput = {
-    juri_id: number
+    juri_id: string
     status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
@@ -14150,14 +14132,14 @@ export namespace Prisma {
   }
 
   export type penilaianUncheckedUpdateWithoutPesertalombaInput = {
-    juri_id?: IntFieldUpdateOperationsInput | number
+    juri_id?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type penilaianUncheckedUpdateManyWithoutPesertalombaInput = {
-    juri_id?: IntFieldUpdateOperationsInput | number
+    juri_id?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
