@@ -17,6 +17,7 @@ daftarlomba.use(
 daftarlomba.get("/", authmiddleware, async (c) => {
   const data = await prisma.lomba.findMany({
     select: {
+      id : true,
       nama: true,
       tanggal: true,
       lokasi: true,

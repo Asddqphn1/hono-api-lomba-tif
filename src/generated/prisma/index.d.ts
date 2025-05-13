@@ -53,6 +53,16 @@ export type peserta = $Result.DefaultSelection<Prisma.$pesertaPayload>
  * 
  */
 export type pesertalomba = $Result.DefaultSelection<Prisma.$pesertalombaPayload>
+/**
+ * Model submission
+ * 
+ */
+export type submission = $Result.DefaultSelection<Prisma.$submissionPayload>
+/**
+ * Model anggotaTim
+ * 
+ */
+export type anggotaTim = $Result.DefaultSelection<Prisma.$anggotaTimPayload>
 
 /**
  * Enums
@@ -289,6 +299,26 @@ export class PrismaClient<
     * ```
     */
   get pesertalomba(): Prisma.pesertalombaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.submission`: Exposes CRUD operations for the **submission** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Submissions
+    * const submissions = await prisma.submission.findMany()
+    * ```
+    */
+  get submission(): Prisma.submissionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.anggotaTim`: Exposes CRUD operations for the **anggotaTim** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AnggotaTims
+    * const anggotaTims = await prisma.anggotaTim.findMany()
+    * ```
+    */
+  get anggotaTim(): Prisma.anggotaTimDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -736,7 +766,9 @@ export namespace Prisma {
     juri: 'juri',
     penilaian: 'penilaian',
     peserta: 'peserta',
-    pesertalomba: 'pesertalomba'
+    pesertalomba: 'pesertalomba',
+    submission: 'submission',
+    anggotaTim: 'anggotaTim'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -755,7 +787,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "lomba" | "sertifikat" | "users" | "admin" | "juri" | "penilaian" | "peserta" | "pesertalomba"
+      modelProps: "lomba" | "sertifikat" | "users" | "admin" | "juri" | "penilaian" | "peserta" | "pesertalomba" | "submission" | "anggotaTim"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1351,6 +1383,154 @@ export namespace Prisma {
           }
         }
       }
+      submission: {
+        payload: Prisma.$submissionPayload<ExtArgs>
+        fields: Prisma.submissionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.submissionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$submissionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.submissionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$submissionPayload>
+          }
+          findFirst: {
+            args: Prisma.submissionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$submissionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.submissionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$submissionPayload>
+          }
+          findMany: {
+            args: Prisma.submissionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$submissionPayload>[]
+          }
+          create: {
+            args: Prisma.submissionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$submissionPayload>
+          }
+          createMany: {
+            args: Prisma.submissionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.submissionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$submissionPayload>[]
+          }
+          delete: {
+            args: Prisma.submissionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$submissionPayload>
+          }
+          update: {
+            args: Prisma.submissionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$submissionPayload>
+          }
+          deleteMany: {
+            args: Prisma.submissionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.submissionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.submissionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$submissionPayload>[]
+          }
+          upsert: {
+            args: Prisma.submissionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$submissionPayload>
+          }
+          aggregate: {
+            args: Prisma.SubmissionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSubmission>
+          }
+          groupBy: {
+            args: Prisma.submissionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SubmissionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.submissionCountArgs<ExtArgs>
+            result: $Utils.Optional<SubmissionCountAggregateOutputType> | number
+          }
+        }
+      }
+      anggotaTim: {
+        payload: Prisma.$anggotaTimPayload<ExtArgs>
+        fields: Prisma.anggotaTimFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.anggotaTimFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anggotaTimPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.anggotaTimFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anggotaTimPayload>
+          }
+          findFirst: {
+            args: Prisma.anggotaTimFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anggotaTimPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.anggotaTimFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anggotaTimPayload>
+          }
+          findMany: {
+            args: Prisma.anggotaTimFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anggotaTimPayload>[]
+          }
+          create: {
+            args: Prisma.anggotaTimCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anggotaTimPayload>
+          }
+          createMany: {
+            args: Prisma.anggotaTimCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.anggotaTimCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anggotaTimPayload>[]
+          }
+          delete: {
+            args: Prisma.anggotaTimDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anggotaTimPayload>
+          }
+          update: {
+            args: Prisma.anggotaTimUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anggotaTimPayload>
+          }
+          deleteMany: {
+            args: Prisma.anggotaTimDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.anggotaTimUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.anggotaTimUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anggotaTimPayload>[]
+          }
+          upsert: {
+            args: Prisma.anggotaTimUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$anggotaTimPayload>
+          }
+          aggregate: {
+            args: Prisma.AnggotaTimAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAnggotaTim>
+          }
+          groupBy: {
+            args: Prisma.anggotaTimGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AnggotaTimGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.anggotaTimCountArgs<ExtArgs>
+            result: $Utils.Optional<AnggotaTimCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1443,6 +1623,8 @@ export namespace Prisma {
     penilaian?: penilaianOmit
     peserta?: pesertaOmit
     pesertalomba?: pesertalombaOmit
+    submission?: submissionOmit
+    anggotaTim?: anggotaTimOmit
   }
 
   /* Types for Logging */
@@ -1667,10 +1849,12 @@ export namespace Prisma {
 
   export type PesertaCountOutputType = {
     pesertalomba: number
+    anggotaTim: number
   }
 
   export type PesertaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pesertalomba?: boolean | PesertaCountOutputTypeCountPesertalombaArgs
+    anggotaTim?: boolean | PesertaCountOutputTypeCountAnggotaTimArgs
   }
 
   // Custom InputTypes
@@ -1691,34 +1875,41 @@ export namespace Prisma {
     where?: pesertalombaWhereInput
   }
 
+  /**
+   * PesertaCountOutputType without action
+   */
+  export type PesertaCountOutputTypeCountAnggotaTimArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: anggotaTimWhereInput
+  }
+
 
   /**
-   * Count Type PesertalombaCountOutputType
+   * Count Type SubmissionCountOutputType
    */
 
-  export type PesertalombaCountOutputType = {
+  export type SubmissionCountOutputType = {
     penilaian: number
   }
 
-  export type PesertalombaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    penilaian?: boolean | PesertalombaCountOutputTypeCountPenilaianArgs
+  export type SubmissionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    penilaian?: boolean | SubmissionCountOutputTypeCountPenilaianArgs
   }
 
   // Custom InputTypes
   /**
-   * PesertalombaCountOutputType without action
+   * SubmissionCountOutputType without action
    */
-  export type PesertalombaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SubmissionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the PesertalombaCountOutputType
+     * Select specific fields to fetch from the SubmissionCountOutputType
      */
-    select?: PesertalombaCountOutputTypeSelect<ExtArgs> | null
+    select?: SubmissionCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * PesertalombaCountOutputType without action
+   * SubmissionCountOutputType without action
    */
-  export type PesertalombaCountOutputTypeCountPenilaianArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SubmissionCountOutputTypeCountPenilaianArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: penilaianWhereInput
   }
 
@@ -7199,33 +7390,33 @@ export namespace Prisma {
   }
 
   export type PenilaianMinAggregateOutputType = {
+    id: string | null
     juri_id: string | null
-    pesertalomba_id: string | null
-    pesertalomba_id1: string | null
-    pesertalomba_id_pesetalomba: string | null
+    submission_id: string | null
     status_penilaian: string | null
     nilai_penilaian: Decimal | null
     deskripsi_penilaian: string | null
+    created_at: Date | null
   }
 
   export type PenilaianMaxAggregateOutputType = {
+    id: string | null
     juri_id: string | null
-    pesertalomba_id: string | null
-    pesertalomba_id1: string | null
-    pesertalomba_id_pesetalomba: string | null
+    submission_id: string | null
     status_penilaian: string | null
     nilai_penilaian: Decimal | null
     deskripsi_penilaian: string | null
+    created_at: Date | null
   }
 
   export type PenilaianCountAggregateOutputType = {
+    id: number
     juri_id: number
-    pesertalomba_id: number
-    pesertalomba_id1: number
-    pesertalomba_id_pesetalomba: number
+    submission_id: number
     status_penilaian: number
     nilai_penilaian: number
     deskripsi_penilaian: number
+    created_at: number
     _all: number
   }
 
@@ -7239,33 +7430,33 @@ export namespace Prisma {
   }
 
   export type PenilaianMinAggregateInputType = {
+    id?: true
     juri_id?: true
-    pesertalomba_id?: true
-    pesertalomba_id1?: true
-    pesertalomba_id_pesetalomba?: true
+    submission_id?: true
     status_penilaian?: true
     nilai_penilaian?: true
     deskripsi_penilaian?: true
+    created_at?: true
   }
 
   export type PenilaianMaxAggregateInputType = {
+    id?: true
     juri_id?: true
-    pesertalomba_id?: true
-    pesertalomba_id1?: true
-    pesertalomba_id_pesetalomba?: true
+    submission_id?: true
     status_penilaian?: true
     nilai_penilaian?: true
     deskripsi_penilaian?: true
+    created_at?: true
   }
 
   export type PenilaianCountAggregateInputType = {
+    id?: true
     juri_id?: true
-    pesertalomba_id?: true
-    pesertalomba_id1?: true
-    pesertalomba_id_pesetalomba?: true
+    submission_id?: true
     status_penilaian?: true
     nilai_penilaian?: true
     deskripsi_penilaian?: true
+    created_at?: true
     _all?: true
   }
 
@@ -7356,13 +7547,13 @@ export namespace Prisma {
   }
 
   export type PenilaianGroupByOutputType = {
+    id: string
     juri_id: string
-    pesertalomba_id: string
-    pesertalomba_id1: string
-    pesertalomba_id_pesetalomba: string
+    submission_id: string
     status_penilaian: string
     nilai_penilaian: Decimal | null
     deskripsi_penilaian: string | null
+    created_at: Date
     _count: PenilaianCountAggregateOutputType | null
     _avg: PenilaianAvgAggregateOutputType | null
     _sum: PenilaianSumAggregateOutputType | null
@@ -7385,79 +7576,79 @@ export namespace Prisma {
 
 
   export type penilaianSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     juri_id?: boolean
-    pesertalomba_id?: boolean
-    pesertalomba_id1?: boolean
-    pesertalomba_id_pesetalomba?: boolean
+    submission_id?: boolean
     status_penilaian?: boolean
     nilai_penilaian?: boolean
     deskripsi_penilaian?: boolean
+    created_at?: boolean
     juri?: boolean | juriDefaultArgs<ExtArgs>
-    pesertalomba?: boolean | pesertalombaDefaultArgs<ExtArgs>
+    submission?: boolean | submissionDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["penilaian"]>
 
   export type penilaianSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     juri_id?: boolean
-    pesertalomba_id?: boolean
-    pesertalomba_id1?: boolean
-    pesertalomba_id_pesetalomba?: boolean
+    submission_id?: boolean
     status_penilaian?: boolean
     nilai_penilaian?: boolean
     deskripsi_penilaian?: boolean
+    created_at?: boolean
     juri?: boolean | juriDefaultArgs<ExtArgs>
-    pesertalomba?: boolean | pesertalombaDefaultArgs<ExtArgs>
+    submission?: boolean | submissionDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["penilaian"]>
 
   export type penilaianSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     juri_id?: boolean
-    pesertalomba_id?: boolean
-    pesertalomba_id1?: boolean
-    pesertalomba_id_pesetalomba?: boolean
+    submission_id?: boolean
     status_penilaian?: boolean
     nilai_penilaian?: boolean
     deskripsi_penilaian?: boolean
+    created_at?: boolean
     juri?: boolean | juriDefaultArgs<ExtArgs>
-    pesertalomba?: boolean | pesertalombaDefaultArgs<ExtArgs>
+    submission?: boolean | submissionDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["penilaian"]>
 
   export type penilaianSelectScalar = {
+    id?: boolean
     juri_id?: boolean
-    pesertalomba_id?: boolean
-    pesertalomba_id1?: boolean
-    pesertalomba_id_pesetalomba?: boolean
+    submission_id?: boolean
     status_penilaian?: boolean
     nilai_penilaian?: boolean
     deskripsi_penilaian?: boolean
+    created_at?: boolean
   }
 
-  export type penilaianOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"juri_id" | "pesertalomba_id" | "pesertalomba_id1" | "pesertalomba_id_pesetalomba" | "status_penilaian" | "nilai_penilaian" | "deskripsi_penilaian", ExtArgs["result"]["penilaian"]>
+  export type penilaianOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "juri_id" | "submission_id" | "status_penilaian" | "nilai_penilaian" | "deskripsi_penilaian" | "created_at", ExtArgs["result"]["penilaian"]>
   export type penilaianInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     juri?: boolean | juriDefaultArgs<ExtArgs>
-    pesertalomba?: boolean | pesertalombaDefaultArgs<ExtArgs>
+    submission?: boolean | submissionDefaultArgs<ExtArgs>
   }
   export type penilaianIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     juri?: boolean | juriDefaultArgs<ExtArgs>
-    pesertalomba?: boolean | pesertalombaDefaultArgs<ExtArgs>
+    submission?: boolean | submissionDefaultArgs<ExtArgs>
   }
   export type penilaianIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     juri?: boolean | juriDefaultArgs<ExtArgs>
-    pesertalomba?: boolean | pesertalombaDefaultArgs<ExtArgs>
+    submission?: boolean | submissionDefaultArgs<ExtArgs>
   }
 
   export type $penilaianPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "penilaian"
     objects: {
       juri: Prisma.$juriPayload<ExtArgs>
-      pesertalomba: Prisma.$pesertalombaPayload<ExtArgs>
+      submission: Prisma.$submissionPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
+      id: string
       juri_id: string
-      pesertalomba_id: string
-      pesertalomba_id1: string
-      pesertalomba_id_pesetalomba: string
+      submission_id: string
       status_penilaian: string
       nilai_penilaian: Prisma.Decimal | null
       deskripsi_penilaian: string | null
+      created_at: Date
     }, ExtArgs["result"]["penilaian"]>
     composites: {}
   }
@@ -7541,8 +7732,8 @@ export namespace Prisma {
      * // Get first 10 Penilaians
      * const penilaians = await prisma.penilaian.findMany({ take: 10 })
      * 
-     * // Only select the `juri_id`
-     * const penilaianWithJuri_idOnly = await prisma.penilaian.findMany({ select: { juri_id: true } })
+     * // Only select the `id`
+     * const penilaianWithIdOnly = await prisma.penilaian.findMany({ select: { id: true } })
      * 
      */
     findMany<T extends penilaianFindManyArgs>(args?: SelectSubset<T, penilaianFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$penilaianPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -7586,9 +7777,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Penilaians and only return the `juri_id`
-     * const penilaianWithJuri_idOnly = await prisma.penilaian.createManyAndReturn({
-     *   select: { juri_id: true },
+     * // Create many Penilaians and only return the `id`
+     * const penilaianWithIdOnly = await prisma.penilaian.createManyAndReturn({
+     *   select: { id: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -7677,9 +7868,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Penilaians and only return the `juri_id`
-     * const penilaianWithJuri_idOnly = await prisma.penilaian.updateManyAndReturn({
-     *   select: { juri_id: true },
+     * // Update zero or more Penilaians and only return the `id`
+     * const penilaianWithIdOnly = await prisma.penilaian.updateManyAndReturn({
+     *   select: { id: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7853,7 +8044,7 @@ export namespace Prisma {
   export interface Prisma__penilaianClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     juri<T extends juriDefaultArgs<ExtArgs> = {}>(args?: Subset<T, juriDefaultArgs<ExtArgs>>): Prisma__juriClient<$Result.GetResult<Prisma.$juriPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    pesertalomba<T extends pesertalombaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, pesertalombaDefaultArgs<ExtArgs>>): Prisma__pesertalombaClient<$Result.GetResult<Prisma.$pesertalombaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    submission<T extends submissionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, submissionDefaultArgs<ExtArgs>>): Prisma__submissionClient<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7883,13 +8074,13 @@ export namespace Prisma {
    * Fields of the penilaian model
    */
   interface penilaianFieldRefs {
+    readonly id: FieldRef<"penilaian", 'String'>
     readonly juri_id: FieldRef<"penilaian", 'String'>
-    readonly pesertalomba_id: FieldRef<"penilaian", 'String'>
-    readonly pesertalomba_id1: FieldRef<"penilaian", 'String'>
-    readonly pesertalomba_id_pesetalomba: FieldRef<"penilaian", 'String'>
+    readonly submission_id: FieldRef<"penilaian", 'String'>
     readonly status_penilaian: FieldRef<"penilaian", 'String'>
     readonly nilai_penilaian: FieldRef<"penilaian", 'Decimal'>
     readonly deskripsi_penilaian: FieldRef<"penilaian", 'String'>
+    readonly created_at: FieldRef<"penilaian", 'DateTime'>
   }
     
 
@@ -8462,6 +8653,7 @@ export namespace Prisma {
     created_at?: boolean
     users?: boolean | usersDefaultArgs<ExtArgs>
     pesertalomba?: boolean | peserta$pesertalombaArgs<ExtArgs>
+    anggotaTim?: boolean | peserta$anggotaTimArgs<ExtArgs>
     _count?: boolean | PesertaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["peserta"]>
 
@@ -8492,6 +8684,7 @@ export namespace Prisma {
   export type pesertaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | usersDefaultArgs<ExtArgs>
     pesertalomba?: boolean | peserta$pesertalombaArgs<ExtArgs>
+    anggotaTim?: boolean | peserta$anggotaTimArgs<ExtArgs>
     _count?: boolean | PesertaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type pesertaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8506,6 +8699,7 @@ export namespace Prisma {
     objects: {
       users: Prisma.$usersPayload<ExtArgs>
       pesertalomba: Prisma.$pesertalombaPayload<ExtArgs>[]
+      anggotaTim: Prisma.$anggotaTimPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8908,6 +9102,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     pesertalomba<T extends peserta$pesertalombaArgs<ExtArgs> = {}>(args?: Subset<T, peserta$pesertalombaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pesertalombaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    anggotaTim<T extends peserta$anggotaTimArgs<ExtArgs> = {}>(args?: Subset<T, peserta$anggotaTimArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$anggotaTimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9361,6 +9556,30 @@ export namespace Prisma {
   }
 
   /**
+   * peserta.anggotaTim
+   */
+  export type peserta$anggotaTimArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimInclude<ExtArgs> | null
+    where?: anggotaTimWhereInput
+    orderBy?: anggotaTimOrderByWithRelationInput | anggotaTimOrderByWithRelationInput[]
+    cursor?: anggotaTimWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AnggotaTimScalarFieldEnum | AnggotaTimScalarFieldEnum[]
+  }
+
+  /**
    * peserta without action
    */
   export type pesertaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9385,82 +9604,46 @@ export namespace Prisma {
 
   export type AggregatePesertalomba = {
     _count: PesertalombaCountAggregateOutputType | null
-    _avg: PesertalombaAvgAggregateOutputType | null
-    _sum: PesertalombaSumAggregateOutputType | null
     _min: PesertalombaMinAggregateOutputType | null
     _max: PesertalombaMaxAggregateOutputType | null
   }
 
-  export type PesertalombaAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type PesertalombaSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type PesertalombaMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     peserta_id: string | null
     lomba_id: string | null
-    id_pesertalomba: string | null
-    submit: string | null
-    submission_time: Date | null
   }
 
   export type PesertalombaMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     peserta_id: string | null
     lomba_id: string | null
-    id_pesertalomba: string | null
-    submit: string | null
-    submission_time: Date | null
   }
 
   export type PesertalombaCountAggregateOutputType = {
     id: number
     peserta_id: number
     lomba_id: number
-    id_pesertalomba: number
-    submit: number
-    submission_time: number
     _all: number
   }
 
-
-  export type PesertalombaAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type PesertalombaSumAggregateInputType = {
-    id?: true
-  }
 
   export type PesertalombaMinAggregateInputType = {
     id?: true
     peserta_id?: true
     lomba_id?: true
-    id_pesertalomba?: true
-    submit?: true
-    submission_time?: true
   }
 
   export type PesertalombaMaxAggregateInputType = {
     id?: true
     peserta_id?: true
     lomba_id?: true
-    id_pesertalomba?: true
-    submit?: true
-    submission_time?: true
   }
 
   export type PesertalombaCountAggregateInputType = {
     id?: true
     peserta_id?: true
     lomba_id?: true
-    id_pesertalomba?: true
-    submit?: true
-    submission_time?: true
     _all?: true
   }
 
@@ -9502,18 +9685,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: PesertalombaAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PesertalombaSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: PesertalombaMinAggregateInputType
@@ -9544,22 +9715,15 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: PesertalombaCountAggregateInputType | true
-    _avg?: PesertalombaAvgAggregateInputType
-    _sum?: PesertalombaSumAggregateInputType
     _min?: PesertalombaMinAggregateInputType
     _max?: PesertalombaMaxAggregateInputType
   }
 
   export type PesertalombaGroupByOutputType = {
-    id: number
+    id: string
     peserta_id: string
     lomba_id: string
-    id_pesertalomba: string
-    submit: string | null
-    submission_time: Date | null
     _count: PesertalombaCountAggregateOutputType | null
-    _avg: PesertalombaAvgAggregateOutputType | null
-    _sum: PesertalombaSumAggregateOutputType | null
     _min: PesertalombaMinAggregateOutputType | null
     _max: PesertalombaMaxAggregateOutputType | null
   }
@@ -9582,22 +9746,15 @@ export namespace Prisma {
     id?: boolean
     peserta_id?: boolean
     lomba_id?: boolean
-    id_pesertalomba?: boolean
-    submit?: boolean
-    submission_time?: boolean
-    penilaian?: boolean | pesertalomba$penilaianArgs<ExtArgs>
+    submission?: boolean | pesertalomba$submissionArgs<ExtArgs>
     lomba?: boolean | lombaDefaultArgs<ExtArgs>
     peserta?: boolean | pesertaDefaultArgs<ExtArgs>
-    _count?: boolean | PesertalombaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pesertalomba"]>
 
   export type pesertalombaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     peserta_id?: boolean
     lomba_id?: boolean
-    id_pesertalomba?: boolean
-    submit?: boolean
-    submission_time?: boolean
     lomba?: boolean | lombaDefaultArgs<ExtArgs>
     peserta?: boolean | pesertaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pesertalomba"]>
@@ -9606,9 +9763,6 @@ export namespace Prisma {
     id?: boolean
     peserta_id?: boolean
     lomba_id?: boolean
-    id_pesertalomba?: boolean
-    submit?: boolean
-    submission_time?: boolean
     lomba?: boolean | lombaDefaultArgs<ExtArgs>
     peserta?: boolean | pesertaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pesertalomba"]>
@@ -9617,17 +9771,13 @@ export namespace Prisma {
     id?: boolean
     peserta_id?: boolean
     lomba_id?: boolean
-    id_pesertalomba?: boolean
-    submit?: boolean
-    submission_time?: boolean
   }
 
-  export type pesertalombaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "peserta_id" | "lomba_id" | "id_pesertalomba" | "submit" | "submission_time", ExtArgs["result"]["pesertalomba"]>
+  export type pesertalombaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "peserta_id" | "lomba_id", ExtArgs["result"]["pesertalomba"]>
   export type pesertalombaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    penilaian?: boolean | pesertalomba$penilaianArgs<ExtArgs>
+    submission?: boolean | pesertalomba$submissionArgs<ExtArgs>
     lomba?: boolean | lombaDefaultArgs<ExtArgs>
     peserta?: boolean | pesertaDefaultArgs<ExtArgs>
-    _count?: boolean | PesertalombaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type pesertalombaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     lomba?: boolean | lombaDefaultArgs<ExtArgs>
@@ -9641,17 +9791,14 @@ export namespace Prisma {
   export type $pesertalombaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "pesertalomba"
     objects: {
-      penilaian: Prisma.$penilaianPayload<ExtArgs>[]
+      submission: Prisma.$submissionPayload<ExtArgs> | null
       lomba: Prisma.$lombaPayload<ExtArgs>
       peserta: Prisma.$pesertaPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       peserta_id: string
       lomba_id: string
-      id_pesertalomba: string
-      submit: string | null
-      submission_time: Date | null
     }, ExtArgs["result"]["pesertalomba"]>
     composites: {}
   }
@@ -10046,7 +10193,7 @@ export namespace Prisma {
    */
   export interface Prisma__pesertalombaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    penilaian<T extends pesertalomba$penilaianArgs<ExtArgs> = {}>(args?: Subset<T, pesertalomba$penilaianArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$penilaianPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    submission<T extends pesertalomba$submissionArgs<ExtArgs> = {}>(args?: Subset<T, pesertalomba$submissionArgs<ExtArgs>>): Prisma__submissionClient<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     lomba<T extends lombaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, lombaDefaultArgs<ExtArgs>>): Prisma__lombaClient<$Result.GetResult<Prisma.$lombaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     peserta<T extends pesertaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, pesertaDefaultArgs<ExtArgs>>): Prisma__pesertaClient<$Result.GetResult<Prisma.$pesertaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -10078,12 +10225,9 @@ export namespace Prisma {
    * Fields of the pesertalomba model
    */
   interface pesertalombaFieldRefs {
-    readonly id: FieldRef<"pesertalomba", 'Int'>
+    readonly id: FieldRef<"pesertalomba", 'String'>
     readonly peserta_id: FieldRef<"pesertalomba", 'String'>
     readonly lomba_id: FieldRef<"pesertalomba", 'String'>
-    readonly id_pesertalomba: FieldRef<"pesertalomba", 'String'>
-    readonly submit: FieldRef<"pesertalomba", 'String'>
-    readonly submission_time: FieldRef<"pesertalomba", 'DateTime'>
   }
     
 
@@ -10480,9 +10624,1079 @@ export namespace Prisma {
   }
 
   /**
-   * pesertalomba.penilaian
+   * pesertalomba.submission
    */
-  export type pesertalomba$penilaianArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pesertalomba$submissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the submission
+     */
+    select?: submissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the submission
+     */
+    omit?: submissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: submissionInclude<ExtArgs> | null
+    where?: submissionWhereInput
+  }
+
+  /**
+   * pesertalomba without action
+   */
+  export type pesertalombaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pesertalomba
+     */
+    select?: pesertalombaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pesertalomba
+     */
+    omit?: pesertalombaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pesertalombaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model submission
+   */
+
+  export type AggregateSubmission = {
+    _count: SubmissionCountAggregateOutputType | null
+    _min: SubmissionMinAggregateOutputType | null
+    _max: SubmissionMaxAggregateOutputType | null
+  }
+
+  export type SubmissionMinAggregateOutputType = {
+    id: string | null
+    pesertalomba_id: string | null
+    file_url: string | null
+    submission_time: Date | null
+  }
+
+  export type SubmissionMaxAggregateOutputType = {
+    id: string | null
+    pesertalomba_id: string | null
+    file_url: string | null
+    submission_time: Date | null
+  }
+
+  export type SubmissionCountAggregateOutputType = {
+    id: number
+    pesertalomba_id: number
+    file_url: number
+    submission_time: number
+    _all: number
+  }
+
+
+  export type SubmissionMinAggregateInputType = {
+    id?: true
+    pesertalomba_id?: true
+    file_url?: true
+    submission_time?: true
+  }
+
+  export type SubmissionMaxAggregateInputType = {
+    id?: true
+    pesertalomba_id?: true
+    file_url?: true
+    submission_time?: true
+  }
+
+  export type SubmissionCountAggregateInputType = {
+    id?: true
+    pesertalomba_id?: true
+    file_url?: true
+    submission_time?: true
+    _all?: true
+  }
+
+  export type SubmissionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which submission to aggregate.
+     */
+    where?: submissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of submissions to fetch.
+     */
+    orderBy?: submissionOrderByWithRelationInput | submissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: submissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` submissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` submissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned submissions
+    **/
+    _count?: true | SubmissionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SubmissionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SubmissionMaxAggregateInputType
+  }
+
+  export type GetSubmissionAggregateType<T extends SubmissionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSubmission]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSubmission[P]>
+      : GetScalarType<T[P], AggregateSubmission[P]>
+  }
+
+
+
+
+  export type submissionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: submissionWhereInput
+    orderBy?: submissionOrderByWithAggregationInput | submissionOrderByWithAggregationInput[]
+    by: SubmissionScalarFieldEnum[] | SubmissionScalarFieldEnum
+    having?: submissionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SubmissionCountAggregateInputType | true
+    _min?: SubmissionMinAggregateInputType
+    _max?: SubmissionMaxAggregateInputType
+  }
+
+  export type SubmissionGroupByOutputType = {
+    id: string
+    pesertalomba_id: string
+    file_url: string
+    submission_time: Date
+    _count: SubmissionCountAggregateOutputType | null
+    _min: SubmissionMinAggregateOutputType | null
+    _max: SubmissionMaxAggregateOutputType | null
+  }
+
+  type GetSubmissionGroupByPayload<T extends submissionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SubmissionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SubmissionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SubmissionGroupByOutputType[P]>
+            : GetScalarType<T[P], SubmissionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type submissionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    pesertalomba_id?: boolean
+    file_url?: boolean
+    submission_time?: boolean
+    pesertalomba?: boolean | pesertalombaDefaultArgs<ExtArgs>
+    penilaian?: boolean | submission$penilaianArgs<ExtArgs>
+    _count?: boolean | SubmissionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["submission"]>
+
+  export type submissionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    pesertalomba_id?: boolean
+    file_url?: boolean
+    submission_time?: boolean
+    pesertalomba?: boolean | pesertalombaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["submission"]>
+
+  export type submissionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    pesertalomba_id?: boolean
+    file_url?: boolean
+    submission_time?: boolean
+    pesertalomba?: boolean | pesertalombaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["submission"]>
+
+  export type submissionSelectScalar = {
+    id?: boolean
+    pesertalomba_id?: boolean
+    file_url?: boolean
+    submission_time?: boolean
+  }
+
+  export type submissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pesertalomba_id" | "file_url" | "submission_time", ExtArgs["result"]["submission"]>
+  export type submissionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pesertalomba?: boolean | pesertalombaDefaultArgs<ExtArgs>
+    penilaian?: boolean | submission$penilaianArgs<ExtArgs>
+    _count?: boolean | SubmissionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type submissionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pesertalomba?: boolean | pesertalombaDefaultArgs<ExtArgs>
+  }
+  export type submissionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pesertalomba?: boolean | pesertalombaDefaultArgs<ExtArgs>
+  }
+
+  export type $submissionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "submission"
+    objects: {
+      pesertalomba: Prisma.$pesertalombaPayload<ExtArgs>
+      penilaian: Prisma.$penilaianPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      pesertalomba_id: string
+      file_url: string
+      submission_time: Date
+    }, ExtArgs["result"]["submission"]>
+    composites: {}
+  }
+
+  type submissionGetPayload<S extends boolean | null | undefined | submissionDefaultArgs> = $Result.GetResult<Prisma.$submissionPayload, S>
+
+  type submissionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<submissionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SubmissionCountAggregateInputType | true
+    }
+
+  export interface submissionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['submission'], meta: { name: 'submission' } }
+    /**
+     * Find zero or one Submission that matches the filter.
+     * @param {submissionFindUniqueArgs} args - Arguments to find a Submission
+     * @example
+     * // Get one Submission
+     * const submission = await prisma.submission.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends submissionFindUniqueArgs>(args: SelectSubset<T, submissionFindUniqueArgs<ExtArgs>>): Prisma__submissionClient<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Submission that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {submissionFindUniqueOrThrowArgs} args - Arguments to find a Submission
+     * @example
+     * // Get one Submission
+     * const submission = await prisma.submission.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends submissionFindUniqueOrThrowArgs>(args: SelectSubset<T, submissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__submissionClient<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Submission that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {submissionFindFirstArgs} args - Arguments to find a Submission
+     * @example
+     * // Get one Submission
+     * const submission = await prisma.submission.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends submissionFindFirstArgs>(args?: SelectSubset<T, submissionFindFirstArgs<ExtArgs>>): Prisma__submissionClient<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Submission that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {submissionFindFirstOrThrowArgs} args - Arguments to find a Submission
+     * @example
+     * // Get one Submission
+     * const submission = await prisma.submission.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends submissionFindFirstOrThrowArgs>(args?: SelectSubset<T, submissionFindFirstOrThrowArgs<ExtArgs>>): Prisma__submissionClient<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Submissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {submissionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Submissions
+     * const submissions = await prisma.submission.findMany()
+     * 
+     * // Get first 10 Submissions
+     * const submissions = await prisma.submission.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const submissionWithIdOnly = await prisma.submission.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends submissionFindManyArgs>(args?: SelectSubset<T, submissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Submission.
+     * @param {submissionCreateArgs} args - Arguments to create a Submission.
+     * @example
+     * // Create one Submission
+     * const Submission = await prisma.submission.create({
+     *   data: {
+     *     // ... data to create a Submission
+     *   }
+     * })
+     * 
+     */
+    create<T extends submissionCreateArgs>(args: SelectSubset<T, submissionCreateArgs<ExtArgs>>): Prisma__submissionClient<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Submissions.
+     * @param {submissionCreateManyArgs} args - Arguments to create many Submissions.
+     * @example
+     * // Create many Submissions
+     * const submission = await prisma.submission.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends submissionCreateManyArgs>(args?: SelectSubset<T, submissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Submissions and returns the data saved in the database.
+     * @param {submissionCreateManyAndReturnArgs} args - Arguments to create many Submissions.
+     * @example
+     * // Create many Submissions
+     * const submission = await prisma.submission.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Submissions and only return the `id`
+     * const submissionWithIdOnly = await prisma.submission.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends submissionCreateManyAndReturnArgs>(args?: SelectSubset<T, submissionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Submission.
+     * @param {submissionDeleteArgs} args - Arguments to delete one Submission.
+     * @example
+     * // Delete one Submission
+     * const Submission = await prisma.submission.delete({
+     *   where: {
+     *     // ... filter to delete one Submission
+     *   }
+     * })
+     * 
+     */
+    delete<T extends submissionDeleteArgs>(args: SelectSubset<T, submissionDeleteArgs<ExtArgs>>): Prisma__submissionClient<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Submission.
+     * @param {submissionUpdateArgs} args - Arguments to update one Submission.
+     * @example
+     * // Update one Submission
+     * const submission = await prisma.submission.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends submissionUpdateArgs>(args: SelectSubset<T, submissionUpdateArgs<ExtArgs>>): Prisma__submissionClient<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Submissions.
+     * @param {submissionDeleteManyArgs} args - Arguments to filter Submissions to delete.
+     * @example
+     * // Delete a few Submissions
+     * const { count } = await prisma.submission.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends submissionDeleteManyArgs>(args?: SelectSubset<T, submissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Submissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {submissionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Submissions
+     * const submission = await prisma.submission.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends submissionUpdateManyArgs>(args: SelectSubset<T, submissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Submissions and returns the data updated in the database.
+     * @param {submissionUpdateManyAndReturnArgs} args - Arguments to update many Submissions.
+     * @example
+     * // Update many Submissions
+     * const submission = await prisma.submission.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Submissions and only return the `id`
+     * const submissionWithIdOnly = await prisma.submission.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends submissionUpdateManyAndReturnArgs>(args: SelectSubset<T, submissionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Submission.
+     * @param {submissionUpsertArgs} args - Arguments to update or create a Submission.
+     * @example
+     * // Update or create a Submission
+     * const submission = await prisma.submission.upsert({
+     *   create: {
+     *     // ... data to create a Submission
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Submission we want to update
+     *   }
+     * })
+     */
+    upsert<T extends submissionUpsertArgs>(args: SelectSubset<T, submissionUpsertArgs<ExtArgs>>): Prisma__submissionClient<$Result.GetResult<Prisma.$submissionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Submissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {submissionCountArgs} args - Arguments to filter Submissions to count.
+     * @example
+     * // Count the number of Submissions
+     * const count = await prisma.submission.count({
+     *   where: {
+     *     // ... the filter for the Submissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends submissionCountArgs>(
+      args?: Subset<T, submissionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SubmissionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Submission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SubmissionAggregateArgs>(args: Subset<T, SubmissionAggregateArgs>): Prisma.PrismaPromise<GetSubmissionAggregateType<T>>
+
+    /**
+     * Group by Submission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {submissionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends submissionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: submissionGroupByArgs['orderBy'] }
+        : { orderBy?: submissionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, submissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSubmissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the submission model
+   */
+  readonly fields: submissionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for submission.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__submissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    pesertalomba<T extends pesertalombaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, pesertalombaDefaultArgs<ExtArgs>>): Prisma__pesertalombaClient<$Result.GetResult<Prisma.$pesertalombaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    penilaian<T extends submission$penilaianArgs<ExtArgs> = {}>(args?: Subset<T, submission$penilaianArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$penilaianPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the submission model
+   */
+  interface submissionFieldRefs {
+    readonly id: FieldRef<"submission", 'String'>
+    readonly pesertalomba_id: FieldRef<"submission", 'String'>
+    readonly file_url: FieldRef<"submission", 'String'>
+    readonly submission_time: FieldRef<"submission", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * submission findUnique
+   */
+  export type submissionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the submission
+     */
+    select?: submissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the submission
+     */
+    omit?: submissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: submissionInclude<ExtArgs> | null
+    /**
+     * Filter, which submission to fetch.
+     */
+    where: submissionWhereUniqueInput
+  }
+
+  /**
+   * submission findUniqueOrThrow
+   */
+  export type submissionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the submission
+     */
+    select?: submissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the submission
+     */
+    omit?: submissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: submissionInclude<ExtArgs> | null
+    /**
+     * Filter, which submission to fetch.
+     */
+    where: submissionWhereUniqueInput
+  }
+
+  /**
+   * submission findFirst
+   */
+  export type submissionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the submission
+     */
+    select?: submissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the submission
+     */
+    omit?: submissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: submissionInclude<ExtArgs> | null
+    /**
+     * Filter, which submission to fetch.
+     */
+    where?: submissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of submissions to fetch.
+     */
+    orderBy?: submissionOrderByWithRelationInput | submissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for submissions.
+     */
+    cursor?: submissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` submissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` submissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of submissions.
+     */
+    distinct?: SubmissionScalarFieldEnum | SubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * submission findFirstOrThrow
+   */
+  export type submissionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the submission
+     */
+    select?: submissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the submission
+     */
+    omit?: submissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: submissionInclude<ExtArgs> | null
+    /**
+     * Filter, which submission to fetch.
+     */
+    where?: submissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of submissions to fetch.
+     */
+    orderBy?: submissionOrderByWithRelationInput | submissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for submissions.
+     */
+    cursor?: submissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` submissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` submissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of submissions.
+     */
+    distinct?: SubmissionScalarFieldEnum | SubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * submission findMany
+   */
+  export type submissionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the submission
+     */
+    select?: submissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the submission
+     */
+    omit?: submissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: submissionInclude<ExtArgs> | null
+    /**
+     * Filter, which submissions to fetch.
+     */
+    where?: submissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of submissions to fetch.
+     */
+    orderBy?: submissionOrderByWithRelationInput | submissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing submissions.
+     */
+    cursor?: submissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` submissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` submissions.
+     */
+    skip?: number
+    distinct?: SubmissionScalarFieldEnum | SubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * submission create
+   */
+  export type submissionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the submission
+     */
+    select?: submissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the submission
+     */
+    omit?: submissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: submissionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a submission.
+     */
+    data: XOR<submissionCreateInput, submissionUncheckedCreateInput>
+  }
+
+  /**
+   * submission createMany
+   */
+  export type submissionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many submissions.
+     */
+    data: submissionCreateManyInput | submissionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * submission createManyAndReturn
+   */
+  export type submissionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the submission
+     */
+    select?: submissionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the submission
+     */
+    omit?: submissionOmit<ExtArgs> | null
+    /**
+     * The data used to create many submissions.
+     */
+    data: submissionCreateManyInput | submissionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: submissionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * submission update
+   */
+  export type submissionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the submission
+     */
+    select?: submissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the submission
+     */
+    omit?: submissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: submissionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a submission.
+     */
+    data: XOR<submissionUpdateInput, submissionUncheckedUpdateInput>
+    /**
+     * Choose, which submission to update.
+     */
+    where: submissionWhereUniqueInput
+  }
+
+  /**
+   * submission updateMany
+   */
+  export type submissionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update submissions.
+     */
+    data: XOR<submissionUpdateManyMutationInput, submissionUncheckedUpdateManyInput>
+    /**
+     * Filter which submissions to update
+     */
+    where?: submissionWhereInput
+    /**
+     * Limit how many submissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * submission updateManyAndReturn
+   */
+  export type submissionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the submission
+     */
+    select?: submissionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the submission
+     */
+    omit?: submissionOmit<ExtArgs> | null
+    /**
+     * The data used to update submissions.
+     */
+    data: XOR<submissionUpdateManyMutationInput, submissionUncheckedUpdateManyInput>
+    /**
+     * Filter which submissions to update
+     */
+    where?: submissionWhereInput
+    /**
+     * Limit how many submissions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: submissionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * submission upsert
+   */
+  export type submissionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the submission
+     */
+    select?: submissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the submission
+     */
+    omit?: submissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: submissionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the submission to update in case it exists.
+     */
+    where: submissionWhereUniqueInput
+    /**
+     * In case the submission found by the `where` argument doesn't exist, create a new submission with this data.
+     */
+    create: XOR<submissionCreateInput, submissionUncheckedCreateInput>
+    /**
+     * In case the submission was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<submissionUpdateInput, submissionUncheckedUpdateInput>
+  }
+
+  /**
+   * submission delete
+   */
+  export type submissionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the submission
+     */
+    select?: submissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the submission
+     */
+    omit?: submissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: submissionInclude<ExtArgs> | null
+    /**
+     * Filter which submission to delete.
+     */
+    where: submissionWhereUniqueInput
+  }
+
+  /**
+   * submission deleteMany
+   */
+  export type submissionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which submissions to delete
+     */
+    where?: submissionWhereInput
+    /**
+     * Limit how many submissions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * submission.penilaian
+   */
+  export type submission$penilaianArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the penilaian
      */
@@ -10504,21 +11718,1066 @@ export namespace Prisma {
   }
 
   /**
-   * pesertalomba without action
+   * submission without action
    */
-  export type pesertalombaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type submissionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pesertalomba
+     * Select specific fields to fetch from the submission
      */
-    select?: pesertalombaSelect<ExtArgs> | null
+    select?: submissionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the pesertalomba
+     * Omit specific fields from the submission
      */
-    omit?: pesertalombaOmit<ExtArgs> | null
+    omit?: submissionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: pesertalombaInclude<ExtArgs> | null
+    include?: submissionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model anggotaTim
+   */
+
+  export type AggregateAnggotaTim = {
+    _count: AnggotaTimCountAggregateOutputType | null
+    _min: AnggotaTimMinAggregateOutputType | null
+    _max: AnggotaTimMaxAggregateOutputType | null
+  }
+
+  export type AnggotaTimMinAggregateOutputType = {
+    id: string | null
+    nama: string | null
+    peserta_id: string | null
+    created_at: Date | null
+  }
+
+  export type AnggotaTimMaxAggregateOutputType = {
+    id: string | null
+    nama: string | null
+    peserta_id: string | null
+    created_at: Date | null
+  }
+
+  export type AnggotaTimCountAggregateOutputType = {
+    id: number
+    nama: number
+    peserta_id: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type AnggotaTimMinAggregateInputType = {
+    id?: true
+    nama?: true
+    peserta_id?: true
+    created_at?: true
+  }
+
+  export type AnggotaTimMaxAggregateInputType = {
+    id?: true
+    nama?: true
+    peserta_id?: true
+    created_at?: true
+  }
+
+  export type AnggotaTimCountAggregateInputType = {
+    id?: true
+    nama?: true
+    peserta_id?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type AnggotaTimAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which anggotaTim to aggregate.
+     */
+    where?: anggotaTimWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of anggotaTims to fetch.
+     */
+    orderBy?: anggotaTimOrderByWithRelationInput | anggotaTimOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: anggotaTimWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` anggotaTims from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` anggotaTims.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned anggotaTims
+    **/
+    _count?: true | AnggotaTimCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AnggotaTimMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AnggotaTimMaxAggregateInputType
+  }
+
+  export type GetAnggotaTimAggregateType<T extends AnggotaTimAggregateArgs> = {
+        [P in keyof T & keyof AggregateAnggotaTim]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAnggotaTim[P]>
+      : GetScalarType<T[P], AggregateAnggotaTim[P]>
+  }
+
+
+
+
+  export type anggotaTimGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: anggotaTimWhereInput
+    orderBy?: anggotaTimOrderByWithAggregationInput | anggotaTimOrderByWithAggregationInput[]
+    by: AnggotaTimScalarFieldEnum[] | AnggotaTimScalarFieldEnum
+    having?: anggotaTimScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AnggotaTimCountAggregateInputType | true
+    _min?: AnggotaTimMinAggregateInputType
+    _max?: AnggotaTimMaxAggregateInputType
+  }
+
+  export type AnggotaTimGroupByOutputType = {
+    id: string
+    nama: string
+    peserta_id: string
+    created_at: Date
+    _count: AnggotaTimCountAggregateOutputType | null
+    _min: AnggotaTimMinAggregateOutputType | null
+    _max: AnggotaTimMaxAggregateOutputType | null
+  }
+
+  type GetAnggotaTimGroupByPayload<T extends anggotaTimGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AnggotaTimGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AnggotaTimGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AnggotaTimGroupByOutputType[P]>
+            : GetScalarType<T[P], AnggotaTimGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type anggotaTimSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nama?: boolean
+    peserta_id?: boolean
+    created_at?: boolean
+    peserta?: boolean | pesertaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["anggotaTim"]>
+
+  export type anggotaTimSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nama?: boolean
+    peserta_id?: boolean
+    created_at?: boolean
+    peserta?: boolean | pesertaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["anggotaTim"]>
+
+  export type anggotaTimSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nama?: boolean
+    peserta_id?: boolean
+    created_at?: boolean
+    peserta?: boolean | pesertaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["anggotaTim"]>
+
+  export type anggotaTimSelectScalar = {
+    id?: boolean
+    nama?: boolean
+    peserta_id?: boolean
+    created_at?: boolean
+  }
+
+  export type anggotaTimOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "peserta_id" | "created_at", ExtArgs["result"]["anggotaTim"]>
+  export type anggotaTimInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    peserta?: boolean | pesertaDefaultArgs<ExtArgs>
+  }
+  export type anggotaTimIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    peserta?: boolean | pesertaDefaultArgs<ExtArgs>
+  }
+  export type anggotaTimIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    peserta?: boolean | pesertaDefaultArgs<ExtArgs>
+  }
+
+  export type $anggotaTimPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "anggotaTim"
+    objects: {
+      peserta: Prisma.$pesertaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      nama: string
+      peserta_id: string
+      created_at: Date
+    }, ExtArgs["result"]["anggotaTim"]>
+    composites: {}
+  }
+
+  type anggotaTimGetPayload<S extends boolean | null | undefined | anggotaTimDefaultArgs> = $Result.GetResult<Prisma.$anggotaTimPayload, S>
+
+  type anggotaTimCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<anggotaTimFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AnggotaTimCountAggregateInputType | true
+    }
+
+  export interface anggotaTimDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['anggotaTim'], meta: { name: 'anggotaTim' } }
+    /**
+     * Find zero or one AnggotaTim that matches the filter.
+     * @param {anggotaTimFindUniqueArgs} args - Arguments to find a AnggotaTim
+     * @example
+     * // Get one AnggotaTim
+     * const anggotaTim = await prisma.anggotaTim.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends anggotaTimFindUniqueArgs>(args: SelectSubset<T, anggotaTimFindUniqueArgs<ExtArgs>>): Prisma__anggotaTimClient<$Result.GetResult<Prisma.$anggotaTimPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AnggotaTim that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {anggotaTimFindUniqueOrThrowArgs} args - Arguments to find a AnggotaTim
+     * @example
+     * // Get one AnggotaTim
+     * const anggotaTim = await prisma.anggotaTim.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends anggotaTimFindUniqueOrThrowArgs>(args: SelectSubset<T, anggotaTimFindUniqueOrThrowArgs<ExtArgs>>): Prisma__anggotaTimClient<$Result.GetResult<Prisma.$anggotaTimPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnggotaTim that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {anggotaTimFindFirstArgs} args - Arguments to find a AnggotaTim
+     * @example
+     * // Get one AnggotaTim
+     * const anggotaTim = await prisma.anggotaTim.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends anggotaTimFindFirstArgs>(args?: SelectSubset<T, anggotaTimFindFirstArgs<ExtArgs>>): Prisma__anggotaTimClient<$Result.GetResult<Prisma.$anggotaTimPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnggotaTim that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {anggotaTimFindFirstOrThrowArgs} args - Arguments to find a AnggotaTim
+     * @example
+     * // Get one AnggotaTim
+     * const anggotaTim = await prisma.anggotaTim.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends anggotaTimFindFirstOrThrowArgs>(args?: SelectSubset<T, anggotaTimFindFirstOrThrowArgs<ExtArgs>>): Prisma__anggotaTimClient<$Result.GetResult<Prisma.$anggotaTimPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AnggotaTims that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {anggotaTimFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AnggotaTims
+     * const anggotaTims = await prisma.anggotaTim.findMany()
+     * 
+     * // Get first 10 AnggotaTims
+     * const anggotaTims = await prisma.anggotaTim.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const anggotaTimWithIdOnly = await prisma.anggotaTim.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends anggotaTimFindManyArgs>(args?: SelectSubset<T, anggotaTimFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$anggotaTimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AnggotaTim.
+     * @param {anggotaTimCreateArgs} args - Arguments to create a AnggotaTim.
+     * @example
+     * // Create one AnggotaTim
+     * const AnggotaTim = await prisma.anggotaTim.create({
+     *   data: {
+     *     // ... data to create a AnggotaTim
+     *   }
+     * })
+     * 
+     */
+    create<T extends anggotaTimCreateArgs>(args: SelectSubset<T, anggotaTimCreateArgs<ExtArgs>>): Prisma__anggotaTimClient<$Result.GetResult<Prisma.$anggotaTimPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AnggotaTims.
+     * @param {anggotaTimCreateManyArgs} args - Arguments to create many AnggotaTims.
+     * @example
+     * // Create many AnggotaTims
+     * const anggotaTim = await prisma.anggotaTim.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends anggotaTimCreateManyArgs>(args?: SelectSubset<T, anggotaTimCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AnggotaTims and returns the data saved in the database.
+     * @param {anggotaTimCreateManyAndReturnArgs} args - Arguments to create many AnggotaTims.
+     * @example
+     * // Create many AnggotaTims
+     * const anggotaTim = await prisma.anggotaTim.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AnggotaTims and only return the `id`
+     * const anggotaTimWithIdOnly = await prisma.anggotaTim.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends anggotaTimCreateManyAndReturnArgs>(args?: SelectSubset<T, anggotaTimCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$anggotaTimPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AnggotaTim.
+     * @param {anggotaTimDeleteArgs} args - Arguments to delete one AnggotaTim.
+     * @example
+     * // Delete one AnggotaTim
+     * const AnggotaTim = await prisma.anggotaTim.delete({
+     *   where: {
+     *     // ... filter to delete one AnggotaTim
+     *   }
+     * })
+     * 
+     */
+    delete<T extends anggotaTimDeleteArgs>(args: SelectSubset<T, anggotaTimDeleteArgs<ExtArgs>>): Prisma__anggotaTimClient<$Result.GetResult<Prisma.$anggotaTimPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AnggotaTim.
+     * @param {anggotaTimUpdateArgs} args - Arguments to update one AnggotaTim.
+     * @example
+     * // Update one AnggotaTim
+     * const anggotaTim = await prisma.anggotaTim.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends anggotaTimUpdateArgs>(args: SelectSubset<T, anggotaTimUpdateArgs<ExtArgs>>): Prisma__anggotaTimClient<$Result.GetResult<Prisma.$anggotaTimPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AnggotaTims.
+     * @param {anggotaTimDeleteManyArgs} args - Arguments to filter AnggotaTims to delete.
+     * @example
+     * // Delete a few AnggotaTims
+     * const { count } = await prisma.anggotaTim.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends anggotaTimDeleteManyArgs>(args?: SelectSubset<T, anggotaTimDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnggotaTims.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {anggotaTimUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AnggotaTims
+     * const anggotaTim = await prisma.anggotaTim.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends anggotaTimUpdateManyArgs>(args: SelectSubset<T, anggotaTimUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnggotaTims and returns the data updated in the database.
+     * @param {anggotaTimUpdateManyAndReturnArgs} args - Arguments to update many AnggotaTims.
+     * @example
+     * // Update many AnggotaTims
+     * const anggotaTim = await prisma.anggotaTim.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AnggotaTims and only return the `id`
+     * const anggotaTimWithIdOnly = await prisma.anggotaTim.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends anggotaTimUpdateManyAndReturnArgs>(args: SelectSubset<T, anggotaTimUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$anggotaTimPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AnggotaTim.
+     * @param {anggotaTimUpsertArgs} args - Arguments to update or create a AnggotaTim.
+     * @example
+     * // Update or create a AnggotaTim
+     * const anggotaTim = await prisma.anggotaTim.upsert({
+     *   create: {
+     *     // ... data to create a AnggotaTim
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AnggotaTim we want to update
+     *   }
+     * })
+     */
+    upsert<T extends anggotaTimUpsertArgs>(args: SelectSubset<T, anggotaTimUpsertArgs<ExtArgs>>): Prisma__anggotaTimClient<$Result.GetResult<Prisma.$anggotaTimPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AnggotaTims.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {anggotaTimCountArgs} args - Arguments to filter AnggotaTims to count.
+     * @example
+     * // Count the number of AnggotaTims
+     * const count = await prisma.anggotaTim.count({
+     *   where: {
+     *     // ... the filter for the AnggotaTims we want to count
+     *   }
+     * })
+    **/
+    count<T extends anggotaTimCountArgs>(
+      args?: Subset<T, anggotaTimCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AnggotaTimCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AnggotaTim.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnggotaTimAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AnggotaTimAggregateArgs>(args: Subset<T, AnggotaTimAggregateArgs>): Prisma.PrismaPromise<GetAnggotaTimAggregateType<T>>
+
+    /**
+     * Group by AnggotaTim.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {anggotaTimGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends anggotaTimGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: anggotaTimGroupByArgs['orderBy'] }
+        : { orderBy?: anggotaTimGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, anggotaTimGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnggotaTimGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the anggotaTim model
+   */
+  readonly fields: anggotaTimFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for anggotaTim.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__anggotaTimClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    peserta<T extends pesertaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, pesertaDefaultArgs<ExtArgs>>): Prisma__pesertaClient<$Result.GetResult<Prisma.$pesertaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the anggotaTim model
+   */
+  interface anggotaTimFieldRefs {
+    readonly id: FieldRef<"anggotaTim", 'String'>
+    readonly nama: FieldRef<"anggotaTim", 'String'>
+    readonly peserta_id: FieldRef<"anggotaTim", 'String'>
+    readonly created_at: FieldRef<"anggotaTim", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * anggotaTim findUnique
+   */
+  export type anggotaTimFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimInclude<ExtArgs> | null
+    /**
+     * Filter, which anggotaTim to fetch.
+     */
+    where: anggotaTimWhereUniqueInput
+  }
+
+  /**
+   * anggotaTim findUniqueOrThrow
+   */
+  export type anggotaTimFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimInclude<ExtArgs> | null
+    /**
+     * Filter, which anggotaTim to fetch.
+     */
+    where: anggotaTimWhereUniqueInput
+  }
+
+  /**
+   * anggotaTim findFirst
+   */
+  export type anggotaTimFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimInclude<ExtArgs> | null
+    /**
+     * Filter, which anggotaTim to fetch.
+     */
+    where?: anggotaTimWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of anggotaTims to fetch.
+     */
+    orderBy?: anggotaTimOrderByWithRelationInput | anggotaTimOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for anggotaTims.
+     */
+    cursor?: anggotaTimWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` anggotaTims from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` anggotaTims.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of anggotaTims.
+     */
+    distinct?: AnggotaTimScalarFieldEnum | AnggotaTimScalarFieldEnum[]
+  }
+
+  /**
+   * anggotaTim findFirstOrThrow
+   */
+  export type anggotaTimFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimInclude<ExtArgs> | null
+    /**
+     * Filter, which anggotaTim to fetch.
+     */
+    where?: anggotaTimWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of anggotaTims to fetch.
+     */
+    orderBy?: anggotaTimOrderByWithRelationInput | anggotaTimOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for anggotaTims.
+     */
+    cursor?: anggotaTimWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` anggotaTims from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` anggotaTims.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of anggotaTims.
+     */
+    distinct?: AnggotaTimScalarFieldEnum | AnggotaTimScalarFieldEnum[]
+  }
+
+  /**
+   * anggotaTim findMany
+   */
+  export type anggotaTimFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimInclude<ExtArgs> | null
+    /**
+     * Filter, which anggotaTims to fetch.
+     */
+    where?: anggotaTimWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of anggotaTims to fetch.
+     */
+    orderBy?: anggotaTimOrderByWithRelationInput | anggotaTimOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing anggotaTims.
+     */
+    cursor?: anggotaTimWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` anggotaTims from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` anggotaTims.
+     */
+    skip?: number
+    distinct?: AnggotaTimScalarFieldEnum | AnggotaTimScalarFieldEnum[]
+  }
+
+  /**
+   * anggotaTim create
+   */
+  export type anggotaTimCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimInclude<ExtArgs> | null
+    /**
+     * The data needed to create a anggotaTim.
+     */
+    data: XOR<anggotaTimCreateInput, anggotaTimUncheckedCreateInput>
+  }
+
+  /**
+   * anggotaTim createMany
+   */
+  export type anggotaTimCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many anggotaTims.
+     */
+    data: anggotaTimCreateManyInput | anggotaTimCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * anggotaTim createManyAndReturn
+   */
+  export type anggotaTimCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * The data used to create many anggotaTims.
+     */
+    data: anggotaTimCreateManyInput | anggotaTimCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * anggotaTim update
+   */
+  export type anggotaTimUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimInclude<ExtArgs> | null
+    /**
+     * The data needed to update a anggotaTim.
+     */
+    data: XOR<anggotaTimUpdateInput, anggotaTimUncheckedUpdateInput>
+    /**
+     * Choose, which anggotaTim to update.
+     */
+    where: anggotaTimWhereUniqueInput
+  }
+
+  /**
+   * anggotaTim updateMany
+   */
+  export type anggotaTimUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update anggotaTims.
+     */
+    data: XOR<anggotaTimUpdateManyMutationInput, anggotaTimUncheckedUpdateManyInput>
+    /**
+     * Filter which anggotaTims to update
+     */
+    where?: anggotaTimWhereInput
+    /**
+     * Limit how many anggotaTims to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * anggotaTim updateManyAndReturn
+   */
+  export type anggotaTimUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * The data used to update anggotaTims.
+     */
+    data: XOR<anggotaTimUpdateManyMutationInput, anggotaTimUncheckedUpdateManyInput>
+    /**
+     * Filter which anggotaTims to update
+     */
+    where?: anggotaTimWhereInput
+    /**
+     * Limit how many anggotaTims to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * anggotaTim upsert
+   */
+  export type anggotaTimUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimInclude<ExtArgs> | null
+    /**
+     * The filter to search for the anggotaTim to update in case it exists.
+     */
+    where: anggotaTimWhereUniqueInput
+    /**
+     * In case the anggotaTim found by the `where` argument doesn't exist, create a new anggotaTim with this data.
+     */
+    create: XOR<anggotaTimCreateInput, anggotaTimUncheckedCreateInput>
+    /**
+     * In case the anggotaTim was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<anggotaTimUpdateInput, anggotaTimUncheckedUpdateInput>
+  }
+
+  /**
+   * anggotaTim delete
+   */
+  export type anggotaTimDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimInclude<ExtArgs> | null
+    /**
+     * Filter which anggotaTim to delete.
+     */
+    where: anggotaTimWhereUniqueInput
+  }
+
+  /**
+   * anggotaTim deleteMany
+   */
+  export type anggotaTimDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which anggotaTims to delete
+     */
+    where?: anggotaTimWhereInput
+    /**
+     * Limit how many anggotaTims to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * anggotaTim without action
+   */
+  export type anggotaTimDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the anggotaTim
+     */
+    select?: anggotaTimSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the anggotaTim
+     */
+    omit?: anggotaTimOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: anggotaTimInclude<ExtArgs> | null
   }
 
 
@@ -10591,13 +12850,13 @@ export namespace Prisma {
 
 
   export const PenilaianScalarFieldEnum: {
+    id: 'id',
     juri_id: 'juri_id',
-    pesertalomba_id: 'pesertalomba_id',
-    pesertalomba_id1: 'pesertalomba_id1',
-    pesertalomba_id_pesetalomba: 'pesertalomba_id_pesetalomba',
+    submission_id: 'submission_id',
     status_penilaian: 'status_penilaian',
     nilai_penilaian: 'nilai_penilaian',
-    deskripsi_penilaian: 'deskripsi_penilaian'
+    deskripsi_penilaian: 'deskripsi_penilaian',
+    created_at: 'created_at'
   };
 
   export type PenilaianScalarFieldEnum = (typeof PenilaianScalarFieldEnum)[keyof typeof PenilaianScalarFieldEnum]
@@ -10616,13 +12875,30 @@ export namespace Prisma {
   export const PesertalombaScalarFieldEnum: {
     id: 'id',
     peserta_id: 'peserta_id',
-    lomba_id: 'lomba_id',
-    id_pesertalomba: 'id_pesertalomba',
-    submit: 'submit',
-    submission_time: 'submission_time'
+    lomba_id: 'lomba_id'
   };
 
   export type PesertalombaScalarFieldEnum = (typeof PesertalombaScalarFieldEnum)[keyof typeof PesertalombaScalarFieldEnum]
+
+
+  export const SubmissionScalarFieldEnum: {
+    id: 'id',
+    pesertalomba_id: 'pesertalomba_id',
+    file_url: 'file_url',
+    submission_time: 'submission_time'
+  };
+
+  export type SubmissionScalarFieldEnum = (typeof SubmissionScalarFieldEnum)[keyof typeof SubmissionScalarFieldEnum]
+
+
+  export const AnggotaTimScalarFieldEnum: {
+    id: 'id',
+    nama: 'nama',
+    peserta_id: 'peserta_id',
+    created_at: 'created_at'
+  };
+
+  export type AnggotaTimScalarFieldEnum = (typeof AnggotaTimScalarFieldEnum)[keyof typeof AnggotaTimScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -10735,20 +13011,6 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -11047,53 +13309,52 @@ export namespace Prisma {
     AND?: penilaianWhereInput | penilaianWhereInput[]
     OR?: penilaianWhereInput[]
     NOT?: penilaianWhereInput | penilaianWhereInput[]
+    id?: UuidFilter<"penilaian"> | string
     juri_id?: UuidFilter<"penilaian"> | string
-    pesertalomba_id?: UuidFilter<"penilaian"> | string
-    pesertalomba_id1?: StringFilter<"penilaian"> | string
-    pesertalomba_id_pesetalomba?: StringFilter<"penilaian"> | string
+    submission_id?: UuidFilter<"penilaian"> | string
     status_penilaian?: StringFilter<"penilaian"> | string
     nilai_penilaian?: DecimalNullableFilter<"penilaian"> | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: StringNullableFilter<"penilaian"> | string | null
+    created_at?: DateTimeFilter<"penilaian"> | Date | string
     juri?: XOR<JuriScalarRelationFilter, juriWhereInput>
-    pesertalomba?: XOR<PesertalombaScalarRelationFilter, pesertalombaWhereInput>
+    submission?: XOR<SubmissionScalarRelationFilter, submissionWhereInput>
   }
 
   export type penilaianOrderByWithRelationInput = {
+    id?: SortOrder
     juri_id?: SortOrder
-    pesertalomba_id?: SortOrder
-    pesertalomba_id1?: SortOrder
-    pesertalomba_id_pesetalomba?: SortOrder
+    submission_id?: SortOrder
     status_penilaian?: SortOrder
     nilai_penilaian?: SortOrderInput | SortOrder
     deskripsi_penilaian?: SortOrderInput | SortOrder
+    created_at?: SortOrder
     juri?: juriOrderByWithRelationInput
-    pesertalomba?: pesertalombaOrderByWithRelationInput
+    submission?: submissionOrderByWithRelationInput
   }
 
   export type penilaianWhereUniqueInput = Prisma.AtLeast<{
-    juri_id_pesertalomba_id_pesertalomba_id1_pesertalomba_id_pesetalomba?: penilaianJuri_idPesertalomba_idPesertalomba_id1Pesertalomba_id_pesetalombaCompoundUniqueInput
+    id?: string
     AND?: penilaianWhereInput | penilaianWhereInput[]
     OR?: penilaianWhereInput[]
     NOT?: penilaianWhereInput | penilaianWhereInput[]
     juri_id?: UuidFilter<"penilaian"> | string
-    pesertalomba_id?: UuidFilter<"penilaian"> | string
-    pesertalomba_id1?: StringFilter<"penilaian"> | string
-    pesertalomba_id_pesetalomba?: StringFilter<"penilaian"> | string
+    submission_id?: UuidFilter<"penilaian"> | string
     status_penilaian?: StringFilter<"penilaian"> | string
     nilai_penilaian?: DecimalNullableFilter<"penilaian"> | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: StringNullableFilter<"penilaian"> | string | null
+    created_at?: DateTimeFilter<"penilaian"> | Date | string
     juri?: XOR<JuriScalarRelationFilter, juriWhereInput>
-    pesertalomba?: XOR<PesertalombaScalarRelationFilter, pesertalombaWhereInput>
-  }, "juri_id_pesertalomba_id_pesertalomba_id1_pesertalomba_id_pesetalomba">
+    submission?: XOR<SubmissionScalarRelationFilter, submissionWhereInput>
+  }, "id">
 
   export type penilaianOrderByWithAggregationInput = {
+    id?: SortOrder
     juri_id?: SortOrder
-    pesertalomba_id?: SortOrder
-    pesertalomba_id1?: SortOrder
-    pesertalomba_id_pesetalomba?: SortOrder
+    submission_id?: SortOrder
     status_penilaian?: SortOrder
     nilai_penilaian?: SortOrderInput | SortOrder
     deskripsi_penilaian?: SortOrderInput | SortOrder
+    created_at?: SortOrder
     _count?: penilaianCountOrderByAggregateInput
     _avg?: penilaianAvgOrderByAggregateInput
     _max?: penilaianMaxOrderByAggregateInput
@@ -11105,13 +13366,13 @@ export namespace Prisma {
     AND?: penilaianScalarWhereWithAggregatesInput | penilaianScalarWhereWithAggregatesInput[]
     OR?: penilaianScalarWhereWithAggregatesInput[]
     NOT?: penilaianScalarWhereWithAggregatesInput | penilaianScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"penilaian"> | string
     juri_id?: UuidWithAggregatesFilter<"penilaian"> | string
-    pesertalomba_id?: UuidWithAggregatesFilter<"penilaian"> | string
-    pesertalomba_id1?: StringWithAggregatesFilter<"penilaian"> | string
-    pesertalomba_id_pesetalomba?: StringWithAggregatesFilter<"penilaian"> | string
+    submission_id?: UuidWithAggregatesFilter<"penilaian"> | string
     status_penilaian?: StringWithAggregatesFilter<"penilaian"> | string
     nilai_penilaian?: DecimalNullableWithAggregatesFilter<"penilaian"> | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: StringNullableWithAggregatesFilter<"penilaian"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"penilaian"> | Date | string
   }
 
   export type pesertaWhereInput = {
@@ -11124,6 +13385,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"peserta"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     pesertalomba?: PesertalombaListRelationFilter
+    anggotaTim?: AnggotaTimListRelationFilter
   }
 
   export type pesertaOrderByWithRelationInput = {
@@ -11133,6 +13395,7 @@ export namespace Prisma {
     created_at?: SortOrder
     users?: usersOrderByWithRelationInput
     pesertalomba?: pesertalombaOrderByRelationAggregateInput
+    anggotaTim?: anggotaTimOrderByRelationAggregateInput
   }
 
   export type pesertaWhereUniqueInput = Prisma.AtLeast<{
@@ -11145,6 +13408,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"peserta"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     pesertalomba?: PesertalombaListRelationFilter
+    anggotaTim?: AnggotaTimListRelationFilter
   }, "id">
 
   export type pesertaOrderByWithAggregationInput = {
@@ -11171,13 +13435,10 @@ export namespace Prisma {
     AND?: pesertalombaWhereInput | pesertalombaWhereInput[]
     OR?: pesertalombaWhereInput[]
     NOT?: pesertalombaWhereInput | pesertalombaWhereInput[]
-    id?: IntFilter<"pesertalomba"> | number
+    id?: UuidFilter<"pesertalomba"> | string
     peserta_id?: UuidFilter<"pesertalomba"> | string
     lomba_id?: StringFilter<"pesertalomba"> | string
-    id_pesertalomba?: StringFilter<"pesertalomba"> | string
-    submit?: StringNullableFilter<"pesertalomba"> | string | null
-    submission_time?: DateTimeNullableFilter<"pesertalomba"> | Date | string | null
-    penilaian?: PenilaianListRelationFilter
+    submission?: XOR<SubmissionNullableScalarRelationFilter, submissionWhereInput> | null
     lomba?: XOR<LombaScalarRelationFilter, lombaWhereInput>
     peserta?: XOR<PesertaScalarRelationFilter, pesertaWhereInput>
   }
@@ -11186,54 +13447,143 @@ export namespace Prisma {
     id?: SortOrder
     peserta_id?: SortOrder
     lomba_id?: SortOrder
-    id_pesertalomba?: SortOrder
-    submit?: SortOrderInput | SortOrder
-    submission_time?: SortOrderInput | SortOrder
-    penilaian?: penilaianOrderByRelationAggregateInput
+    submission?: submissionOrderByWithRelationInput
     lomba?: lombaOrderByWithRelationInput
     peserta?: pesertaOrderByWithRelationInput
   }
 
   export type pesertalombaWhereUniqueInput = Prisma.AtLeast<{
-    peserta_id_lomba_id_id_pesertalomba?: pesertalombaPeserta_idLomba_idId_pesertalombaCompoundUniqueInput
+    id?: string
+    peserta_id_lomba_id?: pesertalombaPeserta_idLomba_idCompoundUniqueInput
     AND?: pesertalombaWhereInput | pesertalombaWhereInput[]
     OR?: pesertalombaWhereInput[]
     NOT?: pesertalombaWhereInput | pesertalombaWhereInput[]
-    id?: IntFilter<"pesertalomba"> | number
     peserta_id?: UuidFilter<"pesertalomba"> | string
     lomba_id?: StringFilter<"pesertalomba"> | string
-    id_pesertalomba?: StringFilter<"pesertalomba"> | string
-    submit?: StringNullableFilter<"pesertalomba"> | string | null
-    submission_time?: DateTimeNullableFilter<"pesertalomba"> | Date | string | null
-    penilaian?: PenilaianListRelationFilter
+    submission?: XOR<SubmissionNullableScalarRelationFilter, submissionWhereInput> | null
     lomba?: XOR<LombaScalarRelationFilter, lombaWhereInput>
     peserta?: XOR<PesertaScalarRelationFilter, pesertaWhereInput>
-  }, "peserta_id_lomba_id_id_pesertalomba">
+  }, "id" | "peserta_id_lomba_id">
 
   export type pesertalombaOrderByWithAggregationInput = {
     id?: SortOrder
     peserta_id?: SortOrder
     lomba_id?: SortOrder
-    id_pesertalomba?: SortOrder
-    submit?: SortOrderInput | SortOrder
-    submission_time?: SortOrderInput | SortOrder
     _count?: pesertalombaCountOrderByAggregateInput
-    _avg?: pesertalombaAvgOrderByAggregateInput
     _max?: pesertalombaMaxOrderByAggregateInput
     _min?: pesertalombaMinOrderByAggregateInput
-    _sum?: pesertalombaSumOrderByAggregateInput
   }
 
   export type pesertalombaScalarWhereWithAggregatesInput = {
     AND?: pesertalombaScalarWhereWithAggregatesInput | pesertalombaScalarWhereWithAggregatesInput[]
     OR?: pesertalombaScalarWhereWithAggregatesInput[]
     NOT?: pesertalombaScalarWhereWithAggregatesInput | pesertalombaScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"pesertalomba"> | number
+    id?: UuidWithAggregatesFilter<"pesertalomba"> | string
     peserta_id?: UuidWithAggregatesFilter<"pesertalomba"> | string
     lomba_id?: StringWithAggregatesFilter<"pesertalomba"> | string
-    id_pesertalomba?: StringWithAggregatesFilter<"pesertalomba"> | string
-    submit?: StringNullableWithAggregatesFilter<"pesertalomba"> | string | null
-    submission_time?: DateTimeNullableWithAggregatesFilter<"pesertalomba"> | Date | string | null
+  }
+
+  export type submissionWhereInput = {
+    AND?: submissionWhereInput | submissionWhereInput[]
+    OR?: submissionWhereInput[]
+    NOT?: submissionWhereInput | submissionWhereInput[]
+    id?: UuidFilter<"submission"> | string
+    pesertalomba_id?: UuidFilter<"submission"> | string
+    file_url?: StringFilter<"submission"> | string
+    submission_time?: DateTimeFilter<"submission"> | Date | string
+    pesertalomba?: XOR<PesertalombaScalarRelationFilter, pesertalombaWhereInput>
+    penilaian?: PenilaianListRelationFilter
+  }
+
+  export type submissionOrderByWithRelationInput = {
+    id?: SortOrder
+    pesertalomba_id?: SortOrder
+    file_url?: SortOrder
+    submission_time?: SortOrder
+    pesertalomba?: pesertalombaOrderByWithRelationInput
+    penilaian?: penilaianOrderByRelationAggregateInput
+  }
+
+  export type submissionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    pesertalomba_id?: string
+    AND?: submissionWhereInput | submissionWhereInput[]
+    OR?: submissionWhereInput[]
+    NOT?: submissionWhereInput | submissionWhereInput[]
+    file_url?: StringFilter<"submission"> | string
+    submission_time?: DateTimeFilter<"submission"> | Date | string
+    pesertalomba?: XOR<PesertalombaScalarRelationFilter, pesertalombaWhereInput>
+    penilaian?: PenilaianListRelationFilter
+  }, "id" | "pesertalomba_id">
+
+  export type submissionOrderByWithAggregationInput = {
+    id?: SortOrder
+    pesertalomba_id?: SortOrder
+    file_url?: SortOrder
+    submission_time?: SortOrder
+    _count?: submissionCountOrderByAggregateInput
+    _max?: submissionMaxOrderByAggregateInput
+    _min?: submissionMinOrderByAggregateInput
+  }
+
+  export type submissionScalarWhereWithAggregatesInput = {
+    AND?: submissionScalarWhereWithAggregatesInput | submissionScalarWhereWithAggregatesInput[]
+    OR?: submissionScalarWhereWithAggregatesInput[]
+    NOT?: submissionScalarWhereWithAggregatesInput | submissionScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"submission"> | string
+    pesertalomba_id?: UuidWithAggregatesFilter<"submission"> | string
+    file_url?: StringWithAggregatesFilter<"submission"> | string
+    submission_time?: DateTimeWithAggregatesFilter<"submission"> | Date | string
+  }
+
+  export type anggotaTimWhereInput = {
+    AND?: anggotaTimWhereInput | anggotaTimWhereInput[]
+    OR?: anggotaTimWhereInput[]
+    NOT?: anggotaTimWhereInput | anggotaTimWhereInput[]
+    id?: UuidFilter<"anggotaTim"> | string
+    nama?: StringFilter<"anggotaTim"> | string
+    peserta_id?: UuidFilter<"anggotaTim"> | string
+    created_at?: DateTimeFilter<"anggotaTim"> | Date | string
+    peserta?: XOR<PesertaScalarRelationFilter, pesertaWhereInput>
+  }
+
+  export type anggotaTimOrderByWithRelationInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    peserta_id?: SortOrder
+    created_at?: SortOrder
+    peserta?: pesertaOrderByWithRelationInput
+  }
+
+  export type anggotaTimWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: anggotaTimWhereInput | anggotaTimWhereInput[]
+    OR?: anggotaTimWhereInput[]
+    NOT?: anggotaTimWhereInput | anggotaTimWhereInput[]
+    nama?: StringFilter<"anggotaTim"> | string
+    peserta_id?: UuidFilter<"anggotaTim"> | string
+    created_at?: DateTimeFilter<"anggotaTim"> | Date | string
+    peserta?: XOR<PesertaScalarRelationFilter, pesertaWhereInput>
+  }, "id">
+
+  export type anggotaTimOrderByWithAggregationInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    peserta_id?: SortOrder
+    created_at?: SortOrder
+    _count?: anggotaTimCountOrderByAggregateInput
+    _max?: anggotaTimMaxOrderByAggregateInput
+    _min?: anggotaTimMinOrderByAggregateInput
+  }
+
+  export type anggotaTimScalarWhereWithAggregatesInput = {
+    AND?: anggotaTimScalarWhereWithAggregatesInput | anggotaTimScalarWhereWithAggregatesInput[]
+    OR?: anggotaTimScalarWhereWithAggregatesInput[]
+    NOT?: anggotaTimScalarWhereWithAggregatesInput | anggotaTimScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"anggotaTim"> | string
+    nama?: StringWithAggregatesFilter<"anggotaTim"> | string
+    peserta_id?: UuidWithAggregatesFilter<"anggotaTim"> | string
+    created_at?: DateTimeWithAggregatesFilter<"anggotaTim"> | Date | string
   }
 
   export type lombaCreateInput = {
@@ -11534,65 +13884,71 @@ export namespace Prisma {
   }
 
   export type penilaianCreateInput = {
+    id?: string
     status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
+    created_at?: Date | string
     juri: juriCreateNestedOneWithoutPenilaianInput
-    pesertalomba: pesertalombaCreateNestedOneWithoutPenilaianInput
+    submission: submissionCreateNestedOneWithoutPenilaianInput
   }
 
   export type penilaianUncheckedCreateInput = {
+    id?: string
     juri_id: string
-    pesertalomba_id: string
-    pesertalomba_id1: string
-    pesertalomba_id_pesetalomba: string
+    submission_id: string
     status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
+    created_at?: Date | string
   }
 
   export type penilaianUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     juri?: juriUpdateOneRequiredWithoutPenilaianNestedInput
-    pesertalomba?: pesertalombaUpdateOneRequiredWithoutPenilaianNestedInput
+    submission?: submissionUpdateOneRequiredWithoutPenilaianNestedInput
   }
 
   export type penilaianUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     juri_id?: StringFieldUpdateOperationsInput | string
-    pesertalomba_id?: StringFieldUpdateOperationsInput | string
-    pesertalomba_id1?: StringFieldUpdateOperationsInput | string
-    pesertalomba_id_pesetalomba?: StringFieldUpdateOperationsInput | string
+    submission_id?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type penilaianCreateManyInput = {
+    id?: string
     juri_id: string
-    pesertalomba_id: string
-    pesertalomba_id1: string
-    pesertalomba_id_pesetalomba: string
+    submission_id: string
     status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
+    created_at?: Date | string
   }
 
   export type penilaianUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type penilaianUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
     juri_id?: StringFieldUpdateOperationsInput | string
-    pesertalomba_id?: StringFieldUpdateOperationsInput | string
-    pesertalomba_id1?: StringFieldUpdateOperationsInput | string
-    pesertalomba_id_pesetalomba?: StringFieldUpdateOperationsInput | string
+    submission_id?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type pesertaCreateInput = {
@@ -11601,6 +13957,7 @@ export namespace Prisma {
     created_at?: Date | string
     users: usersCreateNestedOneWithoutPesertaInput
     pesertalomba?: pesertalombaCreateNestedManyWithoutPesertaInput
+    anggotaTim?: anggotaTimCreateNestedManyWithoutPesertaInput
   }
 
   export type pesertaUncheckedCreateInput = {
@@ -11609,6 +13966,7 @@ export namespace Prisma {
     users_id: string
     created_at?: Date | string
     pesertalomba?: pesertalombaUncheckedCreateNestedManyWithoutPesertaInput
+    anggotaTim?: anggotaTimUncheckedCreateNestedManyWithoutPesertaInput
   }
 
   export type pesertaUpdateInput = {
@@ -11617,6 +13975,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutPesertaNestedInput
     pesertalomba?: pesertalombaUpdateManyWithoutPesertaNestedInput
+    anggotaTim?: anggotaTimUpdateManyWithoutPesertaNestedInput
   }
 
   export type pesertaUncheckedUpdateInput = {
@@ -11625,6 +13984,7 @@ export namespace Prisma {
     users_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     pesertalomba?: pesertalombaUncheckedUpdateManyWithoutPesertaNestedInput
+    anggotaTim?: anggotaTimUncheckedUpdateManyWithoutPesertaNestedInput
   }
 
   export type pesertaCreateManyInput = {
@@ -11648,68 +14008,147 @@ export namespace Prisma {
   }
 
   export type pesertalombaCreateInput = {
-    id?: number
-    id_pesertalomba: string
-    submit?: string | null
-    submission_time?: Date | string | null
-    penilaian?: penilaianCreateNestedManyWithoutPesertalombaInput
+    id?: string
+    submission?: submissionCreateNestedOneWithoutPesertalombaInput
     lomba: lombaCreateNestedOneWithoutPesertalombaInput
     peserta: pesertaCreateNestedOneWithoutPesertalombaInput
   }
 
   export type pesertalombaUncheckedCreateInput = {
-    id?: number
+    id?: string
     peserta_id: string
     lomba_id: string
-    id_pesertalomba: string
-    submit?: string | null
-    submission_time?: Date | string | null
-    penilaian?: penilaianUncheckedCreateNestedManyWithoutPesertalombaInput
+    submission?: submissionUncheckedCreateNestedOneWithoutPesertalombaInput
   }
 
   export type pesertalombaUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    id_pesertalomba?: StringFieldUpdateOperationsInput | string
-    submit?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    penilaian?: penilaianUpdateManyWithoutPesertalombaNestedInput
+    id?: StringFieldUpdateOperationsInput | string
+    submission?: submissionUpdateOneWithoutPesertalombaNestedInput
     lomba?: lombaUpdateOneRequiredWithoutPesertalombaNestedInput
     peserta?: pesertaUpdateOneRequiredWithoutPesertalombaNestedInput
   }
 
   export type pesertalombaUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     peserta_id?: StringFieldUpdateOperationsInput | string
     lomba_id?: StringFieldUpdateOperationsInput | string
-    id_pesertalomba?: StringFieldUpdateOperationsInput | string
-    submit?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    penilaian?: penilaianUncheckedUpdateManyWithoutPesertalombaNestedInput
+    submission?: submissionUncheckedUpdateOneWithoutPesertalombaNestedInput
   }
 
   export type pesertalombaCreateManyInput = {
-    id?: number
+    id?: string
     peserta_id: string
     lomba_id: string
-    id_pesertalomba: string
-    submit?: string | null
-    submission_time?: Date | string | null
   }
 
   export type pesertalombaUpdateManyMutationInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    id_pesertalomba?: StringFieldUpdateOperationsInput | string
-    submit?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    id?: StringFieldUpdateOperationsInput | string
   }
 
   export type pesertalombaUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     peserta_id?: StringFieldUpdateOperationsInput | string
     lomba_id?: StringFieldUpdateOperationsInput | string
-    id_pesertalomba?: StringFieldUpdateOperationsInput | string
-    submit?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type submissionCreateInput = {
+    id?: string
+    file_url: string
+    submission_time?: Date | string
+    pesertalomba: pesertalombaCreateNestedOneWithoutSubmissionInput
+    penilaian?: penilaianCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type submissionUncheckedCreateInput = {
+    id?: string
+    pesertalomba_id: string
+    file_url: string
+    submission_time?: Date | string
+    penilaian?: penilaianUncheckedCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type submissionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    file_url?: StringFieldUpdateOperationsInput | string
+    submission_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesertalomba?: pesertalombaUpdateOneRequiredWithoutSubmissionNestedInput
+    penilaian?: penilaianUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type submissionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesertalomba_id?: StringFieldUpdateOperationsInput | string
+    file_url?: StringFieldUpdateOperationsInput | string
+    submission_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    penilaian?: penilaianUncheckedUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type submissionCreateManyInput = {
+    id?: string
+    pesertalomba_id: string
+    file_url: string
+    submission_time?: Date | string
+  }
+
+  export type submissionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    file_url?: StringFieldUpdateOperationsInput | string
+    submission_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type submissionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesertalomba_id?: StringFieldUpdateOperationsInput | string
+    file_url?: StringFieldUpdateOperationsInput | string
+    submission_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type anggotaTimCreateInput = {
+    id?: string
+    nama: string
+    created_at?: Date | string
+    peserta: pesertaCreateNestedOneWithoutAnggotaTimInput
+  }
+
+  export type anggotaTimUncheckedCreateInput = {
+    id?: string
+    nama: string
+    peserta_id: string
+    created_at?: Date | string
+  }
+
+  export type anggotaTimUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    peserta?: pesertaUpdateOneRequiredWithoutAnggotaTimNestedInput
+  }
+
+  export type anggotaTimUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    peserta_id?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type anggotaTimCreateManyInput = {
+    id?: string
+    nama: string
+    peserta_id: string
+    created_at?: Date | string
+  }
+
+  export type anggotaTimUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type anggotaTimUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    peserta_id?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -12072,26 +14511,19 @@ export namespace Prisma {
     isNot?: juriWhereInput
   }
 
-  export type PesertalombaScalarRelationFilter = {
-    is?: pesertalombaWhereInput
-    isNot?: pesertalombaWhereInput
-  }
-
-  export type penilaianJuri_idPesertalomba_idPesertalomba_id1Pesertalomba_id_pesetalombaCompoundUniqueInput = {
-    juri_id: string
-    pesertalomba_id: string
-    pesertalomba_id1: string
-    pesertalomba_id_pesetalomba: string
+  export type SubmissionScalarRelationFilter = {
+    is?: submissionWhereInput
+    isNot?: submissionWhereInput
   }
 
   export type penilaianCountOrderByAggregateInput = {
+    id?: SortOrder
     juri_id?: SortOrder
-    pesertalomba_id?: SortOrder
-    pesertalomba_id1?: SortOrder
-    pesertalomba_id_pesetalomba?: SortOrder
+    submission_id?: SortOrder
     status_penilaian?: SortOrder
     nilai_penilaian?: SortOrder
     deskripsi_penilaian?: SortOrder
+    created_at?: SortOrder
   }
 
   export type penilaianAvgOrderByAggregateInput = {
@@ -12099,23 +14531,23 @@ export namespace Prisma {
   }
 
   export type penilaianMaxOrderByAggregateInput = {
+    id?: SortOrder
     juri_id?: SortOrder
-    pesertalomba_id?: SortOrder
-    pesertalomba_id1?: SortOrder
-    pesertalomba_id_pesetalomba?: SortOrder
+    submission_id?: SortOrder
     status_penilaian?: SortOrder
     nilai_penilaian?: SortOrder
     deskripsi_penilaian?: SortOrder
+    created_at?: SortOrder
   }
 
   export type penilaianMinOrderByAggregateInput = {
+    id?: SortOrder
     juri_id?: SortOrder
-    pesertalomba_id?: SortOrder
-    pesertalomba_id1?: SortOrder
-    pesertalomba_id_pesetalomba?: SortOrder
+    submission_id?: SortOrder
     status_penilaian?: SortOrder
     nilai_penilaian?: SortOrder
     deskripsi_penilaian?: SortOrder
+    created_at?: SortOrder
   }
 
   export type penilaianSumOrderByAggregateInput = {
@@ -12136,6 +14568,16 @@ export namespace Prisma {
     _sum?: NestedDecimalNullableFilter<$PrismaModel>
     _min?: NestedDecimalNullableFilter<$PrismaModel>
     _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type AnggotaTimListRelationFilter = {
+    every?: anggotaTimWhereInput
+    some?: anggotaTimWhereInput
+    none?: anggotaTimWhereInput
+  }
+
+  export type anggotaTimOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type pesertaCountOrderByAggregateInput = {
@@ -12159,26 +14601,9 @@ export namespace Prisma {
     created_at?: SortOrder
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  export type SubmissionNullableScalarRelationFilter = {
+    is?: submissionWhereInput | null
+    isNot?: submissionWhereInput | null
   }
 
   export type PesertaScalarRelationFilter = {
@@ -12186,75 +14611,74 @@ export namespace Prisma {
     isNot?: pesertaWhereInput
   }
 
-  export type pesertalombaPeserta_idLomba_idId_pesertalombaCompoundUniqueInput = {
+  export type pesertalombaPeserta_idLomba_idCompoundUniqueInput = {
     peserta_id: string
     lomba_id: string
-    id_pesertalomba: string
   }
 
   export type pesertalombaCountOrderByAggregateInput = {
     id?: SortOrder
     peserta_id?: SortOrder
     lomba_id?: SortOrder
-    id_pesertalomba?: SortOrder
-    submit?: SortOrder
-    submission_time?: SortOrder
-  }
-
-  export type pesertalombaAvgOrderByAggregateInput = {
-    id?: SortOrder
   }
 
   export type pesertalombaMaxOrderByAggregateInput = {
     id?: SortOrder
     peserta_id?: SortOrder
     lomba_id?: SortOrder
-    id_pesertalomba?: SortOrder
-    submit?: SortOrder
-    submission_time?: SortOrder
   }
 
   export type pesertalombaMinOrderByAggregateInput = {
     id?: SortOrder
     peserta_id?: SortOrder
     lomba_id?: SortOrder
-    id_pesertalomba?: SortOrder
-    submit?: SortOrder
+  }
+
+  export type PesertalombaScalarRelationFilter = {
+    is?: pesertalombaWhereInput
+    isNot?: pesertalombaWhereInput
+  }
+
+  export type submissionCountOrderByAggregateInput = {
+    id?: SortOrder
+    pesertalomba_id?: SortOrder
+    file_url?: SortOrder
     submission_time?: SortOrder
   }
 
-  export type pesertalombaSumOrderByAggregateInput = {
+  export type submissionMaxOrderByAggregateInput = {
     id?: SortOrder
+    pesertalomba_id?: SortOrder
+    file_url?: SortOrder
+    submission_time?: SortOrder
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+  export type submissionMinOrderByAggregateInput = {
+    id?: SortOrder
+    pesertalomba_id?: SortOrder
+    file_url?: SortOrder
+    submission_time?: SortOrder
   }
 
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  export type anggotaTimCountOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    peserta_id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type anggotaTimMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    peserta_id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type anggotaTimMinOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    peserta_id?: SortOrder
+    created_at?: SortOrder
   }
 
   export type juriCreateNestedManyWithoutLombaInput = {
@@ -12633,10 +15057,10 @@ export namespace Prisma {
     connect?: juriWhereUniqueInput
   }
 
-  export type pesertalombaCreateNestedOneWithoutPenilaianInput = {
-    create?: XOR<pesertalombaCreateWithoutPenilaianInput, pesertalombaUncheckedCreateWithoutPenilaianInput>
-    connectOrCreate?: pesertalombaCreateOrConnectWithoutPenilaianInput
-    connect?: pesertalombaWhereUniqueInput
+  export type submissionCreateNestedOneWithoutPenilaianInput = {
+    create?: XOR<submissionCreateWithoutPenilaianInput, submissionUncheckedCreateWithoutPenilaianInput>
+    connectOrCreate?: submissionCreateOrConnectWithoutPenilaianInput
+    connect?: submissionWhereUniqueInput
   }
 
   export type NullableDecimalFieldUpdateOperationsInput = {
@@ -12655,12 +15079,12 @@ export namespace Prisma {
     update?: XOR<XOR<juriUpdateToOneWithWhereWithoutPenilaianInput, juriUpdateWithoutPenilaianInput>, juriUncheckedUpdateWithoutPenilaianInput>
   }
 
-  export type pesertalombaUpdateOneRequiredWithoutPenilaianNestedInput = {
-    create?: XOR<pesertalombaCreateWithoutPenilaianInput, pesertalombaUncheckedCreateWithoutPenilaianInput>
-    connectOrCreate?: pesertalombaCreateOrConnectWithoutPenilaianInput
-    upsert?: pesertalombaUpsertWithoutPenilaianInput
-    connect?: pesertalombaWhereUniqueInput
-    update?: XOR<XOR<pesertalombaUpdateToOneWithWhereWithoutPenilaianInput, pesertalombaUpdateWithoutPenilaianInput>, pesertalombaUncheckedUpdateWithoutPenilaianInput>
+  export type submissionUpdateOneRequiredWithoutPenilaianNestedInput = {
+    create?: XOR<submissionCreateWithoutPenilaianInput, submissionUncheckedCreateWithoutPenilaianInput>
+    connectOrCreate?: submissionCreateOrConnectWithoutPenilaianInput
+    upsert?: submissionUpsertWithoutPenilaianInput
+    connect?: submissionWhereUniqueInput
+    update?: XOR<XOR<submissionUpdateToOneWithWhereWithoutPenilaianInput, submissionUpdateWithoutPenilaianInput>, submissionUncheckedUpdateWithoutPenilaianInput>
   }
 
   export type usersCreateNestedOneWithoutPesertaInput = {
@@ -12676,11 +15100,25 @@ export namespace Prisma {
     connect?: pesertalombaWhereUniqueInput | pesertalombaWhereUniqueInput[]
   }
 
+  export type anggotaTimCreateNestedManyWithoutPesertaInput = {
+    create?: XOR<anggotaTimCreateWithoutPesertaInput, anggotaTimUncheckedCreateWithoutPesertaInput> | anggotaTimCreateWithoutPesertaInput[] | anggotaTimUncheckedCreateWithoutPesertaInput[]
+    connectOrCreate?: anggotaTimCreateOrConnectWithoutPesertaInput | anggotaTimCreateOrConnectWithoutPesertaInput[]
+    createMany?: anggotaTimCreateManyPesertaInputEnvelope
+    connect?: anggotaTimWhereUniqueInput | anggotaTimWhereUniqueInput[]
+  }
+
   export type pesertalombaUncheckedCreateNestedManyWithoutPesertaInput = {
     create?: XOR<pesertalombaCreateWithoutPesertaInput, pesertalombaUncheckedCreateWithoutPesertaInput> | pesertalombaCreateWithoutPesertaInput[] | pesertalombaUncheckedCreateWithoutPesertaInput[]
     connectOrCreate?: pesertalombaCreateOrConnectWithoutPesertaInput | pesertalombaCreateOrConnectWithoutPesertaInput[]
     createMany?: pesertalombaCreateManyPesertaInputEnvelope
     connect?: pesertalombaWhereUniqueInput | pesertalombaWhereUniqueInput[]
+  }
+
+  export type anggotaTimUncheckedCreateNestedManyWithoutPesertaInput = {
+    create?: XOR<anggotaTimCreateWithoutPesertaInput, anggotaTimUncheckedCreateWithoutPesertaInput> | anggotaTimCreateWithoutPesertaInput[] | anggotaTimUncheckedCreateWithoutPesertaInput[]
+    connectOrCreate?: anggotaTimCreateOrConnectWithoutPesertaInput | anggotaTimCreateOrConnectWithoutPesertaInput[]
+    createMany?: anggotaTimCreateManyPesertaInputEnvelope
+    connect?: anggotaTimWhereUniqueInput | anggotaTimWhereUniqueInput[]
   }
 
   export type usersUpdateOneRequiredWithoutPesertaNestedInput = {
@@ -12705,6 +15143,20 @@ export namespace Prisma {
     deleteMany?: pesertalombaScalarWhereInput | pesertalombaScalarWhereInput[]
   }
 
+  export type anggotaTimUpdateManyWithoutPesertaNestedInput = {
+    create?: XOR<anggotaTimCreateWithoutPesertaInput, anggotaTimUncheckedCreateWithoutPesertaInput> | anggotaTimCreateWithoutPesertaInput[] | anggotaTimUncheckedCreateWithoutPesertaInput[]
+    connectOrCreate?: anggotaTimCreateOrConnectWithoutPesertaInput | anggotaTimCreateOrConnectWithoutPesertaInput[]
+    upsert?: anggotaTimUpsertWithWhereUniqueWithoutPesertaInput | anggotaTimUpsertWithWhereUniqueWithoutPesertaInput[]
+    createMany?: anggotaTimCreateManyPesertaInputEnvelope
+    set?: anggotaTimWhereUniqueInput | anggotaTimWhereUniqueInput[]
+    disconnect?: anggotaTimWhereUniqueInput | anggotaTimWhereUniqueInput[]
+    delete?: anggotaTimWhereUniqueInput | anggotaTimWhereUniqueInput[]
+    connect?: anggotaTimWhereUniqueInput | anggotaTimWhereUniqueInput[]
+    update?: anggotaTimUpdateWithWhereUniqueWithoutPesertaInput | anggotaTimUpdateWithWhereUniqueWithoutPesertaInput[]
+    updateMany?: anggotaTimUpdateManyWithWhereWithoutPesertaInput | anggotaTimUpdateManyWithWhereWithoutPesertaInput[]
+    deleteMany?: anggotaTimScalarWhereInput | anggotaTimScalarWhereInput[]
+  }
+
   export type pesertalombaUncheckedUpdateManyWithoutPesertaNestedInput = {
     create?: XOR<pesertalombaCreateWithoutPesertaInput, pesertalombaUncheckedCreateWithoutPesertaInput> | pesertalombaCreateWithoutPesertaInput[] | pesertalombaUncheckedCreateWithoutPesertaInput[]
     connectOrCreate?: pesertalombaCreateOrConnectWithoutPesertaInput | pesertalombaCreateOrConnectWithoutPesertaInput[]
@@ -12719,11 +15171,24 @@ export namespace Prisma {
     deleteMany?: pesertalombaScalarWhereInput | pesertalombaScalarWhereInput[]
   }
 
-  export type penilaianCreateNestedManyWithoutPesertalombaInput = {
-    create?: XOR<penilaianCreateWithoutPesertalombaInput, penilaianUncheckedCreateWithoutPesertalombaInput> | penilaianCreateWithoutPesertalombaInput[] | penilaianUncheckedCreateWithoutPesertalombaInput[]
-    connectOrCreate?: penilaianCreateOrConnectWithoutPesertalombaInput | penilaianCreateOrConnectWithoutPesertalombaInput[]
-    createMany?: penilaianCreateManyPesertalombaInputEnvelope
-    connect?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
+  export type anggotaTimUncheckedUpdateManyWithoutPesertaNestedInput = {
+    create?: XOR<anggotaTimCreateWithoutPesertaInput, anggotaTimUncheckedCreateWithoutPesertaInput> | anggotaTimCreateWithoutPesertaInput[] | anggotaTimUncheckedCreateWithoutPesertaInput[]
+    connectOrCreate?: anggotaTimCreateOrConnectWithoutPesertaInput | anggotaTimCreateOrConnectWithoutPesertaInput[]
+    upsert?: anggotaTimUpsertWithWhereUniqueWithoutPesertaInput | anggotaTimUpsertWithWhereUniqueWithoutPesertaInput[]
+    createMany?: anggotaTimCreateManyPesertaInputEnvelope
+    set?: anggotaTimWhereUniqueInput | anggotaTimWhereUniqueInput[]
+    disconnect?: anggotaTimWhereUniqueInput | anggotaTimWhereUniqueInput[]
+    delete?: anggotaTimWhereUniqueInput | anggotaTimWhereUniqueInput[]
+    connect?: anggotaTimWhereUniqueInput | anggotaTimWhereUniqueInput[]
+    update?: anggotaTimUpdateWithWhereUniqueWithoutPesertaInput | anggotaTimUpdateWithWhereUniqueWithoutPesertaInput[]
+    updateMany?: anggotaTimUpdateManyWithWhereWithoutPesertaInput | anggotaTimUpdateManyWithWhereWithoutPesertaInput[]
+    deleteMany?: anggotaTimScalarWhereInput | anggotaTimScalarWhereInput[]
+  }
+
+  export type submissionCreateNestedOneWithoutPesertalombaInput = {
+    create?: XOR<submissionCreateWithoutPesertalombaInput, submissionUncheckedCreateWithoutPesertalombaInput>
+    connectOrCreate?: submissionCreateOrConnectWithoutPesertalombaInput
+    connect?: submissionWhereUniqueInput
   }
 
   export type lombaCreateNestedOneWithoutPesertalombaInput = {
@@ -12738,37 +15203,20 @@ export namespace Prisma {
     connect?: pesertaWhereUniqueInput
   }
 
-  export type penilaianUncheckedCreateNestedManyWithoutPesertalombaInput = {
-    create?: XOR<penilaianCreateWithoutPesertalombaInput, penilaianUncheckedCreateWithoutPesertalombaInput> | penilaianCreateWithoutPesertalombaInput[] | penilaianUncheckedCreateWithoutPesertalombaInput[]
-    connectOrCreate?: penilaianCreateOrConnectWithoutPesertalombaInput | penilaianCreateOrConnectWithoutPesertalombaInput[]
-    createMany?: penilaianCreateManyPesertalombaInputEnvelope
-    connect?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
+  export type submissionUncheckedCreateNestedOneWithoutPesertalombaInput = {
+    create?: XOR<submissionCreateWithoutPesertalombaInput, submissionUncheckedCreateWithoutPesertalombaInput>
+    connectOrCreate?: submissionCreateOrConnectWithoutPesertalombaInput
+    connect?: submissionWhereUniqueInput
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
-  export type penilaianUpdateManyWithoutPesertalombaNestedInput = {
-    create?: XOR<penilaianCreateWithoutPesertalombaInput, penilaianUncheckedCreateWithoutPesertalombaInput> | penilaianCreateWithoutPesertalombaInput[] | penilaianUncheckedCreateWithoutPesertalombaInput[]
-    connectOrCreate?: penilaianCreateOrConnectWithoutPesertalombaInput | penilaianCreateOrConnectWithoutPesertalombaInput[]
-    upsert?: penilaianUpsertWithWhereUniqueWithoutPesertalombaInput | penilaianUpsertWithWhereUniqueWithoutPesertalombaInput[]
-    createMany?: penilaianCreateManyPesertalombaInputEnvelope
-    set?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
-    disconnect?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
-    delete?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
-    connect?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
-    update?: penilaianUpdateWithWhereUniqueWithoutPesertalombaInput | penilaianUpdateWithWhereUniqueWithoutPesertalombaInput[]
-    updateMany?: penilaianUpdateManyWithWhereWithoutPesertalombaInput | penilaianUpdateManyWithWhereWithoutPesertalombaInput[]
-    deleteMany?: penilaianScalarWhereInput | penilaianScalarWhereInput[]
+  export type submissionUpdateOneWithoutPesertalombaNestedInput = {
+    create?: XOR<submissionCreateWithoutPesertalombaInput, submissionUncheckedCreateWithoutPesertalombaInput>
+    connectOrCreate?: submissionCreateOrConnectWithoutPesertalombaInput
+    upsert?: submissionUpsertWithoutPesertalombaInput
+    disconnect?: submissionWhereInput | boolean
+    delete?: submissionWhereInput | boolean
+    connect?: submissionWhereUniqueInput
+    update?: XOR<XOR<submissionUpdateToOneWithWhereWithoutPesertalombaInput, submissionUpdateWithoutPesertalombaInput>, submissionUncheckedUpdateWithoutPesertalombaInput>
   }
 
   export type lombaUpdateOneRequiredWithoutPesertalombaNestedInput = {
@@ -12787,18 +15235,84 @@ export namespace Prisma {
     update?: XOR<XOR<pesertaUpdateToOneWithWhereWithoutPesertalombaInput, pesertaUpdateWithoutPesertalombaInput>, pesertaUncheckedUpdateWithoutPesertalombaInput>
   }
 
-  export type penilaianUncheckedUpdateManyWithoutPesertalombaNestedInput = {
-    create?: XOR<penilaianCreateWithoutPesertalombaInput, penilaianUncheckedCreateWithoutPesertalombaInput> | penilaianCreateWithoutPesertalombaInput[] | penilaianUncheckedCreateWithoutPesertalombaInput[]
-    connectOrCreate?: penilaianCreateOrConnectWithoutPesertalombaInput | penilaianCreateOrConnectWithoutPesertalombaInput[]
-    upsert?: penilaianUpsertWithWhereUniqueWithoutPesertalombaInput | penilaianUpsertWithWhereUniqueWithoutPesertalombaInput[]
-    createMany?: penilaianCreateManyPesertalombaInputEnvelope
+  export type submissionUncheckedUpdateOneWithoutPesertalombaNestedInput = {
+    create?: XOR<submissionCreateWithoutPesertalombaInput, submissionUncheckedCreateWithoutPesertalombaInput>
+    connectOrCreate?: submissionCreateOrConnectWithoutPesertalombaInput
+    upsert?: submissionUpsertWithoutPesertalombaInput
+    disconnect?: submissionWhereInput | boolean
+    delete?: submissionWhereInput | boolean
+    connect?: submissionWhereUniqueInput
+    update?: XOR<XOR<submissionUpdateToOneWithWhereWithoutPesertalombaInput, submissionUpdateWithoutPesertalombaInput>, submissionUncheckedUpdateWithoutPesertalombaInput>
+  }
+
+  export type pesertalombaCreateNestedOneWithoutSubmissionInput = {
+    create?: XOR<pesertalombaCreateWithoutSubmissionInput, pesertalombaUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: pesertalombaCreateOrConnectWithoutSubmissionInput
+    connect?: pesertalombaWhereUniqueInput
+  }
+
+  export type penilaianCreateNestedManyWithoutSubmissionInput = {
+    create?: XOR<penilaianCreateWithoutSubmissionInput, penilaianUncheckedCreateWithoutSubmissionInput> | penilaianCreateWithoutSubmissionInput[] | penilaianUncheckedCreateWithoutSubmissionInput[]
+    connectOrCreate?: penilaianCreateOrConnectWithoutSubmissionInput | penilaianCreateOrConnectWithoutSubmissionInput[]
+    createMany?: penilaianCreateManySubmissionInputEnvelope
+    connect?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
+  }
+
+  export type penilaianUncheckedCreateNestedManyWithoutSubmissionInput = {
+    create?: XOR<penilaianCreateWithoutSubmissionInput, penilaianUncheckedCreateWithoutSubmissionInput> | penilaianCreateWithoutSubmissionInput[] | penilaianUncheckedCreateWithoutSubmissionInput[]
+    connectOrCreate?: penilaianCreateOrConnectWithoutSubmissionInput | penilaianCreateOrConnectWithoutSubmissionInput[]
+    createMany?: penilaianCreateManySubmissionInputEnvelope
+    connect?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
+  }
+
+  export type pesertalombaUpdateOneRequiredWithoutSubmissionNestedInput = {
+    create?: XOR<pesertalombaCreateWithoutSubmissionInput, pesertalombaUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: pesertalombaCreateOrConnectWithoutSubmissionInput
+    upsert?: pesertalombaUpsertWithoutSubmissionInput
+    connect?: pesertalombaWhereUniqueInput
+    update?: XOR<XOR<pesertalombaUpdateToOneWithWhereWithoutSubmissionInput, pesertalombaUpdateWithoutSubmissionInput>, pesertalombaUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type penilaianUpdateManyWithoutSubmissionNestedInput = {
+    create?: XOR<penilaianCreateWithoutSubmissionInput, penilaianUncheckedCreateWithoutSubmissionInput> | penilaianCreateWithoutSubmissionInput[] | penilaianUncheckedCreateWithoutSubmissionInput[]
+    connectOrCreate?: penilaianCreateOrConnectWithoutSubmissionInput | penilaianCreateOrConnectWithoutSubmissionInput[]
+    upsert?: penilaianUpsertWithWhereUniqueWithoutSubmissionInput | penilaianUpsertWithWhereUniqueWithoutSubmissionInput[]
+    createMany?: penilaianCreateManySubmissionInputEnvelope
     set?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
     disconnect?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
     delete?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
     connect?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
-    update?: penilaianUpdateWithWhereUniqueWithoutPesertalombaInput | penilaianUpdateWithWhereUniqueWithoutPesertalombaInput[]
-    updateMany?: penilaianUpdateManyWithWhereWithoutPesertalombaInput | penilaianUpdateManyWithWhereWithoutPesertalombaInput[]
+    update?: penilaianUpdateWithWhereUniqueWithoutSubmissionInput | penilaianUpdateWithWhereUniqueWithoutSubmissionInput[]
+    updateMany?: penilaianUpdateManyWithWhereWithoutSubmissionInput | penilaianUpdateManyWithWhereWithoutSubmissionInput[]
     deleteMany?: penilaianScalarWhereInput | penilaianScalarWhereInput[]
+  }
+
+  export type penilaianUncheckedUpdateManyWithoutSubmissionNestedInput = {
+    create?: XOR<penilaianCreateWithoutSubmissionInput, penilaianUncheckedCreateWithoutSubmissionInput> | penilaianCreateWithoutSubmissionInput[] | penilaianUncheckedCreateWithoutSubmissionInput[]
+    connectOrCreate?: penilaianCreateOrConnectWithoutSubmissionInput | penilaianCreateOrConnectWithoutSubmissionInput[]
+    upsert?: penilaianUpsertWithWhereUniqueWithoutSubmissionInput | penilaianUpsertWithWhereUniqueWithoutSubmissionInput[]
+    createMany?: penilaianCreateManySubmissionInputEnvelope
+    set?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
+    disconnect?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
+    delete?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
+    connect?: penilaianWhereUniqueInput | penilaianWhereUniqueInput[]
+    update?: penilaianUpdateWithWhereUniqueWithoutSubmissionInput | penilaianUpdateWithWhereUniqueWithoutSubmissionInput[]
+    updateMany?: penilaianUpdateManyWithWhereWithoutSubmissionInput | penilaianUpdateManyWithWhereWithoutSubmissionInput[]
+    deleteMany?: penilaianScalarWhereInput | penilaianScalarWhereInput[]
+  }
+
+  export type pesertaCreateNestedOneWithoutAnggotaTimInput = {
+    create?: XOR<pesertaCreateWithoutAnggotaTimInput, pesertaUncheckedCreateWithoutAnggotaTimInput>
+    connectOrCreate?: pesertaCreateOrConnectWithoutAnggotaTimInput
+    connect?: pesertaWhereUniqueInput
+  }
+
+  export type pesertaUpdateOneRequiredWithoutAnggotaTimNestedInput = {
+    create?: XOR<pesertaCreateWithoutAnggotaTimInput, pesertaUncheckedCreateWithoutAnggotaTimInput>
+    connectOrCreate?: pesertaCreateOrConnectWithoutAnggotaTimInput
+    upsert?: pesertaUpsertWithoutAnggotaTimInput
+    connect?: pesertaWhereUniqueInput
+    update?: XOR<XOR<pesertaUpdateToOneWithWhereWithoutAnggotaTimInput, pesertaUpdateWithoutAnggotaTimInput>, pesertaUncheckedUpdateWithoutAnggotaTimInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -12996,58 +15510,6 @@ export namespace Prisma {
     _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type juriCreateWithoutLombaInput = {
     id?: string
     nama: string
@@ -13075,21 +15537,15 @@ export namespace Prisma {
   }
 
   export type pesertalombaCreateWithoutLombaInput = {
-    id?: number
-    id_pesertalomba: string
-    submit?: string | null
-    submission_time?: Date | string | null
-    penilaian?: penilaianCreateNestedManyWithoutPesertalombaInput
+    id?: string
+    submission?: submissionCreateNestedOneWithoutPesertalombaInput
     peserta: pesertaCreateNestedOneWithoutPesertalombaInput
   }
 
   export type pesertalombaUncheckedCreateWithoutLombaInput = {
-    id?: number
+    id?: string
     peserta_id: string
-    id_pesertalomba: string
-    submit?: string | null
-    submission_time?: Date | string | null
-    penilaian?: penilaianUncheckedCreateNestedManyWithoutPesertalombaInput
+    submission?: submissionUncheckedCreateNestedOneWithoutPesertalombaInput
   }
 
   export type pesertalombaCreateOrConnectWithoutLombaInput = {
@@ -13169,12 +15625,9 @@ export namespace Prisma {
     AND?: pesertalombaScalarWhereInput | pesertalombaScalarWhereInput[]
     OR?: pesertalombaScalarWhereInput[]
     NOT?: pesertalombaScalarWhereInput | pesertalombaScalarWhereInput[]
-    id?: IntFilter<"pesertalomba"> | number
+    id?: UuidFilter<"pesertalomba"> | string
     peserta_id?: UuidFilter<"pesertalomba"> | string
     lomba_id?: StringFilter<"pesertalomba"> | string
-    id_pesertalomba?: StringFilter<"pesertalomba"> | string
-    submit?: StringNullableFilter<"pesertalomba"> | string | null
-    submission_time?: DateTimeNullableFilter<"pesertalomba"> | Date | string | null
   }
 
   export type sertifikatUpsertWithWhereUniqueWithoutLombaInput = {
@@ -13301,6 +15754,7 @@ export namespace Prisma {
     nama: string
     created_at?: Date | string
     pesertalomba?: pesertalombaCreateNestedManyWithoutPesertaInput
+    anggotaTim?: anggotaTimCreateNestedManyWithoutPesertaInput
   }
 
   export type pesertaUncheckedCreateWithoutUsersInput = {
@@ -13308,6 +15762,7 @@ export namespace Prisma {
     nama: string
     created_at?: Date | string
     pesertalomba?: pesertalombaUncheckedCreateNestedManyWithoutPesertaInput
+    anggotaTim?: anggotaTimUncheckedCreateNestedManyWithoutPesertaInput
   }
 
   export type pesertaCreateOrConnectWithoutUsersInput = {
@@ -13520,19 +15975,21 @@ export namespace Prisma {
   }
 
   export type penilaianCreateWithoutJuriInput = {
+    id?: string
     status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
-    pesertalomba: pesertalombaCreateNestedOneWithoutPenilaianInput
+    created_at?: Date | string
+    submission: submissionCreateNestedOneWithoutPenilaianInput
   }
 
   export type penilaianUncheckedCreateWithoutJuriInput = {
-    pesertalomba_id: string
-    pesertalomba_id1: string
-    pesertalomba_id_pesetalomba: string
+    id?: string
+    submission_id: string
     status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
+    created_at?: Date | string
   }
 
   export type penilaianCreateOrConnectWithoutJuriInput = {
@@ -13633,13 +16090,13 @@ export namespace Prisma {
     AND?: penilaianScalarWhereInput | penilaianScalarWhereInput[]
     OR?: penilaianScalarWhereInput[]
     NOT?: penilaianScalarWhereInput | penilaianScalarWhereInput[]
+    id?: UuidFilter<"penilaian"> | string
     juri_id?: UuidFilter<"penilaian"> | string
-    pesertalomba_id?: UuidFilter<"penilaian"> | string
-    pesertalomba_id1?: StringFilter<"penilaian"> | string
-    pesertalomba_id_pesetalomba?: StringFilter<"penilaian"> | string
+    submission_id?: UuidFilter<"penilaian"> | string
     status_penilaian?: StringFilter<"penilaian"> | string
     nilai_penilaian?: DecimalNullableFilter<"penilaian"> | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: StringNullableFilter<"penilaian"> | string | null
+    created_at?: DateTimeFilter<"penilaian"> | Date | string
   }
 
   export type juriCreateWithoutPenilaianInput = {
@@ -13663,27 +16120,23 @@ export namespace Prisma {
     create: XOR<juriCreateWithoutPenilaianInput, juriUncheckedCreateWithoutPenilaianInput>
   }
 
-  export type pesertalombaCreateWithoutPenilaianInput = {
-    id?: number
-    id_pesertalomba: string
-    submit?: string | null
-    submission_time?: Date | string | null
-    lomba: lombaCreateNestedOneWithoutPesertalombaInput
-    peserta: pesertaCreateNestedOneWithoutPesertalombaInput
+  export type submissionCreateWithoutPenilaianInput = {
+    id?: string
+    file_url: string
+    submission_time?: Date | string
+    pesertalomba: pesertalombaCreateNestedOneWithoutSubmissionInput
   }
 
-  export type pesertalombaUncheckedCreateWithoutPenilaianInput = {
-    id?: number
-    peserta_id: string
-    lomba_id: string
-    id_pesertalomba: string
-    submit?: string | null
-    submission_time?: Date | string | null
+  export type submissionUncheckedCreateWithoutPenilaianInput = {
+    id?: string
+    pesertalomba_id: string
+    file_url: string
+    submission_time?: Date | string
   }
 
-  export type pesertalombaCreateOrConnectWithoutPenilaianInput = {
-    where: pesertalombaWhereUniqueInput
-    create: XOR<pesertalombaCreateWithoutPenilaianInput, pesertalombaUncheckedCreateWithoutPenilaianInput>
+  export type submissionCreateOrConnectWithoutPenilaianInput = {
+    where: submissionWhereUniqueInput
+    create: XOR<submissionCreateWithoutPenilaianInput, submissionUncheckedCreateWithoutPenilaianInput>
   }
 
   export type juriUpsertWithoutPenilaianInput = {
@@ -13713,33 +16166,29 @@ export namespace Prisma {
     users_id?: StringFieldUpdateOperationsInput | string
   }
 
-  export type pesertalombaUpsertWithoutPenilaianInput = {
-    update: XOR<pesertalombaUpdateWithoutPenilaianInput, pesertalombaUncheckedUpdateWithoutPenilaianInput>
-    create: XOR<pesertalombaCreateWithoutPenilaianInput, pesertalombaUncheckedCreateWithoutPenilaianInput>
-    where?: pesertalombaWhereInput
+  export type submissionUpsertWithoutPenilaianInput = {
+    update: XOR<submissionUpdateWithoutPenilaianInput, submissionUncheckedUpdateWithoutPenilaianInput>
+    create: XOR<submissionCreateWithoutPenilaianInput, submissionUncheckedCreateWithoutPenilaianInput>
+    where?: submissionWhereInput
   }
 
-  export type pesertalombaUpdateToOneWithWhereWithoutPenilaianInput = {
-    where?: pesertalombaWhereInput
-    data: XOR<pesertalombaUpdateWithoutPenilaianInput, pesertalombaUncheckedUpdateWithoutPenilaianInput>
+  export type submissionUpdateToOneWithWhereWithoutPenilaianInput = {
+    where?: submissionWhereInput
+    data: XOR<submissionUpdateWithoutPenilaianInput, submissionUncheckedUpdateWithoutPenilaianInput>
   }
 
-  export type pesertalombaUpdateWithoutPenilaianInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    id_pesertalomba?: StringFieldUpdateOperationsInput | string
-    submit?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    lomba?: lombaUpdateOneRequiredWithoutPesertalombaNestedInput
-    peserta?: pesertaUpdateOneRequiredWithoutPesertalombaNestedInput
+  export type submissionUpdateWithoutPenilaianInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    file_url?: StringFieldUpdateOperationsInput | string
+    submission_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesertalomba?: pesertalombaUpdateOneRequiredWithoutSubmissionNestedInput
   }
 
-  export type pesertalombaUncheckedUpdateWithoutPenilaianInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    peserta_id?: StringFieldUpdateOperationsInput | string
-    lomba_id?: StringFieldUpdateOperationsInput | string
-    id_pesertalomba?: StringFieldUpdateOperationsInput | string
-    submit?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  export type submissionUncheckedUpdateWithoutPenilaianInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesertalomba_id?: StringFieldUpdateOperationsInput | string
+    file_url?: StringFieldUpdateOperationsInput | string
+    submission_time?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type usersCreateWithoutPesertaInput = {
@@ -13768,21 +16217,15 @@ export namespace Prisma {
   }
 
   export type pesertalombaCreateWithoutPesertaInput = {
-    id?: number
-    id_pesertalomba: string
-    submit?: string | null
-    submission_time?: Date | string | null
-    penilaian?: penilaianCreateNestedManyWithoutPesertalombaInput
+    id?: string
+    submission?: submissionCreateNestedOneWithoutPesertalombaInput
     lomba: lombaCreateNestedOneWithoutPesertalombaInput
   }
 
   export type pesertalombaUncheckedCreateWithoutPesertaInput = {
-    id?: number
+    id?: string
     lomba_id: string
-    id_pesertalomba: string
-    submit?: string | null
-    submission_time?: Date | string | null
-    penilaian?: penilaianUncheckedCreateNestedManyWithoutPesertalombaInput
+    submission?: submissionUncheckedCreateNestedOneWithoutPesertalombaInput
   }
 
   export type pesertalombaCreateOrConnectWithoutPesertaInput = {
@@ -13792,6 +16235,28 @@ export namespace Prisma {
 
   export type pesertalombaCreateManyPesertaInputEnvelope = {
     data: pesertalombaCreateManyPesertaInput | pesertalombaCreateManyPesertaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type anggotaTimCreateWithoutPesertaInput = {
+    id?: string
+    nama: string
+    created_at?: Date | string
+  }
+
+  export type anggotaTimUncheckedCreateWithoutPesertaInput = {
+    id?: string
+    nama: string
+    created_at?: Date | string
+  }
+
+  export type anggotaTimCreateOrConnectWithoutPesertaInput = {
+    where: anggotaTimWhereUniqueInput
+    create: XOR<anggotaTimCreateWithoutPesertaInput, anggotaTimUncheckedCreateWithoutPesertaInput>
+  }
+
+  export type anggotaTimCreateManyPesertaInputEnvelope = {
+    data: anggotaTimCreateManyPesertaInput | anggotaTimCreateManyPesertaInput[]
     skipDuplicates?: boolean
   }
 
@@ -13842,28 +16307,49 @@ export namespace Prisma {
     data: XOR<pesertalombaUpdateManyMutationInput, pesertalombaUncheckedUpdateManyWithoutPesertaInput>
   }
 
-  export type penilaianCreateWithoutPesertalombaInput = {
-    status_penilaian: string
-    nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
-    deskripsi_penilaian?: string | null
-    juri: juriCreateNestedOneWithoutPenilaianInput
+  export type anggotaTimUpsertWithWhereUniqueWithoutPesertaInput = {
+    where: anggotaTimWhereUniqueInput
+    update: XOR<anggotaTimUpdateWithoutPesertaInput, anggotaTimUncheckedUpdateWithoutPesertaInput>
+    create: XOR<anggotaTimCreateWithoutPesertaInput, anggotaTimUncheckedCreateWithoutPesertaInput>
   }
 
-  export type penilaianUncheckedCreateWithoutPesertalombaInput = {
-    juri_id: string
-    status_penilaian: string
-    nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
-    deskripsi_penilaian?: string | null
+  export type anggotaTimUpdateWithWhereUniqueWithoutPesertaInput = {
+    where: anggotaTimWhereUniqueInput
+    data: XOR<anggotaTimUpdateWithoutPesertaInput, anggotaTimUncheckedUpdateWithoutPesertaInput>
   }
 
-  export type penilaianCreateOrConnectWithoutPesertalombaInput = {
-    where: penilaianWhereUniqueInput
-    create: XOR<penilaianCreateWithoutPesertalombaInput, penilaianUncheckedCreateWithoutPesertalombaInput>
+  export type anggotaTimUpdateManyWithWhereWithoutPesertaInput = {
+    where: anggotaTimScalarWhereInput
+    data: XOR<anggotaTimUpdateManyMutationInput, anggotaTimUncheckedUpdateManyWithoutPesertaInput>
   }
 
-  export type penilaianCreateManyPesertalombaInputEnvelope = {
-    data: penilaianCreateManyPesertalombaInput | penilaianCreateManyPesertalombaInput[]
-    skipDuplicates?: boolean
+  export type anggotaTimScalarWhereInput = {
+    AND?: anggotaTimScalarWhereInput | anggotaTimScalarWhereInput[]
+    OR?: anggotaTimScalarWhereInput[]
+    NOT?: anggotaTimScalarWhereInput | anggotaTimScalarWhereInput[]
+    id?: UuidFilter<"anggotaTim"> | string
+    nama?: StringFilter<"anggotaTim"> | string
+    peserta_id?: UuidFilter<"anggotaTim"> | string
+    created_at?: DateTimeFilter<"anggotaTim"> | Date | string
+  }
+
+  export type submissionCreateWithoutPesertalombaInput = {
+    id?: string
+    file_url: string
+    submission_time?: Date | string
+    penilaian?: penilaianCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type submissionUncheckedCreateWithoutPesertalombaInput = {
+    id?: string
+    file_url: string
+    submission_time?: Date | string
+    penilaian?: penilaianUncheckedCreateNestedManyWithoutSubmissionInput
+  }
+
+  export type submissionCreateOrConnectWithoutPesertalombaInput = {
+    where: submissionWhereUniqueInput
+    create: XOR<submissionCreateWithoutPesertalombaInput, submissionUncheckedCreateWithoutPesertalombaInput>
   }
 
   export type lombaCreateWithoutPesertalombaInput = {
@@ -13902,6 +16388,7 @@ export namespace Prisma {
     nama: string
     created_at?: Date | string
     users: usersCreateNestedOneWithoutPesertaInput
+    anggotaTim?: anggotaTimCreateNestedManyWithoutPesertaInput
   }
 
   export type pesertaUncheckedCreateWithoutPesertalombaInput = {
@@ -13909,6 +16396,7 @@ export namespace Prisma {
     nama: string
     users_id: string
     created_at?: Date | string
+    anggotaTim?: anggotaTimUncheckedCreateNestedManyWithoutPesertaInput
   }
 
   export type pesertaCreateOrConnectWithoutPesertalombaInput = {
@@ -13916,20 +16404,29 @@ export namespace Prisma {
     create: XOR<pesertaCreateWithoutPesertalombaInput, pesertaUncheckedCreateWithoutPesertalombaInput>
   }
 
-  export type penilaianUpsertWithWhereUniqueWithoutPesertalombaInput = {
-    where: penilaianWhereUniqueInput
-    update: XOR<penilaianUpdateWithoutPesertalombaInput, penilaianUncheckedUpdateWithoutPesertalombaInput>
-    create: XOR<penilaianCreateWithoutPesertalombaInput, penilaianUncheckedCreateWithoutPesertalombaInput>
+  export type submissionUpsertWithoutPesertalombaInput = {
+    update: XOR<submissionUpdateWithoutPesertalombaInput, submissionUncheckedUpdateWithoutPesertalombaInput>
+    create: XOR<submissionCreateWithoutPesertalombaInput, submissionUncheckedCreateWithoutPesertalombaInput>
+    where?: submissionWhereInput
   }
 
-  export type penilaianUpdateWithWhereUniqueWithoutPesertalombaInput = {
-    where: penilaianWhereUniqueInput
-    data: XOR<penilaianUpdateWithoutPesertalombaInput, penilaianUncheckedUpdateWithoutPesertalombaInput>
+  export type submissionUpdateToOneWithWhereWithoutPesertalombaInput = {
+    where?: submissionWhereInput
+    data: XOR<submissionUpdateWithoutPesertalombaInput, submissionUncheckedUpdateWithoutPesertalombaInput>
   }
 
-  export type penilaianUpdateManyWithWhereWithoutPesertalombaInput = {
-    where: penilaianScalarWhereInput
-    data: XOR<penilaianUpdateManyMutationInput, penilaianUncheckedUpdateManyWithoutPesertalombaInput>
+  export type submissionUpdateWithoutPesertalombaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    file_url?: StringFieldUpdateOperationsInput | string
+    submission_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    penilaian?: penilaianUpdateManyWithoutSubmissionNestedInput
+  }
+
+  export type submissionUncheckedUpdateWithoutPesertalombaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    file_url?: StringFieldUpdateOperationsInput | string
+    submission_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    penilaian?: penilaianUncheckedUpdateManyWithoutSubmissionNestedInput
   }
 
   export type lombaUpsertWithoutPesertalombaInput = {
@@ -13985,6 +16482,7 @@ export namespace Prisma {
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutPesertaNestedInput
+    anggotaTim?: anggotaTimUpdateManyWithoutPesertaNestedInput
   }
 
   export type pesertaUncheckedUpdateWithoutPesertalombaInput = {
@@ -13992,6 +16490,139 @@ export namespace Prisma {
     nama?: StringFieldUpdateOperationsInput | string
     users_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    anggotaTim?: anggotaTimUncheckedUpdateManyWithoutPesertaNestedInput
+  }
+
+  export type pesertalombaCreateWithoutSubmissionInput = {
+    id?: string
+    lomba: lombaCreateNestedOneWithoutPesertalombaInput
+    peserta: pesertaCreateNestedOneWithoutPesertalombaInput
+  }
+
+  export type pesertalombaUncheckedCreateWithoutSubmissionInput = {
+    id?: string
+    peserta_id: string
+    lomba_id: string
+  }
+
+  export type pesertalombaCreateOrConnectWithoutSubmissionInput = {
+    where: pesertalombaWhereUniqueInput
+    create: XOR<pesertalombaCreateWithoutSubmissionInput, pesertalombaUncheckedCreateWithoutSubmissionInput>
+  }
+
+  export type penilaianCreateWithoutSubmissionInput = {
+    id?: string
+    status_penilaian: string
+    nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
+    deskripsi_penilaian?: string | null
+    created_at?: Date | string
+    juri: juriCreateNestedOneWithoutPenilaianInput
+  }
+
+  export type penilaianUncheckedCreateWithoutSubmissionInput = {
+    id?: string
+    juri_id: string
+    status_penilaian: string
+    nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
+    deskripsi_penilaian?: string | null
+    created_at?: Date | string
+  }
+
+  export type penilaianCreateOrConnectWithoutSubmissionInput = {
+    where: penilaianWhereUniqueInput
+    create: XOR<penilaianCreateWithoutSubmissionInput, penilaianUncheckedCreateWithoutSubmissionInput>
+  }
+
+  export type penilaianCreateManySubmissionInputEnvelope = {
+    data: penilaianCreateManySubmissionInput | penilaianCreateManySubmissionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type pesertalombaUpsertWithoutSubmissionInput = {
+    update: XOR<pesertalombaUpdateWithoutSubmissionInput, pesertalombaUncheckedUpdateWithoutSubmissionInput>
+    create: XOR<pesertalombaCreateWithoutSubmissionInput, pesertalombaUncheckedCreateWithoutSubmissionInput>
+    where?: pesertalombaWhereInput
+  }
+
+  export type pesertalombaUpdateToOneWithWhereWithoutSubmissionInput = {
+    where?: pesertalombaWhereInput
+    data: XOR<pesertalombaUpdateWithoutSubmissionInput, pesertalombaUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type pesertalombaUpdateWithoutSubmissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    lomba?: lombaUpdateOneRequiredWithoutPesertalombaNestedInput
+    peserta?: pesertaUpdateOneRequiredWithoutPesertalombaNestedInput
+  }
+
+  export type pesertalombaUncheckedUpdateWithoutSubmissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    peserta_id?: StringFieldUpdateOperationsInput | string
+    lomba_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type penilaianUpsertWithWhereUniqueWithoutSubmissionInput = {
+    where: penilaianWhereUniqueInput
+    update: XOR<penilaianUpdateWithoutSubmissionInput, penilaianUncheckedUpdateWithoutSubmissionInput>
+    create: XOR<penilaianCreateWithoutSubmissionInput, penilaianUncheckedCreateWithoutSubmissionInput>
+  }
+
+  export type penilaianUpdateWithWhereUniqueWithoutSubmissionInput = {
+    where: penilaianWhereUniqueInput
+    data: XOR<penilaianUpdateWithoutSubmissionInput, penilaianUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type penilaianUpdateManyWithWhereWithoutSubmissionInput = {
+    where: penilaianScalarWhereInput
+    data: XOR<penilaianUpdateManyMutationInput, penilaianUncheckedUpdateManyWithoutSubmissionInput>
+  }
+
+  export type pesertaCreateWithoutAnggotaTimInput = {
+    id?: string
+    nama: string
+    created_at?: Date | string
+    users: usersCreateNestedOneWithoutPesertaInput
+    pesertalomba?: pesertalombaCreateNestedManyWithoutPesertaInput
+  }
+
+  export type pesertaUncheckedCreateWithoutAnggotaTimInput = {
+    id?: string
+    nama: string
+    users_id: string
+    created_at?: Date | string
+    pesertalomba?: pesertalombaUncheckedCreateNestedManyWithoutPesertaInput
+  }
+
+  export type pesertaCreateOrConnectWithoutAnggotaTimInput = {
+    where: pesertaWhereUniqueInput
+    create: XOR<pesertaCreateWithoutAnggotaTimInput, pesertaUncheckedCreateWithoutAnggotaTimInput>
+  }
+
+  export type pesertaUpsertWithoutAnggotaTimInput = {
+    update: XOR<pesertaUpdateWithoutAnggotaTimInput, pesertaUncheckedUpdateWithoutAnggotaTimInput>
+    create: XOR<pesertaCreateWithoutAnggotaTimInput, pesertaUncheckedCreateWithoutAnggotaTimInput>
+    where?: pesertaWhereInput
+  }
+
+  export type pesertaUpdateToOneWithWhereWithoutAnggotaTimInput = {
+    where?: pesertaWhereInput
+    data: XOR<pesertaUpdateWithoutAnggotaTimInput, pesertaUncheckedUpdateWithoutAnggotaTimInput>
+  }
+
+  export type pesertaUpdateWithoutAnggotaTimInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneRequiredWithoutPesertaNestedInput
+    pesertalomba?: pesertalombaUpdateManyWithoutPesertaNestedInput
+  }
+
+  export type pesertaUncheckedUpdateWithoutAnggotaTimInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    users_id?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesertalomba?: pesertalombaUncheckedUpdateManyWithoutPesertaNestedInput
   }
 
   export type juriCreateManyLombaInput = {
@@ -14002,11 +16633,8 @@ export namespace Prisma {
   }
 
   export type pesertalombaCreateManyLombaInput = {
-    id?: number
+    id?: string
     peserta_id: string
-    id_pesertalomba: string
-    submit?: string | null
-    submission_time?: Date | string | null
   }
 
   export type sertifikatCreateManyLombaInput = {
@@ -14038,29 +16666,20 @@ export namespace Prisma {
   }
 
   export type pesertalombaUpdateWithoutLombaInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    id_pesertalomba?: StringFieldUpdateOperationsInput | string
-    submit?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    penilaian?: penilaianUpdateManyWithoutPesertalombaNestedInput
+    id?: StringFieldUpdateOperationsInput | string
+    submission?: submissionUpdateOneWithoutPesertalombaNestedInput
     peserta?: pesertaUpdateOneRequiredWithoutPesertalombaNestedInput
   }
 
   export type pesertalombaUncheckedUpdateWithoutLombaInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     peserta_id?: StringFieldUpdateOperationsInput | string
-    id_pesertalomba?: StringFieldUpdateOperationsInput | string
-    submit?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    penilaian?: penilaianUncheckedUpdateManyWithoutPesertalombaNestedInput
+    submission?: submissionUncheckedUpdateOneWithoutPesertalombaNestedInput
   }
 
   export type pesertalombaUncheckedUpdateManyWithoutLombaInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     peserta_id?: StringFieldUpdateOperationsInput | string
-    id_pesertalomba?: StringFieldUpdateOperationsInput | string
-    submit?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type sertifikatUpdateWithoutLombaInput = {
@@ -14124,6 +16743,7 @@ export namespace Prisma {
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     pesertalomba?: pesertalombaUpdateManyWithoutPesertaNestedInput
+    anggotaTim?: anggotaTimUpdateManyWithoutPesertaNestedInput
   }
 
   export type pesertaUncheckedUpdateWithoutUsersInput = {
@@ -14131,6 +16751,7 @@ export namespace Prisma {
     nama?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     pesertalomba?: pesertalombaUncheckedUpdateManyWithoutPesertaNestedInput
+    anggotaTim?: anggotaTimUncheckedUpdateManyWithoutPesertaNestedInput
   }
 
   export type pesertaUncheckedUpdateManyWithoutUsersInput = {
@@ -14155,99 +16776,121 @@ export namespace Prisma {
   }
 
   export type penilaianCreateManyJuriInput = {
-    pesertalomba_id: string
-    pesertalomba_id1: string
-    pesertalomba_id_pesetalomba: string
+    id?: string
+    submission_id: string
     status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
+    created_at?: Date | string
   }
 
   export type penilaianUpdateWithoutJuriInput = {
+    id?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
-    pesertalomba?: pesertalombaUpdateOneRequiredWithoutPenilaianNestedInput
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    submission?: submissionUpdateOneRequiredWithoutPenilaianNestedInput
   }
 
   export type penilaianUncheckedUpdateWithoutJuriInput = {
-    pesertalomba_id?: StringFieldUpdateOperationsInput | string
-    pesertalomba_id1?: StringFieldUpdateOperationsInput | string
-    pesertalomba_id_pesetalomba?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    submission_id?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type penilaianUncheckedUpdateManyWithoutJuriInput = {
-    pesertalomba_id?: StringFieldUpdateOperationsInput | string
-    pesertalomba_id1?: StringFieldUpdateOperationsInput | string
-    pesertalomba_id_pesetalomba?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    submission_id?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type pesertalombaCreateManyPesertaInput = {
-    id?: number
+    id?: string
     lomba_id: string
-    id_pesertalomba: string
-    submit?: string | null
-    submission_time?: Date | string | null
+  }
+
+  export type anggotaTimCreateManyPesertaInput = {
+    id?: string
+    nama: string
+    created_at?: Date | string
   }
 
   export type pesertalombaUpdateWithoutPesertaInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    id_pesertalomba?: StringFieldUpdateOperationsInput | string
-    submit?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    penilaian?: penilaianUpdateManyWithoutPesertalombaNestedInput
+    id?: StringFieldUpdateOperationsInput | string
+    submission?: submissionUpdateOneWithoutPesertalombaNestedInput
     lomba?: lombaUpdateOneRequiredWithoutPesertalombaNestedInput
   }
 
   export type pesertalombaUncheckedUpdateWithoutPesertaInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     lomba_id?: StringFieldUpdateOperationsInput | string
-    id_pesertalomba?: StringFieldUpdateOperationsInput | string
-    submit?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    penilaian?: penilaianUncheckedUpdateManyWithoutPesertalombaNestedInput
+    submission?: submissionUncheckedUpdateOneWithoutPesertalombaNestedInput
   }
 
   export type pesertalombaUncheckedUpdateManyWithoutPesertaInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     lomba_id?: StringFieldUpdateOperationsInput | string
-    id_pesertalomba?: StringFieldUpdateOperationsInput | string
-    submit?: NullableStringFieldUpdateOperationsInput | string | null
-    submission_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type penilaianCreateManyPesertalombaInput = {
+  export type anggotaTimUpdateWithoutPesertaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type anggotaTimUncheckedUpdateWithoutPesertaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type anggotaTimUncheckedUpdateManyWithoutPesertaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type penilaianCreateManySubmissionInput = {
+    id?: string
     juri_id: string
     status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
+    created_at?: Date | string
   }
 
-  export type penilaianUpdateWithoutPesertalombaInput = {
+  export type penilaianUpdateWithoutSubmissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     juri?: juriUpdateOneRequiredWithoutPenilaianNestedInput
   }
 
-  export type penilaianUncheckedUpdateWithoutPesertalombaInput = {
+  export type penilaianUncheckedUpdateWithoutSubmissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
     juri_id?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type penilaianUncheckedUpdateManyWithoutPesertalombaInput = {
+  export type penilaianUncheckedUpdateManyWithoutSubmissionInput = {
+    id?: StringFieldUpdateOperationsInput | string
     juri_id?: StringFieldUpdateOperationsInput | string
     status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

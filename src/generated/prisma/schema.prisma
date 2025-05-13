@@ -71,17 +71,15 @@ model juri {
 }
 
 model penilaian {
-  juri_id                     String       @db.Uuid
-  pesertalomba_id             String       @db.Uuid
-  pesertalomba_id1            String       @db.VarChar(20)
-  pesertalomba_id_pesetalomba String       @db.VarChar(10)
-  status_penilaian            String       @db.Char(1)
-  nilai_penilaian             Decimal?     @db.Decimal(5, 2)
-  deskripsi_penilaian         String?      @db.VarChar(100)
-  juri                        juri         @relation(fields: [juri_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "penilaian_juri_fk")
-  pesertalomba                pesertalomba @relation(fields: [pesertalomba_id, pesertalomba_id1, pesertalomba_id_pesetalomba], references: [peserta_id, lomba_id, id_pesertalomba], onDelete: Cascade, onUpdate: NoAction, map: "penilaian_pesertalomba_fk")
-
-  @@id([juri_id, pesertalomba_id, pesertalomba_id1, pesertalomba_id_pesetalomba])
+  id                  String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  juri_id             String     @db.Uuid
+  submission_id       String     @db.Uuid
+  status_penilaian    String     @db.Char(1)
+  nilai_penilaian     Decimal?   @db.Decimal(5, 2)
+  deskripsi_penilaian String?    @db.VarChar(100)
+  created_at          DateTime   @default(now())
+  juri                juri       @relation(fields: [juri_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  submission          submission @relation(fields: [submission_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model peserta {
@@ -91,18 +89,35 @@ model peserta {
   created_at   DateTime       @default(now())
   users        users          @relation(fields: [users_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "peserta_users_fk")
   pesertalomba pesertalomba[]
+  anggotaTim   anggotaTim[]
 }
 
 model pesertalomba {
-  id              Int         @default(autoincrement())
-  peserta_id      String      @db.Uuid
-  lomba_id        String      @db.VarChar(20)
-  id_pesertalomba String      @db.VarChar(20)
-  submit          String?     @db.VarChar(60)
-  submission_time DateTime?   @default(now()) @db.Timestamptz(6)
-  penilaian       penilaian[]
-  lomba           lomba       @relation(fields: [lomba_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "pesertalomba_lomba_fk")
-  peserta         peserta     @relation(fields: [peserta_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "pesertalomba_peserta_fk")
+  id         String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  peserta_id String      @db.Uuid
+  lomba_id   String      @db.VarChar(20)
+  submission submission?
+  lomba      lomba       @relation(fields: [lomba_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "pesertalomba_lomba_fk")
+  peserta    peserta     @relation(fields: [peserta_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "pesertalomba_peserta_fk")
 
-  @@id([peserta_id, lomba_id, id_pesertalomba])
+  @@unique([peserta_id, lomba_id])
+}
+
+model submission {
+  id              String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  pesertalomba_id String       @db.Uuid
+  file_url        String       @db.VarChar(255)
+  submission_time DateTime     @default(now()) @db.Timestamptz(6)
+  pesertalomba    pesertalomba @relation(fields: [pesertalomba_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  penilaian       penilaian[]
+
+  @@unique([pesertalomba_id])
+}
+
+model anggotaTim {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nama       String   @db.VarChar(30)
+  peserta_id String   @db.Uuid
+  created_at DateTime @default(now())
+  peserta    peserta  @relation(fields: [peserta_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
