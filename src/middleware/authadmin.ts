@@ -21,7 +21,7 @@ const authadmin : MiddlewareHandler = async (c, next) => {
         const decode = jwt.verify(tokencookie, secreet)
         c.set("user", decode)
         const role = c.get("user").role
-        if(role !== "admin"){
+        if(role !== "ADMIN"){
             return c.json({
                 status : "error",
                 message : "Anda bukan admin"

@@ -9,88 +9,70 @@ const juri = new Hono();
 juri.use(
   "*",
   cors({
-    origin: "*",
-    allowMethods: ["GET", "POST", "PUT", "DELETE"],
+    origin: "http://localhost:5173",
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowHeaders: ["Authorization", "Content-Type"],
+    credentials: true,
   })
 );
 //get all juri
-juri.get("/daftarjuri", authadmin, authmiddleware, async (c) => {
+juri.get("/", authadmin, authmiddleware, async (c) => {
   try {
     const namajuri = c.req.query("nama");
     const namalomba = c.req.query("lomba");
+
+    const whereClause: any = {};
+
     if (namajuri) {
-      const juriList = await prisma.juri.findMany({
-        where: {
-          nama: namajuri,
-        },
-        select: {
-          id: true,
-          nama: true,
-          lomba_id: true,
-          created_at: true,
-          lomba: {
-            select: {
-              nama: true,
-              tanggal: true,
-              lokasi: true,
-            },
-          },
-          users: {
-            select: {
-              email: true,
-              role: true,
-            },
-          },
-        },
-      });
-      return c.json(
-        {
-          status: "succes",
-          message: "Berhasil ambil data juri",
-          data: juriList,
-        },
-        200
-      );
+      whereClause.nama = namajuri;
     }
+
     if (namalomba) {
-      const juriList = await prisma.juri.findMany({
-        where: {
-          lomba : {
-            nama : namalomba 
-          },
-        },
-        select: {
-          id: true,
-          nama: true,
-          lomba_id: true,
-          created_at: true,
-          lomba: {
-            select: {
-              nama: true,
-              tanggal: true,
-              lokasi: true,
-            },
-          },
-          users: {
-            select: {
-              email: true,
-              role: true,
-            },
-          },
-        },
-      });
-      return c.json({
-        status : "succes",
-        message : "Berhasil ambil data juri",
-        data : juriList
-      }, 200)
+      whereClause.lomba = {
+        nama: namalomba,
+      };
     }
-  } catch (error) {
-    return c.json({
-      status: "error",
-      message: error,
+
+    const juriList = await prisma.juri.findMany({
+      where: whereClause,
+      select: {
+        id: true,
+        nama: true,
+        lomba_id: true,
+        created_at: true,
+        lomba: {
+          select: {
+            nama: true,
+            tanggal: true,
+            lokasi: true,
+          },
+        },
+        users: {
+          select: {
+            email: true,
+            role: true,
+          },
+        },
+      },
     });
+
+    return c.json(
+      {
+        status: "success",
+        message: "Berhasil ambil data juri",
+        data: juriList,
+      },
+      200
+    );
+  } catch (error) {
+    console.error(error);
+    return c.json(
+      {
+        status: "error",
+        message: "Internal server error",
+      },
+      500
+    );
   }
 });
 
@@ -146,36 +128,46 @@ juri.patch("/:id", authadmin, authmiddleware, async (c) => {
     return c.json({ error: "Gagal mengupdate data" }, 500);
   }
 });
-juri.patch("/hapusjuri/:id", authadmin, authmiddleware, async (c) => {
+juri.patch("/hapus/:id", authadmin, authmiddleware, async (c) => {
   try {
-    const idJuri = c.req.param("id");
-    const deletejuri =
-      await prisma.$queryRaw`DELETE FROM JURI WHERE id = ${idJuri}`;
-    const updatejuri = await prisma.users.update({
-      where: {
-        id: idJuri,
-      },
-      data: {
-        role: "USERS",
-      },
+    const idJuri = c.req.param("id");  // Tidak perlu parseInt, karena UUID adalah string
+
+    // Cek apakah juri dengan ID UUID tersebut ada
+    const juriToDelete = await prisma.juri.findUnique({
+      where: { id: idJuri }
     });
 
-    return c.json(
-      {
-        status: "succes",
-        message: `Berhasil hapus juri ${updatejuri.nama}`,
-        data: deletejuri,
-      },
-      200
-    );
-  } catch (error) {
-    return c.json(
-      {
+    if (!juriToDelete) {
+      return c.json({
         status: "error",
-        message: "Internal server error",
-      },
-      500
-    );
+        message: `Juri dengan ID ${idJuri} tidak ditemukan`
+      }, 404);
+    }
+
+    // Menghapus data juri
+    const deleteJuri = await prisma.juri.delete({
+      where: { id: idJuri }
+    });
+
+    // Mengupdate role pengguna menjadi 'USERS'
+    const updateJuri = await prisma.users.update({
+      where: { id: juriToDelete.users_id },
+      data: { role: "USERS" }
+    });
+
+    return c.json({
+      status: "success",
+      message: `Berhasil menghapus juri ${updateJuri.nama}`,
+      data: deleteJuri
+    }, 200);
+
+  } catch (error) {
+    console.error(error);  // Mencetak detail error ke console
+    return c.json({
+      status: "error",
+      message: "Terjadi kesalahan saat menghapus data juri",
+      error: error instanceof Error ? error.message : "Unknown error"  // Memberikan detail error untuk debugging
+    }, 500);
   }
 });
 

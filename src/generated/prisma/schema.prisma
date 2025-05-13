@@ -15,14 +15,20 @@ enum Role {
   ADMIN
 }
 
+enum Jenis_lomba {
+  INDIVIDU
+  TIM
+}
+
 model lomba {
   id           String         @id @db.VarChar(20)
   tanggal      DateTime       @db.Date
+  jenis_lomba  Jenis_lomba
   lokasi       String         @db.VarChar(50)
   nama         String         @db.VarChar(40)
   url          String         @db.VarChar(500)
   bataswaktu   DateTime       @db.Date
-  deskripsi    String?        @db.VarChar(200)
+  deskripsi    String?        @db.Text
   juri         juri[]
   pesertalomba pesertalomba[]
   sertifikat   sertifikat[]
