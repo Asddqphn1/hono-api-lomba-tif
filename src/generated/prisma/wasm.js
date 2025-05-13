@@ -160,13 +160,13 @@ exports.Prisma.JuriScalarFieldEnum = {
 };
 
 exports.Prisma.PenilaianScalarFieldEnum = {
+  id: 'id',
   juri_id: 'juri_id',
-  pesertalomba_id: 'pesertalomba_id',
-  pesertalomba_id1: 'pesertalomba_id1',
-  pesertalomba_id_pesetalomba: 'pesertalomba_id_pesetalomba',
+  submission_id: 'submission_id',
   status_penilaian: 'status_penilaian',
   nilai_penilaian: 'nilai_penilaian',
-  deskripsi_penilaian: 'deskripsi_penilaian'
+  deskripsi_penilaian: 'deskripsi_penilaian',
+  created_at: 'created_at'
 };
 
 exports.Prisma.PesertaScalarFieldEnum = {
@@ -179,10 +179,21 @@ exports.Prisma.PesertaScalarFieldEnum = {
 exports.Prisma.PesertalombaScalarFieldEnum = {
   id: 'id',
   peserta_id: 'peserta_id',
-  lomba_id: 'lomba_id',
-  id_pesertalomba: 'id_pesertalomba',
-  submit: 'submit',
+  lomba_id: 'lomba_id'
+};
+
+exports.Prisma.SubmissionScalarFieldEnum = {
+  id: 'id',
+  pesertalomba_id: 'pesertalomba_id',
+  file_url: 'file_url',
   submission_time: 'submission_time'
+};
+
+exports.Prisma.AnggotaTimScalarFieldEnum = {
+  id: 'id',
+  nama: 'nama',
+  peserta_id: 'peserta_id',
+  created_at: 'created_at'
 };
 
 exports.Prisma.SortOrder = {
@@ -219,7 +230,9 @@ exports.Prisma.ModelName = {
   juri: 'juri',
   penilaian: 'penilaian',
   peserta: 'peserta',
-  pesertalomba: 'pesertalomba'
+  pesertalomba: 'pesertalomba',
+  submission: 'submission',
+  anggotaTim: 'anggotaTim'
 };
 
 /**

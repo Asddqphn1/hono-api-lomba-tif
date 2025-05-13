@@ -15,13 +15,83 @@ daftarpeserta.use(
   })
 );
 daftarpeserta.get("/", authmiddleware, authadmin, async (c) => {
-    const result =
-    await prisma.$queryRaw`SELECT usr.nama as nama_peserta, pst.id, lmb.nama as nama_lomba, created_at as waktu_pendaftaran FROM USERS USR, LOMBA LMB, PESERTA PST, PESERTALOMBA PSL WHERE USR.ID = PST.users_id AND PST.ID = PSL.peserta_id AND PSL.lomba_id = LMB.ID ORDER BY usr.nama ASC`;
+  try{
+    const daftarpeserta = await prisma.peserta.findMany({
+      select :{
+        nama : true,
+        users_id : true,
+        created_at : true,
+        pesertalomba : {
+          select : {
+            lomba_id : true,
+            lomba : {
+              select : {
+                nama : true
+              }
+            }
+          }
+        }
+      }
+    })
     return c.json({
-        status: "success",
-        message: "Daftar Peserta",
-        data: result,
+      status : "Success",
+      message : "Berhasil ambil data Peserta",
+      data : daftarpeserta
+    })
+
+  }catch(error){
+    return c.json({
+      status : "error",
+      message : error
+    },500)
+    
+  }
+});
+daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
+  try {
+    const { nama } = await c.req.json();
+    const idpeserta = c.req.param("id");
+    const idlomba = c.req.param("idLomba");
+    const existPeserta = await prisma.peserta.findFirst({
+      where: { nama: nama },
     });
+    if (existPeserta) {
+      return c.json(
+        {
+          status: "Gagal",
+          message: "Peserta sudah ada",
+        },
+        400
+      );
+    }
+
+    const result = await prisma.peserta.create({
+      data: {
+        users_id: idpeserta,
+        nama: nama,
+      },
+    });
+
+    await prisma.pesertalomba.create({
+      data: {
+        lomba_id: idlomba,
+        peserta_id: result.id,
+      },
+    });
+    return c.json({
+      status: "success",
+      message: "Peserta berhasil ditambahkan",
+      data: result,
+    });
+  } catch (error) {
+    return c.json(
+      {
+        status: "error",
+        message: error,
+      },
+      500
+    );
+  }
 });
 
 export default daftarpeserta;
