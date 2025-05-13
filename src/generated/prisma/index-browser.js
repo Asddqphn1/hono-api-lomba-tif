@@ -123,6 +123,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.LombaScalarFieldEnum = {
   id: 'id',
   tanggal: 'tanggal',
+  jenis_lomba: 'jenis_lomba',
   lokasi: 'lokasi',
   nama: 'nama',
   url: 'url',
@@ -198,6 +199,11 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.Jenis_lomba = exports.$Enums.Jenis_lomba = {
+  INDIVIDU: 'INDIVIDU',
+  TIM: 'TIM'
+};
+
 exports.Role = exports.$Enums.Role = {
   PESERTA: 'PESERTA',
   USERS: 'USERS',

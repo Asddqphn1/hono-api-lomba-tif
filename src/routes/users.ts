@@ -9,9 +9,10 @@ const users = new Hono();
 users.use(
   "*",
   cors({
-    origin: "*",
+    origin: "http://localhost:5173",
     allowMethods: ["GET", "POST", "PUT", "DELETE"],
     allowHeaders: ["Authorization", "Content-Type"],
+    credentials: true,
   })
 );
 

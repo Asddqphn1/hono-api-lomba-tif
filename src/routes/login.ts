@@ -58,12 +58,12 @@ login.post("/", async (c) => {
             nama: user.nama,
             role: user.role
         };
-        const token = jwt.sign(payload, secreet, { expiresIn: '10m' });
+        const token = jwt.sign(payload, secreet);
         setCookie(c, "token", token, {
             httpOnly: true,
             secure: true, // Set to true if using HTTPS
             sameSite: "strict",
-            maxAge: 60 * 10, // 10 minutes
+            maxAge: 60 * 60 * 24,
         });
         return c.json({
             status: "success",

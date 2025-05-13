@@ -67,11 +67,23 @@ export namespace $Enums {
 
 export type Role = (typeof Role)[keyof typeof Role]
 
+
+export const Jenis_lomba: {
+  INDIVIDU: 'INDIVIDU',
+  TIM: 'TIM'
+};
+
+export type Jenis_lomba = (typeof Jenis_lomba)[keyof typeof Jenis_lomba]
+
 }
 
 export type Role = $Enums.Role
 
 export const Role: typeof $Enums.Role
+
+export type Jenis_lomba = $Enums.Jenis_lomba
+
+export const Jenis_lomba: typeof $Enums.Jenis_lomba
 
 /**
  * ##  Prisma Client ʲˢ
@@ -1728,6 +1740,7 @@ export namespace Prisma {
   export type LombaMinAggregateOutputType = {
     id: string | null
     tanggal: Date | null
+    jenis_lomba: $Enums.Jenis_lomba | null
     lokasi: string | null
     nama: string | null
     url: string | null
@@ -1738,6 +1751,7 @@ export namespace Prisma {
   export type LombaMaxAggregateOutputType = {
     id: string | null
     tanggal: Date | null
+    jenis_lomba: $Enums.Jenis_lomba | null
     lokasi: string | null
     nama: string | null
     url: string | null
@@ -1748,6 +1762,7 @@ export namespace Prisma {
   export type LombaCountAggregateOutputType = {
     id: number
     tanggal: number
+    jenis_lomba: number
     lokasi: number
     nama: number
     url: number
@@ -1760,6 +1775,7 @@ export namespace Prisma {
   export type LombaMinAggregateInputType = {
     id?: true
     tanggal?: true
+    jenis_lomba?: true
     lokasi?: true
     nama?: true
     url?: true
@@ -1770,6 +1786,7 @@ export namespace Prisma {
   export type LombaMaxAggregateInputType = {
     id?: true
     tanggal?: true
+    jenis_lomba?: true
     lokasi?: true
     nama?: true
     url?: true
@@ -1780,6 +1797,7 @@ export namespace Prisma {
   export type LombaCountAggregateInputType = {
     id?: true
     tanggal?: true
+    jenis_lomba?: true
     lokasi?: true
     nama?: true
     url?: true
@@ -1863,6 +1881,7 @@ export namespace Prisma {
   export type LombaGroupByOutputType = {
     id: string
     tanggal: Date
+    jenis_lomba: $Enums.Jenis_lomba
     lokasi: string
     nama: string
     url: string
@@ -1890,6 +1909,7 @@ export namespace Prisma {
   export type lombaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tanggal?: boolean
+    jenis_lomba?: boolean
     lokasi?: boolean
     nama?: boolean
     url?: boolean
@@ -1904,6 +1924,7 @@ export namespace Prisma {
   export type lombaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tanggal?: boolean
+    jenis_lomba?: boolean
     lokasi?: boolean
     nama?: boolean
     url?: boolean
@@ -1914,6 +1935,7 @@ export namespace Prisma {
   export type lombaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tanggal?: boolean
+    jenis_lomba?: boolean
     lokasi?: boolean
     nama?: boolean
     url?: boolean
@@ -1924,6 +1946,7 @@ export namespace Prisma {
   export type lombaSelectScalar = {
     id?: boolean
     tanggal?: boolean
+    jenis_lomba?: boolean
     lokasi?: boolean
     nama?: boolean
     url?: boolean
@@ -1931,7 +1954,7 @@ export namespace Prisma {
     deskripsi?: boolean
   }
 
-  export type lombaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tanggal" | "lokasi" | "nama" | "url" | "bataswaktu" | "deskripsi", ExtArgs["result"]["lomba"]>
+  export type lombaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tanggal" | "jenis_lomba" | "lokasi" | "nama" | "url" | "bataswaktu" | "deskripsi", ExtArgs["result"]["lomba"]>
   export type lombaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     juri?: boolean | lomba$juriArgs<ExtArgs>
     pesertalomba?: boolean | lomba$pesertalombaArgs<ExtArgs>
@@ -1951,6 +1974,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       tanggal: Date
+      jenis_lomba: $Enums.Jenis_lomba
       lokasi: string
       nama: string
       url: string
@@ -2384,6 +2408,7 @@ export namespace Prisma {
   interface lombaFieldRefs {
     readonly id: FieldRef<"lomba", 'String'>
     readonly tanggal: FieldRef<"lomba", 'DateTime'>
+    readonly jenis_lomba: FieldRef<"lomba", 'Jenis_lomba'>
     readonly lokasi: FieldRef<"lomba", 'String'>
     readonly nama: FieldRef<"lomba", 'String'>
     readonly url: FieldRef<"lomba", 'String'>
@@ -10514,6 +10539,7 @@ export namespace Prisma {
   export const LombaScalarFieldEnum: {
     id: 'id',
     tanggal: 'tanggal',
+    jenis_lomba: 'jenis_lomba',
     lokasi: 'lokasi',
     nama: 'nama',
     url: 'url',
@@ -10657,6 +10683,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Jenis_lomba'
+   */
+  export type EnumJenis_lombaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Jenis_lomba'>
+    
+
+
+  /**
+   * Reference to a field of type 'Jenis_lomba[]'
+   */
+  export type ListEnumJenis_lombaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Jenis_lomba[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Role'
    */
   export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
@@ -10721,6 +10761,7 @@ export namespace Prisma {
     NOT?: lombaWhereInput | lombaWhereInput[]
     id?: StringFilter<"lomba"> | string
     tanggal?: DateTimeFilter<"lomba"> | Date | string
+    jenis_lomba?: EnumJenis_lombaFilter<"lomba"> | $Enums.Jenis_lomba
     lokasi?: StringFilter<"lomba"> | string
     nama?: StringFilter<"lomba"> | string
     url?: StringFilter<"lomba"> | string
@@ -10734,6 +10775,7 @@ export namespace Prisma {
   export type lombaOrderByWithRelationInput = {
     id?: SortOrder
     tanggal?: SortOrder
+    jenis_lomba?: SortOrder
     lokasi?: SortOrder
     nama?: SortOrder
     url?: SortOrder
@@ -10750,6 +10792,7 @@ export namespace Prisma {
     OR?: lombaWhereInput[]
     NOT?: lombaWhereInput | lombaWhereInput[]
     tanggal?: DateTimeFilter<"lomba"> | Date | string
+    jenis_lomba?: EnumJenis_lombaFilter<"lomba"> | $Enums.Jenis_lomba
     lokasi?: StringFilter<"lomba"> | string
     nama?: StringFilter<"lomba"> | string
     url?: StringFilter<"lomba"> | string
@@ -10763,6 +10806,7 @@ export namespace Prisma {
   export type lombaOrderByWithAggregationInput = {
     id?: SortOrder
     tanggal?: SortOrder
+    jenis_lomba?: SortOrder
     lokasi?: SortOrder
     nama?: SortOrder
     url?: SortOrder
@@ -10779,6 +10823,7 @@ export namespace Prisma {
     NOT?: lombaScalarWhereWithAggregatesInput | lombaScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"lomba"> | string
     tanggal?: DateTimeWithAggregatesFilter<"lomba"> | Date | string
+    jenis_lomba?: EnumJenis_lombaWithAggregatesFilter<"lomba"> | $Enums.Jenis_lomba
     lokasi?: StringWithAggregatesFilter<"lomba"> | string
     nama?: StringWithAggregatesFilter<"lomba"> | string
     url?: StringWithAggregatesFilter<"lomba"> | string
@@ -11194,6 +11239,7 @@ export namespace Prisma {
   export type lombaCreateInput = {
     id: string
     tanggal: Date | string
+    jenis_lomba: $Enums.Jenis_lomba
     lokasi: string
     nama: string
     url: string
@@ -11207,6 +11253,7 @@ export namespace Prisma {
   export type lombaUncheckedCreateInput = {
     id: string
     tanggal: Date | string
+    jenis_lomba: $Enums.Jenis_lomba
     lokasi: string
     nama: string
     url: string
@@ -11220,6 +11267,7 @@ export namespace Prisma {
   export type lombaUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenis_lomba?: EnumJenis_lombaFieldUpdateOperationsInput | $Enums.Jenis_lomba
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
@@ -11233,6 +11281,7 @@ export namespace Prisma {
   export type lombaUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenis_lomba?: EnumJenis_lombaFieldUpdateOperationsInput | $Enums.Jenis_lomba
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
@@ -11246,6 +11295,7 @@ export namespace Prisma {
   export type lombaCreateManyInput = {
     id: string
     tanggal: Date | string
+    jenis_lomba: $Enums.Jenis_lomba
     lokasi: string
     nama: string
     url: string
@@ -11256,6 +11306,7 @@ export namespace Prisma {
   export type lombaUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenis_lomba?: EnumJenis_lombaFieldUpdateOperationsInput | $Enums.Jenis_lomba
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
@@ -11266,6 +11317,7 @@ export namespace Prisma {
   export type lombaUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenis_lomba?: EnumJenis_lombaFieldUpdateOperationsInput | $Enums.Jenis_lomba
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
@@ -11686,6 +11738,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type EnumJenis_lombaFilter<$PrismaModel = never> = {
+    equals?: $Enums.Jenis_lomba | EnumJenis_lombaFieldRefInput<$PrismaModel>
+    in?: $Enums.Jenis_lomba[] | ListEnumJenis_lombaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Jenis_lomba[] | ListEnumJenis_lombaFieldRefInput<$PrismaModel>
+    not?: NestedEnumJenis_lombaFilter<$PrismaModel> | $Enums.Jenis_lomba
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -11739,6 +11798,7 @@ export namespace Prisma {
   export type lombaCountOrderByAggregateInput = {
     id?: SortOrder
     tanggal?: SortOrder
+    jenis_lomba?: SortOrder
     lokasi?: SortOrder
     nama?: SortOrder
     url?: SortOrder
@@ -11749,6 +11809,7 @@ export namespace Prisma {
   export type lombaMaxOrderByAggregateInput = {
     id?: SortOrder
     tanggal?: SortOrder
+    jenis_lomba?: SortOrder
     lokasi?: SortOrder
     nama?: SortOrder
     url?: SortOrder
@@ -11759,6 +11820,7 @@ export namespace Prisma {
   export type lombaMinOrderByAggregateInput = {
     id?: SortOrder
     tanggal?: SortOrder
+    jenis_lomba?: SortOrder
     lokasi?: SortOrder
     nama?: SortOrder
     url?: SortOrder
@@ -11796,6 +11858,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type EnumJenis_lombaWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Jenis_lomba | EnumJenis_lombaFieldRefInput<$PrismaModel>
+    in?: $Enums.Jenis_lomba[] | ListEnumJenis_lombaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Jenis_lomba[] | ListEnumJenis_lombaFieldRefInput<$PrismaModel>
+    not?: NestedEnumJenis_lombaWithAggregatesFilter<$PrismaModel> | $Enums.Jenis_lomba
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumJenis_lombaFilter<$PrismaModel>
+    _max?: NestedEnumJenis_lombaFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12233,6 +12305,10 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type EnumJenis_lombaFieldUpdateOperationsInput = {
+    set?: $Enums.Jenis_lomba
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -12750,6 +12826,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedEnumJenis_lombaFilter<$PrismaModel = never> = {
+    equals?: $Enums.Jenis_lomba | EnumJenis_lombaFieldRefInput<$PrismaModel>
+    in?: $Enums.Jenis_lomba[] | ListEnumJenis_lombaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Jenis_lomba[] | ListEnumJenis_lombaFieldRefInput<$PrismaModel>
+    not?: NestedEnumJenis_lombaFilter<$PrismaModel> | $Enums.Jenis_lomba
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -12804,6 +12887,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumJenis_lombaWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Jenis_lomba | EnumJenis_lombaFieldRefInput<$PrismaModel>
+    in?: $Enums.Jenis_lomba[] | ListEnumJenis_lombaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Jenis_lomba[] | ListEnumJenis_lombaFieldRefInput<$PrismaModel>
+    not?: NestedEnumJenis_lombaWithAggregatesFilter<$PrismaModel> | $Enums.Jenis_lomba
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumJenis_lombaFilter<$PrismaModel>
+    _max?: NestedEnumJenis_lombaFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -13112,6 +13205,7 @@ export namespace Prisma {
   export type lombaCreateWithoutSertifikatInput = {
     id: string
     tanggal: Date | string
+    jenis_lomba: $Enums.Jenis_lomba
     lokasi: string
     nama: string
     url: string
@@ -13124,6 +13218,7 @@ export namespace Prisma {
   export type lombaUncheckedCreateWithoutSertifikatInput = {
     id: string
     tanggal: Date | string
+    jenis_lomba: $Enums.Jenis_lomba
     lokasi: string
     nama: string
     url: string
@@ -13152,6 +13247,7 @@ export namespace Prisma {
   export type lombaUpdateWithoutSertifikatInput = {
     id?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenis_lomba?: EnumJenis_lombaFieldUpdateOperationsInput | $Enums.Jenis_lomba
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
@@ -13164,6 +13260,7 @@ export namespace Prisma {
   export type lombaUncheckedUpdateWithoutSertifikatInput = {
     id?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenis_lomba?: EnumJenis_lombaFieldUpdateOperationsInput | $Enums.Jenis_lomba
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
@@ -13369,6 +13466,7 @@ export namespace Prisma {
   export type lombaCreateWithoutJuriInput = {
     id: string
     tanggal: Date | string
+    jenis_lomba: $Enums.Jenis_lomba
     lokasi: string
     nama: string
     url: string
@@ -13381,6 +13479,7 @@ export namespace Prisma {
   export type lombaUncheckedCreateWithoutJuriInput = {
     id: string
     tanggal: Date | string
+    jenis_lomba: $Enums.Jenis_lomba
     lokasi: string
     nama: string
     url: string
@@ -13460,6 +13559,7 @@ export namespace Prisma {
   export type lombaUpdateWithoutJuriInput = {
     id?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenis_lomba?: EnumJenis_lombaFieldUpdateOperationsInput | $Enums.Jenis_lomba
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
@@ -13472,6 +13572,7 @@ export namespace Prisma {
   export type lombaUncheckedUpdateWithoutJuriInput = {
     id?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenis_lomba?: EnumJenis_lombaFieldUpdateOperationsInput | $Enums.Jenis_lomba
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
@@ -13768,6 +13869,7 @@ export namespace Prisma {
   export type lombaCreateWithoutPesertalombaInput = {
     id: string
     tanggal: Date | string
+    jenis_lomba: $Enums.Jenis_lomba
     lokasi: string
     nama: string
     url: string
@@ -13780,6 +13882,7 @@ export namespace Prisma {
   export type lombaUncheckedCreateWithoutPesertalombaInput = {
     id: string
     tanggal: Date | string
+    jenis_lomba: $Enums.Jenis_lomba
     lokasi: string
     nama: string
     url: string
@@ -13843,6 +13946,7 @@ export namespace Prisma {
   export type lombaUpdateWithoutPesertalombaInput = {
     id?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenis_lomba?: EnumJenis_lombaFieldUpdateOperationsInput | $Enums.Jenis_lomba
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
@@ -13855,6 +13959,7 @@ export namespace Prisma {
   export type lombaUncheckedUpdateWithoutPesertalombaInput = {
     id?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenis_lomba?: EnumJenis_lombaFieldUpdateOperationsInput | $Enums.Jenis_lomba
     lokasi?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string

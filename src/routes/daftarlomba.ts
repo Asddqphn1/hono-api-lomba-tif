@@ -22,7 +22,8 @@ daftarlomba.get("/", authmiddleware, async (c) => {
       lokasi: true,
       deskripsi: true,
       url: true,
-      bataswaktu: true
+      bataswaktu: true,
+      jenis_lomba : true
     },
     orderBy: {
       tanggal: "asc",
@@ -36,7 +37,8 @@ daftarlomba.get("/", authmiddleware, async (c) => {
 });
 daftarlomba.post("/", authmiddleware, authadmin, async (c) => {
   try {
-    const { id, nama, tanggal, lokasi, url_gambar, bataswaktu, deskripsi } =
+    
+    const { id, nama, tanggal, lokasi, url, bataswaktu, deskripsi, jenis_lomba } =
       await c.req.json();
       const existLomba = await prisma.lomba.findUnique({
         where: { id: id },
@@ -45,7 +47,13 @@ daftarlomba.post("/", authmiddleware, authadmin, async (c) => {
         return c.json({
             status : "Gagal",
             message : "Lomba sudah ada"
-        })
+        },400)
+      }
+      if (!["INDIVIDU", "TIM"].includes(jenis_lomba)) {
+        return c.json(
+          { status: "error", message: "Jenis lomba tidak valid" },
+          400
+        );
       }
     const data = await prisma.lomba.create({
       data: {
@@ -53,9 +61,11 @@ daftarlomba.post("/", authmiddleware, authadmin, async (c) => {
         nama: nama,
         tanggal: tanggal,
         lokasi: lokasi,
-        url: url_gambar,
+        url: url,
         bataswaktu: bataswaktu,
         deskripsi: deskripsi,
+        jenis_lomba : jenis_lomba
+
       },
     });
     return c.json({
