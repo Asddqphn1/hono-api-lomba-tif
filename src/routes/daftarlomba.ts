@@ -81,5 +81,74 @@ daftarlomba.post("/", authmiddleware, authadmin, async (c) => {
     }, 500)
   }
 });
+daftarlomba.delete("/:id", authmiddleware, authadmin, async (c) => {
+  try{
+    const id = c.req.param("id");
+    
+    const juriLomba = await prisma.juri.findMany({
+      where: {
+        lomba_id: id,
+      },
+      include: {
+        users: true,
+      },
+    });
+    const hapusJuri = await prisma.juri.deleteMany({
+      where: {
+        lomba_id: id,
+      },
+    });
+    const userIds = juriLomba.map((juri) => juri.users_id);
+    const updatedUsers = await prisma.users.updateMany({
+      where: {
+        id: {
+          in : userIds,
+        },
+        role: "JURI", // Pastikan hanya update yang benar-benar juri
+      },
+      data: {
+        role: "USERS",
+      },
+    });
+    const hapusPesertaLomba = await prisma.pesertalomba.deleteMany({
+      where: {
+        lomba_id: id,
+      },
+    });
+    const hapusSertifikat = await prisma.sertifikat.deleteMany({
+      where: {
+        lomba_id: id,
+      },
+    });
+    const hapusData = await prisma.lomba.delete({
+      where: {
+        id: id,
+      },
+    });
+    return c.json(
+      {
+        status: "success",
+        message: `Berhasil menghapus ${hapusData.nama} dari lomba`,
+        data: {
+          lomba: {
+            nama: hapusData.nama,
+            id: hapusData.id,
+            jenis_lomba: hapusData.jenis_lomba,
+          },
+          juri_dihapus: hapusJuri.count,
+          peserta_dihapus: hapusPesertaLomba.count,
+          sertifikat_dihapus: hapusSertifikat.count,
+          users_diupdate: updatedUsers.count,
+        },
+      },
+      200
+    );
+  }catch(error){
+    return c.json({
+      status : "error",
+      message : error
+    }, 500)
+  }
+})
 
 export default daftarlomba;

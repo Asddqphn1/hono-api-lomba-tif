@@ -65,8 +65,8 @@ model juri {
   lomba_id   String     @db.VarChar(30)
   created_at DateTime   @default(now())
   users_id   String     @db.Uuid
-  lomba      lomba      @relation(fields: [lomba_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "juri_lomba_fk")
-  users      users      @relation(fields: [users_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "juri_users_fk")
+  lomba      lomba      @relation(fields: [lomba_id], references: [id], onDelete: Cascade, onUpdate: Cascade, map: "juri_lomba_fk")
+  users      users      @relation(fields: [users_id], references: [id], onDelete: Cascade, onUpdate: Cascade, map: "juri_users_fk")
   penilaian  penilaian[]
 }
 

@@ -82,9 +82,22 @@ juri.patch("/:id", authadmin, authmiddleware, async (c) => {
     const idjuri = c.req.param("id"); // ubah data ke number
 
     const { namaJuri, id_lomba } = await c.req.json();
+    const existLomba = await prisma.lomba.findUnique({
+      where : {
+        id : id_lomba
+      }
+    })
     const existJuri = await prisma.juri.findFirst({
       where: { users_id: idjuri },
     });
+
+    //cek lomba
+    if(!existLomba){
+      return c.json({
+        status : "error",
+        message : "Tidak ada Lomba dengan kode tersebut"
+      },404)
+    }
 
     // cek angka
     if (existJuri) {
