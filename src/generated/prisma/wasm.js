@@ -128,7 +128,8 @@ exports.Prisma.LombaScalarFieldEnum = {
   nama: 'nama',
   url: 'url',
   bataswaktu: 'bataswaktu',
-  deskripsi: 'deskripsi'
+  deskripsi: 'deskripsi',
+  jumlah_tim: 'jumlah_tim'
 };
 
 exports.Prisma.SertifikatScalarFieldEnum = {

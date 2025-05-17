@@ -17,14 +17,15 @@ daftarlomba.use(
 daftarlomba.get("/", authmiddleware, async (c) => {
   const data = await prisma.lomba.findMany({
     select: {
-      id : true,
+      id: true,
       nama: true,
       tanggal: true,
       lokasi: true,
       deskripsi: true,
       url: true,
       bataswaktu: true,
-      jenis_lomba : true
+      jenis_lomba: true,
+      jumlah_tim: true
     },
     orderBy: {
       tanggal: "asc",
@@ -38,53 +39,93 @@ daftarlomba.get("/", authmiddleware, async (c) => {
 });
 daftarlomba.post("/", authmiddleware, authadmin, async (c) => {
   try {
-    
-    const { id, nama, tanggal, lokasi, url, bataswaktu, deskripsi, jenis_lomba } =
-      await c.req.json();
-      const existLomba = await prisma.lomba.findUnique({
-        where: { id: id },
-      });
-      if (existLomba){
-        return c.json({
-            status : "Gagal",
-            message : "Lomba sudah ada"
-        },400)
-      }
-      if (!["INDIVIDU", "TIM"].includes(jenis_lomba)) {
+    const {
+      id,
+      nama,
+      tanggal,
+      lokasi,
+      url, // Pastikan ini sesuai dengan yang dikirim frontend
+      bataswaktu,
+      deskripsi,
+      jenis_lomba,
+      jumlah_anggota,
+    } = await c.req.json();
+
+    // Validasi jenis lomba
+    if (!["INDIVIDU", "TIM"].includes(jenis_lomba)) {
+      return c.json(
+        { status: "error", message: "Jenis lomba tidak valid" },
+        400
+      );
+    }
+
+    // Validasi khusus untuk lomba TIM
+    if (jenis_lomba === "TIM") {
+      if (!jumlah_anggota) {
         return c.json(
-          { status: "error", message: "Jenis lomba tidak valid" },
+          {
+            status: "error",
+            message: "Untuk lomba TIM, jumlah anggota tim harus diisi",
+          },
           400
         );
       }
+      if (jumlah_anggota < 2 || jumlah_anggota > 30) {
+        return c.json(
+          {
+            status: "error",
+            message: "Jumlah anggota tim harus antara 2 sampai 30",
+          },
+          400
+        );
+      }
+    }
+
+    // Untuk lomba INDIVIDU, set jumlah_tim ke null
+    const jumlahTim = jenis_lomba === "INDIVIDU" ? null : jumlah_anggota;
+
+    const existLomba = await prisma.lomba.findUnique({
+      where: { id: id },
+    });
+
+    if (existLomba) {
+      return c.json({ status: "Gagal", message: "Lomba sudah ada" }, 400);
+    }
+
     const data = await prisma.lomba.create({
       data: {
-        id: id,
-        nama: nama,
-        tanggal: tanggal,
-        lokasi: lokasi,
-        url: url,
-        bataswaktu: bataswaktu,
-        deskripsi: deskripsi,
-        jenis_lomba : jenis_lomba
-
+        id,
+        nama,
+        tanggal: new Date(tanggal), // Pastikan format tanggal benar
+        lokasi,
+        url,
+        bataswaktu: new Date(bataswaktu), // Pastikan format tanggal benar
+        deskripsi,
+        jenis_lomba,
+        jumlah_tim: jumlahTim,
       },
     });
+
     return c.json({
-        status : "succes",
-        message : "Berhasil Menambah Lomba",
-        data : data
-    })
+      status: "success",
+      message: "Berhasil Menambah Lomba",
+      data,
+    });
   } catch (error) {
-    return c.json({
-        status : "error",
-        message : error
-    }, 500)
+    console.error("Error:", error);
+    return c.json(
+      {
+        status: "error",
+        message: error || "Terjadi kesalahan pada server",
+      },
+      500
+    );
   }
 });
 daftarlomba.delete("/:id", authmiddleware, authadmin, async (c) => {
-  try{
+  try {
     const id = c.req.param("id");
-    
+
     const juriLomba = await prisma.juri.findMany({
       where: {
         lomba_id: id,
@@ -102,7 +143,7 @@ daftarlomba.delete("/:id", authmiddleware, authadmin, async (c) => {
     const updatedUsers = await prisma.users.updateMany({
       where: {
         id: {
-          in : userIds,
+          in: userIds,
         },
         role: "JURI", // Pastikan hanya update yang benar-benar juri
       },
@@ -143,12 +184,15 @@ daftarlomba.delete("/:id", authmiddleware, authadmin, async (c) => {
       },
       200
     );
-  }catch(error){
-    return c.json({
-      status : "error",
-      message : error
-    }, 500)
+  } catch (error) {
+    return c.json(
+      {
+        status: "error",
+        message: error,
+      },
+      500
+    );
   }
-})
+});
 
 export default daftarlomba;

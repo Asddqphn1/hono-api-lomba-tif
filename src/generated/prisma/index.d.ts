@@ -1924,8 +1924,18 @@ export namespace Prisma {
 
   export type AggregateLomba = {
     _count: LombaCountAggregateOutputType | null
+    _avg: LombaAvgAggregateOutputType | null
+    _sum: LombaSumAggregateOutputType | null
     _min: LombaMinAggregateOutputType | null
     _max: LombaMaxAggregateOutputType | null
+  }
+
+  export type LombaAvgAggregateOutputType = {
+    jumlah_tim: number | null
+  }
+
+  export type LombaSumAggregateOutputType = {
+    jumlah_tim: number | null
   }
 
   export type LombaMinAggregateOutputType = {
@@ -1937,6 +1947,7 @@ export namespace Prisma {
     url: string | null
     bataswaktu: Date | null
     deskripsi: string | null
+    jumlah_tim: number | null
   }
 
   export type LombaMaxAggregateOutputType = {
@@ -1948,6 +1959,7 @@ export namespace Prisma {
     url: string | null
     bataswaktu: Date | null
     deskripsi: string | null
+    jumlah_tim: number | null
   }
 
   export type LombaCountAggregateOutputType = {
@@ -1959,9 +1971,18 @@ export namespace Prisma {
     url: number
     bataswaktu: number
     deskripsi: number
+    jumlah_tim: number
     _all: number
   }
 
+
+  export type LombaAvgAggregateInputType = {
+    jumlah_tim?: true
+  }
+
+  export type LombaSumAggregateInputType = {
+    jumlah_tim?: true
+  }
 
   export type LombaMinAggregateInputType = {
     id?: true
@@ -1972,6 +1993,7 @@ export namespace Prisma {
     url?: true
     bataswaktu?: true
     deskripsi?: true
+    jumlah_tim?: true
   }
 
   export type LombaMaxAggregateInputType = {
@@ -1983,6 +2005,7 @@ export namespace Prisma {
     url?: true
     bataswaktu?: true
     deskripsi?: true
+    jumlah_tim?: true
   }
 
   export type LombaCountAggregateInputType = {
@@ -1994,6 +2017,7 @@ export namespace Prisma {
     url?: true
     bataswaktu?: true
     deskripsi?: true
+    jumlah_tim?: true
     _all?: true
   }
 
@@ -2035,6 +2059,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: LombaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LombaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: LombaMinAggregateInputType
@@ -2065,6 +2101,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: LombaCountAggregateInputType | true
+    _avg?: LombaAvgAggregateInputType
+    _sum?: LombaSumAggregateInputType
     _min?: LombaMinAggregateInputType
     _max?: LombaMaxAggregateInputType
   }
@@ -2078,7 +2116,10 @@ export namespace Prisma {
     url: string
     bataswaktu: Date
     deskripsi: string | null
+    jumlah_tim: number | null
     _count: LombaCountAggregateOutputType | null
+    _avg: LombaAvgAggregateOutputType | null
+    _sum: LombaSumAggregateOutputType | null
     _min: LombaMinAggregateOutputType | null
     _max: LombaMaxAggregateOutputType | null
   }
@@ -2106,6 +2147,7 @@ export namespace Prisma {
     url?: boolean
     bataswaktu?: boolean
     deskripsi?: boolean
+    jumlah_tim?: boolean
     juri?: boolean | lomba$juriArgs<ExtArgs>
     pesertalomba?: boolean | lomba$pesertalombaArgs<ExtArgs>
     sertifikat?: boolean | lomba$sertifikatArgs<ExtArgs>
@@ -2121,6 +2163,7 @@ export namespace Prisma {
     url?: boolean
     bataswaktu?: boolean
     deskripsi?: boolean
+    jumlah_tim?: boolean
   }, ExtArgs["result"]["lomba"]>
 
   export type lombaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2132,6 +2175,7 @@ export namespace Prisma {
     url?: boolean
     bataswaktu?: boolean
     deskripsi?: boolean
+    jumlah_tim?: boolean
   }, ExtArgs["result"]["lomba"]>
 
   export type lombaSelectScalar = {
@@ -2143,9 +2187,10 @@ export namespace Prisma {
     url?: boolean
     bataswaktu?: boolean
     deskripsi?: boolean
+    jumlah_tim?: boolean
   }
 
-  export type lombaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tanggal" | "jenis_lomba" | "lokasi" | "nama" | "url" | "bataswaktu" | "deskripsi", ExtArgs["result"]["lomba"]>
+  export type lombaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tanggal" | "jenis_lomba" | "lokasi" | "nama" | "url" | "bataswaktu" | "deskripsi" | "jumlah_tim", ExtArgs["result"]["lomba"]>
   export type lombaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     juri?: boolean | lomba$juriArgs<ExtArgs>
     pesertalomba?: boolean | lomba$pesertalombaArgs<ExtArgs>
@@ -2171,6 +2216,7 @@ export namespace Prisma {
       url: string
       bataswaktu: Date
       deskripsi: string | null
+      jumlah_tim: number | null
     }, ExtArgs["result"]["lomba"]>
     composites: {}
   }
@@ -2605,6 +2651,7 @@ export namespace Prisma {
     readonly url: FieldRef<"lomba", 'String'>
     readonly bataswaktu: FieldRef<"lomba", 'DateTime'>
     readonly deskripsi: FieldRef<"lomba", 'String'>
+    readonly jumlah_tim: FieldRef<"lomba", 'Int'>
   }
     
 
@@ -12803,7 +12850,8 @@ export namespace Prisma {
     nama: 'nama',
     url: 'url',
     bataswaktu: 'bataswaktu',
-    deskripsi: 'deskripsi'
+    deskripsi: 'deskripsi',
+    jumlah_tim: 'jumlah_tim'
   };
 
   export type LombaScalarFieldEnum = (typeof LombaScalarFieldEnum)[keyof typeof LombaScalarFieldEnum]
@@ -12973,6 +13021,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Role'
    */
   export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
@@ -13001,16 +13063,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'Float'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'Float[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -13029,6 +13091,7 @@ export namespace Prisma {
     url?: StringFilter<"lomba"> | string
     bataswaktu?: DateTimeFilter<"lomba"> | Date | string
     deskripsi?: StringNullableFilter<"lomba"> | string | null
+    jumlah_tim?: IntNullableFilter<"lomba"> | number | null
     juri?: JuriListRelationFilter
     pesertalomba?: PesertalombaListRelationFilter
     sertifikat?: SertifikatListRelationFilter
@@ -13043,6 +13106,7 @@ export namespace Prisma {
     url?: SortOrder
     bataswaktu?: SortOrder
     deskripsi?: SortOrderInput | SortOrder
+    jumlah_tim?: SortOrderInput | SortOrder
     juri?: juriOrderByRelationAggregateInput
     pesertalomba?: pesertalombaOrderByRelationAggregateInput
     sertifikat?: sertifikatOrderByRelationAggregateInput
@@ -13060,6 +13124,7 @@ export namespace Prisma {
     url?: StringFilter<"lomba"> | string
     bataswaktu?: DateTimeFilter<"lomba"> | Date | string
     deskripsi?: StringNullableFilter<"lomba"> | string | null
+    jumlah_tim?: IntNullableFilter<"lomba"> | number | null
     juri?: JuriListRelationFilter
     pesertalomba?: PesertalombaListRelationFilter
     sertifikat?: SertifikatListRelationFilter
@@ -13074,9 +13139,12 @@ export namespace Prisma {
     url?: SortOrder
     bataswaktu?: SortOrder
     deskripsi?: SortOrderInput | SortOrder
+    jumlah_tim?: SortOrderInput | SortOrder
     _count?: lombaCountOrderByAggregateInput
+    _avg?: lombaAvgOrderByAggregateInput
     _max?: lombaMaxOrderByAggregateInput
     _min?: lombaMinOrderByAggregateInput
+    _sum?: lombaSumOrderByAggregateInput
   }
 
   export type lombaScalarWhereWithAggregatesInput = {
@@ -13091,6 +13159,7 @@ export namespace Prisma {
     url?: StringWithAggregatesFilter<"lomba"> | string
     bataswaktu?: DateTimeWithAggregatesFilter<"lomba"> | Date | string
     deskripsi?: StringNullableWithAggregatesFilter<"lomba"> | string | null
+    jumlah_tim?: IntNullableWithAggregatesFilter<"lomba"> | number | null
   }
 
   export type sertifikatWhereInput = {
@@ -13595,6 +13664,7 @@ export namespace Prisma {
     url: string
     bataswaktu: Date | string
     deskripsi?: string | null
+    jumlah_tim?: number | null
     juri?: juriCreateNestedManyWithoutLombaInput
     pesertalomba?: pesertalombaCreateNestedManyWithoutLombaInput
     sertifikat?: sertifikatCreateNestedManyWithoutLombaInput
@@ -13609,6 +13679,7 @@ export namespace Prisma {
     url: string
     bataswaktu: Date | string
     deskripsi?: string | null
+    jumlah_tim?: number | null
     juri?: juriUncheckedCreateNestedManyWithoutLombaInput
     pesertalomba?: pesertalombaUncheckedCreateNestedManyWithoutLombaInput
     sertifikat?: sertifikatUncheckedCreateNestedManyWithoutLombaInput
@@ -13623,6 +13694,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlah_tim?: NullableIntFieldUpdateOperationsInput | number | null
     juri?: juriUpdateManyWithoutLombaNestedInput
     pesertalomba?: pesertalombaUpdateManyWithoutLombaNestedInput
     sertifikat?: sertifikatUpdateManyWithoutLombaNestedInput
@@ -13637,6 +13709,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlah_tim?: NullableIntFieldUpdateOperationsInput | number | null
     juri?: juriUncheckedUpdateManyWithoutLombaNestedInput
     pesertalomba?: pesertalombaUncheckedUpdateManyWithoutLombaNestedInput
     sertifikat?: sertifikatUncheckedUpdateManyWithoutLombaNestedInput
@@ -13651,6 +13724,7 @@ export namespace Prisma {
     url: string
     bataswaktu: Date | string
     deskripsi?: string | null
+    jumlah_tim?: number | null
   }
 
   export type lombaUpdateManyMutationInput = {
@@ -13662,6 +13736,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlah_tim?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type lombaUncheckedUpdateManyInput = {
@@ -13673,6 +13748,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlah_tim?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type sertifikatCreateInput = {
@@ -14199,6 +14275,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type JuriListRelationFilter = {
     every?: juriWhereInput
     some?: juriWhereInput
@@ -14243,6 +14330,11 @@ export namespace Prisma {
     url?: SortOrder
     bataswaktu?: SortOrder
     deskripsi?: SortOrder
+    jumlah_tim?: SortOrder
+  }
+
+  export type lombaAvgOrderByAggregateInput = {
+    jumlah_tim?: SortOrder
   }
 
   export type lombaMaxOrderByAggregateInput = {
@@ -14254,6 +14346,7 @@ export namespace Prisma {
     url?: SortOrder
     bataswaktu?: SortOrder
     deskripsi?: SortOrder
+    jumlah_tim?: SortOrder
   }
 
   export type lombaMinOrderByAggregateInput = {
@@ -14265,6 +14358,11 @@ export namespace Prisma {
     url?: SortOrder
     bataswaktu?: SortOrder
     deskripsi?: SortOrder
+    jumlah_tim?: SortOrder
+  }
+
+  export type lombaSumOrderByAggregateInput = {
+    jumlah_tim?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -14325,6 +14423,22 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type LombaScalarRelationFilter = {
@@ -14737,6 +14851,14 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type juriUpdateManyWithoutLombaNestedInput = {
@@ -15361,6 +15483,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -15430,7 +15563,7 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -15438,7 +15571,23 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -15664,6 +15813,7 @@ export namespace Prisma {
     url: string
     bataswaktu: Date | string
     deskripsi?: string | null
+    jumlah_tim?: number | null
     juri?: juriCreateNestedManyWithoutLombaInput
     pesertalomba?: pesertalombaCreateNestedManyWithoutLombaInput
   }
@@ -15677,6 +15827,7 @@ export namespace Prisma {
     url: string
     bataswaktu: Date | string
     deskripsi?: string | null
+    jumlah_tim?: number | null
     juri?: juriUncheckedCreateNestedManyWithoutLombaInput
     pesertalomba?: pesertalombaUncheckedCreateNestedManyWithoutLombaInput
   }
@@ -15706,6 +15857,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlah_tim?: NullableIntFieldUpdateOperationsInput | number | null
     juri?: juriUpdateManyWithoutLombaNestedInput
     pesertalomba?: pesertalombaUpdateManyWithoutLombaNestedInput
   }
@@ -15719,6 +15871,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlah_tim?: NullableIntFieldUpdateOperationsInput | number | null
     juri?: juriUncheckedUpdateManyWithoutLombaNestedInput
     pesertalomba?: pesertalombaUncheckedUpdateManyWithoutLombaNestedInput
   }
@@ -15927,6 +16080,7 @@ export namespace Prisma {
     url: string
     bataswaktu: Date | string
     deskripsi?: string | null
+    jumlah_tim?: number | null
     pesertalomba?: pesertalombaCreateNestedManyWithoutLombaInput
     sertifikat?: sertifikatCreateNestedManyWithoutLombaInput
   }
@@ -15940,6 +16094,7 @@ export namespace Prisma {
     url: string
     bataswaktu: Date | string
     deskripsi?: string | null
+    jumlah_tim?: number | null
     pesertalomba?: pesertalombaUncheckedCreateNestedManyWithoutLombaInput
     sertifikat?: sertifikatUncheckedCreateNestedManyWithoutLombaInput
   }
@@ -16022,6 +16177,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlah_tim?: NullableIntFieldUpdateOperationsInput | number | null
     pesertalomba?: pesertalombaUpdateManyWithoutLombaNestedInput
     sertifikat?: sertifikatUpdateManyWithoutLombaNestedInput
   }
@@ -16035,6 +16191,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlah_tim?: NullableIntFieldUpdateOperationsInput | number | null
     pesertalomba?: pesertalombaUncheckedUpdateManyWithoutLombaNestedInput
     sertifikat?: sertifikatUncheckedUpdateManyWithoutLombaNestedInput
   }
@@ -16361,6 +16518,7 @@ export namespace Prisma {
     url: string
     bataswaktu: Date | string
     deskripsi?: string | null
+    jumlah_tim?: number | null
     juri?: juriCreateNestedManyWithoutLombaInput
     sertifikat?: sertifikatCreateNestedManyWithoutLombaInput
   }
@@ -16374,6 +16532,7 @@ export namespace Prisma {
     url: string
     bataswaktu: Date | string
     deskripsi?: string | null
+    jumlah_tim?: number | null
     juri?: juriUncheckedCreateNestedManyWithoutLombaInput
     sertifikat?: sertifikatUncheckedCreateNestedManyWithoutLombaInput
   }
@@ -16449,6 +16608,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlah_tim?: NullableIntFieldUpdateOperationsInput | number | null
     juri?: juriUpdateManyWithoutLombaNestedInput
     sertifikat?: sertifikatUpdateManyWithoutLombaNestedInput
   }
@@ -16462,6 +16622,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     bataswaktu?: DateTimeFieldUpdateOperationsInput | Date | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlah_tim?: NullableIntFieldUpdateOperationsInput | number | null
     juri?: juriUncheckedUpdateManyWithoutLombaNestedInput
     sertifikat?: sertifikatUncheckedUpdateManyWithoutLombaNestedInput
   }

@@ -29,6 +29,7 @@ model lomba {
   url          String         @db.VarChar(500)
   bataswaktu   DateTime       @db.Date
   deskripsi    String?        @db.Text
+  jumlah_tim   Int?
   juri         juri[]
   pesertalomba pesertalomba[]
   sertifikat   sertifikat[]
