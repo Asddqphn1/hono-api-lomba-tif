@@ -42,5 +42,25 @@ users.get("/", authadmin, authmiddleware, async (c) => {
     })
   }
 });
+users.delete("/:id", authadmin, authmiddleware, async (c) => {
+  try{
+    const id = c.req.param("id")
+    const hapusUser = await prisma.users.delete({
+      where :{
+        id : id
+      }
+    })
+    return c.json({
+      status : "success",
+      message : "Berhasil menghapus user",
+      data : hapusUser.email
+    })
+  }catch(error){
+    return c.json({
+      status : "error",
+      message : error
+    }, 500)
+  }
+})
 
 export default users

@@ -3,6 +3,8 @@ import prisma from "../db";
 import { cors } from "hono/cors";
 import authmiddleware from "../middleware/authmiddleware";
 import authadmin from "../middleware/authadmin";
+import { Jenis_lomba } from "../generated/prisma";
+
 
 const daftarpeserta = new Hono();
 daftarpeserta.use(
@@ -16,33 +18,75 @@ daftarpeserta.use(
 );
 daftarpeserta.get("/", authmiddleware, authadmin, async (c) => {
   try {
+    const { jenis } = c.req.query();
+
+    // Filter dasar
+    const baseFilter = {
+      pesertalomba: {
+        some: {}, // Pastikan hanya peserta dengan setidaknya 1 lomba
+      },
+    };
+
+    // Tambahkan filter jenis jika ada
+    const jenisFilter = jenis
+      ? {
+          pesertalomba: {
+            some: {
+              lomba: {
+                jenis_lomba: jenis as Jenis_lomba,
+              },
+            },
+          },
+        }
+      : {};
+
     const daftarpeserta = await prisma.peserta.findMany({
+      where: {
+        ...baseFilter,
+        ...jenisFilter,
+      },
       select: {
         nama: true,
+        id: true,
         users_id: true,
         created_at: true,
         pesertalomba: {
+          where: {
+            lomba: {
+              // Pastikan relasi lomba masih ada
+              id: { not: undefined },
+            },
+          },
           select: {
             lomba_id: true,
             lomba: {
               select: {
                 nama: true,
+                jenis_lomba: true,
               },
             },
           },
         },
       },
     });
+
+    // Filter tambahan untuk memastikan data konsisten
+    const filteredPeserta = daftarpeserta.filter(
+      (peserta) => peserta.pesertalomba.length > 0
+    );
+
     return c.json({
       status: "Success",
       message: "Berhasil ambil data Peserta",
-      data: daftarpeserta,
+      data: filteredPeserta,
     });
   } catch (error) {
+    console.error("Error fetching peserta:", error);
     return c.json(
       {
         status: "error",
-        message: error,
+        message:
+          error instanceof Error ? error.message : "Internal server error",
       },
       500
     );
@@ -53,12 +97,17 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
     const { nama } = await c.req.json();
     const idpeserta = c.req.param("id");
     const idlomba = c.req.param("idLomba");
+
+    // Get competition details including type and team size limit
     const tipelomba = await prisma.lomba.findUnique({
       where: { id: idlomba },
       select: {
         jenis_lomba: true,
+        jumlah_tim: true,
       },
     });
+
+    // Check if participant already exists
     const existPeserta = await prisma.peserta.findFirst({
       where: {
         nama: nama,
@@ -69,6 +118,7 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
         },
       },
     });
+
     if (existPeserta) {
       return c.json(
         {
@@ -78,10 +128,13 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
         400
       );
     }
+
     if (tipelomba?.jenis_lomba === "TIM") {
       try {
         const { nama_anggota } = await c.req.json();
-        if(!nama_anggota){
+
+        // Validate team members input
+        if (!nama_anggota) {
           return c.json(
             {
               status: "error",
@@ -90,6 +143,28 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
             400
           );
         }
+
+        // Check if number of team members exceeds the limit
+        if (!tipelomba || tipelomba.jumlah_tim === null || tipelomba.jumlah_tim === undefined) {
+          return c.json(
+            {
+              status: "error",
+              message: "Data jumlah tim tidak tersedia untuk lomba ini",
+            },
+            400
+          );
+        }
+        if (nama_anggota.length > tipelomba.jumlah_tim) {
+          return c.json(
+            {
+              status: "error",
+              message: `Jumlah anggota tim melebihi batas maksimal (${tipelomba.jumlah_tim} orang)`,
+            },
+            400
+          );
+        }
+
+        // Create the main participant
         const result = await prisma.peserta.create({
           data: {
             users_id: idpeserta,
@@ -97,6 +172,7 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
           },
         });
 
+        // Link participant to competition
         await prisma.pesertalomba.create({
           data: {
             lomba_id: idlomba,
@@ -104,7 +180,7 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
           },
         });
 
-        // Menambahkan anggota tim satu per satu
+        // Add team members one by one
         for (let anggota of nama_anggota) {
           await prisma.anggotaTim.create({
             data: {
@@ -113,6 +189,12 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
             },
           });
         }
+
+        await prisma.users.update({
+          where: { id: idpeserta },
+          data: { role: "PESERTA" },
+        });
+
         return c.json({
           status: "success",
           message: "Peserta berhasil ditambahkan",
@@ -122,12 +204,14 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
         return c.json(
           {
             status: "error",
-            message: error,
+            message:
+              error instanceof Error ? error.message : "Terjadi kesalahan",
           },
           400
         );
       }
     } else {
+      // For individual competition
       const result = await prisma.peserta.create({
         data: {
           users_id: idpeserta,
@@ -141,6 +225,12 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
           peserta_id: result.id,
         },
       });
+
+      await prisma.users.update({
+        where: { id: idpeserta },
+        data: { role: "PESERTA" },
+      });
+
       return c.json({
         status: "success",
         message: "Peserta berhasil ditambahkan",
@@ -151,17 +241,23 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
     return c.json(
       {
         status: "error",
-        message: error,
+        message:
+          error instanceof Error ? error.message : "Terjadi kesalahan server",
       },
       500
     );
   }
 });
-daftarpeserta.get("/anggotatim", authadmin, authmiddleware, async (c) => {
+daftarpeserta.get("/anggotatim/:id", authadmin, authmiddleware, async (c) => {
   try {
-    const nama_anggota = await prisma.peserta.findMany({
+    const idTim = c.req.param("id")
+    const nama_anggota = await prisma.peserta.findUnique({
+      where :{
+        id : idTim
+      },
       select: {
         nama: true,
+        id : true,
         pesertalomba: {
           select: {
             lomba: {
