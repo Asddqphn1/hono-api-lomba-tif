@@ -3,6 +3,7 @@ import authmiddleware from "../middleware/authmiddleware";
 import prisma from "../db";
 import { cors } from "hono/cors";
 import authadmin from "../middleware/authadmin";
+import authpeserta from "../middleware/authpeserta";
 
 const daftarlomba = new Hono();
 daftarlomba.use(
@@ -61,6 +62,50 @@ daftarlomba.get("/:id", authmiddleware, async (c) => {
     data: data,
   });
 });
+daftarlomba.get("/userlomba/:idUser", authmiddleware, authpeserta, async (c) => {
+  try{
+    const id_user = await c.req.param("idUser")
+    const results = await prisma.pesertalomba.findMany({
+      where: {
+        peserta: {
+          users_id: id_user,
+        },
+      },
+      select: {
+        lomba: {
+          select: {
+            id: true,
+            nama: true,
+            tanggal: true,
+            lokasi: true,
+            bataswaktu: true
+          },
+        },
+        peserta: {
+          select: {
+            users: {
+              select: {
+                email: true,
+                nama: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    return c.json({
+      status : "success",
+      message : "Berhasil ambil data lomba",
+      data : results.map(item => item.lomba)
+    }, 200)
+
+  }catch(err){
+    return c.json({
+      status : "Error",
+      message : err
+    }, 500)
+  }
+})
 daftarlomba.post("/", authmiddleware, authadmin, async (c) => {
   try {
     const {
