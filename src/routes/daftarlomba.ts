@@ -37,6 +37,30 @@ daftarlomba.get("/", authmiddleware, async (c) => {
     data: data,
   });
 });
+daftarlomba.get("/:id", authmiddleware, async (c) => {
+  const idLomba = await c.req.param("id")
+  const data = await prisma.lomba.findUnique({
+    where : {
+      id : idLomba
+    },
+    select: {
+      id: true,
+      nama: true,
+      tanggal: true,
+      lokasi: true,
+      deskripsi: true,
+      url: true,
+      bataswaktu: true,
+      jenis_lomba: true,
+      jumlah_tim: true,
+    },
+  });
+  return c.json({
+    status: "success",
+    message: "Daftar Lomba",
+    data: data,
+  });
+});
 daftarlomba.post("/", authmiddleware, authadmin, async (c) => {
   try {
     const {

@@ -61,9 +61,10 @@ login.post("/", async (c) => {
         const token = jwt.sign(payload, secreet);
         setCookie(c, "token", token, {
             httpOnly: true,
-            secure: true, // Set to true if using HTTPS
+            secure: false, // Set to true if using HTTPS
             sameSite: "strict",
             maxAge: 60 * 60 * 24,
+            
         });
         return c.json({
             status: "success",
