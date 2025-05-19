@@ -8,6 +8,7 @@ import users from './routes/users';
 import juri from './routes/juri';
 import auth from './routes/auth';
 import logout from './routes/logout';
+import penilaian from './routes/penilaian';
 
 app.route('/auth', auth)
 app.route('/register', register)
@@ -17,6 +18,7 @@ app.route('/daftarlomba', daftarlomba)
 app.route('/daftarpeserta', daftarpeserta)
 app.route('/users', users)
 app.route('/logout', logout)
+app.route('/penilaian', penilaian)
 // Di backend (Hono)
 
 export default app
