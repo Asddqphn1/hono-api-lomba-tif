@@ -4,6 +4,7 @@ import { cors } from "hono/cors";
 import authmiddleware from "../middleware/authmiddleware";
 import authadmin from "../middleware/authadmin";
 import { Jenis_lomba } from "../generated/prisma";
+import authpeserta from "../middleware/authpeserta";
 
 
 const daftarpeserta = new Hono();
@@ -92,6 +93,7 @@ daftarpeserta.get("/", authmiddleware, authadmin, async (c) => {
     );
   }
 });
+
 daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
   try {
     const { nama } = await c.req.json();
