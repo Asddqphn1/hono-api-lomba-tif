@@ -72,6 +72,7 @@ daftarlomba.get("/userlomba/:idUser", authmiddleware, authpeserta, async (c) => 
         },
       },
       select: {
+        id : true,
         lomba: {
           select: {
             id: true,
@@ -93,11 +94,18 @@ daftarlomba.get("/userlomba/:idUser", authmiddleware, authpeserta, async (c) => 
         },
       },
     });
-    return c.json({
-      status : "success",
-      message : "Berhasil ambil data lomba",
-      data : results.map(item => item.lomba)
-    }, 200)
+    return c.json(
+      {
+        status: "success",
+        message: "Berhasil ambil data lomba",
+        data: results.map((item) => ({
+          id_peserta_lomba: item.id, // Menambahkan id peserta lomba
+          lomba: item.lomba, // Data lomba
+          peserta: item.peserta, // Data peserta
+        })),
+      },
+      200
+    );
 
   }catch(err){
     return c.json({
