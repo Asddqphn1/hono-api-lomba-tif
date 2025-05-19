@@ -15,3 +15,29 @@ submit.use(
   })
 );
 
+submit.post('/:id', authmiddleware, authpeserta, async (c) => {
+  try{
+    const idpeserta = c.req.param("id");
+    const { url } = await c.req.json()
+    const postsubmit = await prisma.submission.create({
+      data : {
+        pesertalomba_id : idpeserta,
+        file_url : url
+
+      }
+    })
+
+    return c.json({
+      status : "succes",
+      message : "berhasil submit",
+      data : postsubmit
+    }, 200)
+  }catch(err){
+    return c.json({
+      status : "error",
+      message : err
+    }, 500)
+  }
+})
+
+export default submit
