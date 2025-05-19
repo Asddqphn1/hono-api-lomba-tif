@@ -50,7 +50,7 @@ register.post("/", async (c) => {
         400
       );
     }
-    if (email === "pohan@gmail.com") {
+    if (email === "pohan@gmail.com" || email === "ahmad@gmail.com") {
       user = await prisma.users.create({
         data: {
           email : email,
