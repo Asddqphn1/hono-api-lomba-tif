@@ -79,11 +79,15 @@ daftarlomba.get("/userlomba/:idUser", authmiddleware, authpeserta, async (c) => 
             nama: true,
             tanggal: true,
             lokasi: true,
-            bataswaktu: true
+            bataswaktu: true,
+            url : true,
+            jenis_lomba : true
           },
         },
         peserta: {
           select: {
+            nama : true,
+            id : true,
             users: {
               select: {
                 email: true,
