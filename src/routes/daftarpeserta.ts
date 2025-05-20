@@ -4,7 +4,7 @@ import { cors } from "hono/cors";
 import authmiddleware from "../middleware/authmiddleware";
 import authadmin from "../middleware/authadmin";
 import { Jenis_lomba } from "../generated/prisma";
-import authpeserta from "../middleware/authpeserta";
+
 
 
 const daftarpeserta = new Hono();
@@ -100,6 +100,29 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
     const idpeserta = c.req.param("id");
     const idlomba = c.req.param("idLomba");
 
+    // Check if user already registered for this competition
+    const existingRegistration = await prisma.pesertalomba.findFirst({
+      where: {
+        lomba_id: idlomba,
+        peserta: {
+          users_id: idpeserta,
+        },
+      },
+      include: {
+        peserta: true,
+      },
+    });
+
+    if (existingRegistration) {
+      return c.json(
+        {
+          status: "Gagal",
+          message: `Anda sudah terdaftar di lomba ini sebagai ${existingRegistration.peserta.nama}`,
+        },
+        400
+      );
+    }
+
     // Get competition details including type and team size limit
     const tipelomba = await prisma.lomba.findUnique({
       where: { id: idlomba },
@@ -109,29 +132,17 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
       },
     });
 
-    // Check if participant already exists
-    const existPeserta = await prisma.peserta.findFirst({
-      where: {
-        nama: nama,
-        pesertalomba: {
-          some: {
-            lomba_id: idlomba,
-          },
-        },
-      },
-    });
-
-    if (existPeserta) {
+    if (!tipelomba) {
       return c.json(
         {
-          status: "Gagal",
-          message: "Peserta sudah ada",
+          status: "error",
+          message: "Lomba tidak ditemukan",
         },
-        400
+        404
       );
     }
 
-    if (tipelomba?.jenis_lomba === "TIM") {
+    if (tipelomba.jenis_lomba === "TIM") {
       try {
         const { nama_anggota } = await c.req.json();
 
@@ -147,7 +158,10 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
         }
 
         // Check if number of team members exceeds the limit
-        if (!tipelomba || tipelomba.jumlah_tim === null || tipelomba.jumlah_tim === undefined) {
+        if (
+          tipelomba.jumlah_tim === null ||
+          tipelomba.jumlah_tim === undefined
+        ) {
           return c.json(
             {
               status: "error",
@@ -199,7 +213,7 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
 
         return c.json({
           status: "success",
-          message: "Peserta berhasil ditambahkan",
+          message: "Peserta tim berhasil ditambahkan",
           data: result,
         });
       } catch (error) {
@@ -235,7 +249,7 @@ daftarpeserta.post("/:id/:idLomba", authmiddleware, async (c) => {
 
       return c.json({
         status: "success",
-        message: "Peserta berhasil ditambahkan",
+        message: "Peserta individu berhasil ditambahkan",
         data: result,
       });
     }

@@ -10,6 +10,70 @@ penilaian.use("*", cors({
     allowHeaders: ["Authorization", "Content-Type"],
     credentials: true
 }));
+
+penilaian.get('/:juriId', async (c) => {
+  const { juriId } = c.req.param();
+
+  // Ambil data juri + lomba yang dia handle
+  const juri = await prisma.juri.findUnique({
+    where: { id: juriId },
+    include: { lomba: true },
+  });
+
+  if (!juri) {
+    return c.json({ error: 'Juri tidak ditemukan' }, 404);
+  }
+
+  // Ambil semua submission dari lomba yang dihandle juri
+  const submissions = await prisma.submission.findMany({
+    where: {
+      pesertalomba: {
+        lomba_id: juri.lomba_id,
+      },
+    },
+    include: {
+      pesertalomba: {
+        include: {
+          peserta: {
+            select: {
+              nama: true,
+            },
+          },
+          lomba: {
+            select: {
+              nama: true,
+              jenis_lomba: true,
+            },
+          },
+        },
+      },
+      penilaian: {
+        where: {
+          juri_id: juriId,
+          status_penilaian: "S", // Sudah dinilai
+        },
+      },
+    },
+  });
+
+  // Tambahkan status penilaian
+  const processed = submissions.map((submission) => ({
+    ...submission,
+    status_penilaian:
+      submission.penilaian && submission.penilaian.length > 0
+        ? 'Sudah Dinilai'
+        : 'Belum Dinilai',
+  }));
+
+  return c.json({
+    status: 'success',
+    data: processed,
+  });
+});
+
+
+
+
 penilaian.post("/:submission_id/:juri_id", async (c) => {
   try {
     const submission_id = c.req.param("submission_id");
@@ -71,5 +135,9 @@ penilaian.post("/:submission_id/:juri_id", async (c) => {
     );
   }
 });
+
+
+
+
 
 export default penilaian;
