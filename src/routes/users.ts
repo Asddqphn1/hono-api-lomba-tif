@@ -16,7 +16,7 @@ users.use(
   })
 );
 
-users.get("/", authadmin, authmiddleware, async (c) => {
+users.get("/", async (c) => {
   try {
     const data = await prisma.users.findMany({
       select: {

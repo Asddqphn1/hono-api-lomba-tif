@@ -40,4 +40,42 @@ submit.post('/:id', authmiddleware, authpeserta, async (c) => {
   }
 })
 
+submit.get('/:submissionId', async (c) => {
+  const { submissionId } = c.req.param();
+
+  // Ambil submission berdasarkan ID, lengkap dengan relasi yang dibutuhkan
+  const data = await prisma.submission.findUnique({
+    where: { id: submissionId },
+    select : {
+      submission_time: true,
+      file_url: true,
+      pesertalomba: {
+        include: {
+          peserta: {
+            select: {
+              nama: true,
+            },
+          },
+          lomba: {
+            select: {
+              nama: true,
+              jenis_lomba: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!data) {
+    return c.json({ error: 'Submission tidak ditemukan' }, 404);
+  }
+
+  return c.json({
+    status: 'success',
+    data : data,
+  });
+});
+
+
 export default submit

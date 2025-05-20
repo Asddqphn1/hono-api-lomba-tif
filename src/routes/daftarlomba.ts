@@ -15,7 +15,7 @@ daftarlomba.use(
     credentials: true,
   })
 );
-daftarlomba.get("/", authmiddleware, async (c) => {
+daftarlomba.get("/", async (c) => {
   const data = await prisma.lomba.findMany({
     select: {
       id: true,

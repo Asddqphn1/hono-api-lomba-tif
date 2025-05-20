@@ -76,6 +76,37 @@ juri.get("/", authadmin, authmiddleware, async (c) => {
   }
 });
 
+juri.get("/:idUser", authmiddleware, async (c) => {
+  try {
+    const idUser = c.req.param("idUser");
+    const juriList = await prisma.juri.findMany({
+      where: {
+        users_id: idUser,
+      },
+      select: {
+        id: true,
+      }
+    });
+
+    return c.json(
+      {
+        status: "success",
+        message: "Berhasil ambil data juri",
+        data: juriList,
+      },
+      200
+    );
+  }catch (error) {
+    console.error(error);
+    return c.json(
+      {
+        status: "error",
+        message: "Internal server error",
+      },
+      500
+    );
+  }
+});
 //ubah role users --> juri
 juri.patch("/:id", authadmin, authmiddleware, async (c) => {
   try {
