@@ -50,24 +50,16 @@ penilaian.get('/:juriId', async (c) => {
       penilaian: {
         where: {
           juri_id: juriId,
-          status_penilaian: "S", // Sudah dinilai
         },
       },
     },
   });
 
-  // Tambahkan status penilaian
-  const processed = submissions.map((submission) => ({
-    ...submission,
-    status_penilaian:
-      submission.penilaian && submission.penilaian.length > 0
-        ? 'Sudah Dinilai'
-        : 'Belum Dinilai',
-  }));
+  
 
   return c.json({
     status: 'success',
-    data: processed,
+    data: submissions,
   });
 });
 
@@ -112,7 +104,6 @@ penilaian.post("/:submission_id/:juri_id", async (c) => {
       data: {
         juri_id,
         submission_id,
-        status_penilaian: "S", // S = Sudah
         nilai_penilaian,
         deskripsi_penilaian,
       },
