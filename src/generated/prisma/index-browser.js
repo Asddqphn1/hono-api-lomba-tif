@@ -164,7 +164,6 @@ exports.Prisma.PenilaianScalarFieldEnum = {
   id: 'id',
   juri_id: 'juri_id',
   submission_id: 'submission_id',
-  status_penilaian: 'status_penilaian',
   nilai_penilaian: 'nilai_penilaian',
   deskripsi_penilaian: 'deskripsi_penilaian',
   created_at: 'created_at'

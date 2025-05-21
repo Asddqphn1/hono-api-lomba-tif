@@ -7440,7 +7440,6 @@ export namespace Prisma {
     id: string | null
     juri_id: string | null
     submission_id: string | null
-    status_penilaian: string | null
     nilai_penilaian: Decimal | null
     deskripsi_penilaian: string | null
     created_at: Date | null
@@ -7450,7 +7449,6 @@ export namespace Prisma {
     id: string | null
     juri_id: string | null
     submission_id: string | null
-    status_penilaian: string | null
     nilai_penilaian: Decimal | null
     deskripsi_penilaian: string | null
     created_at: Date | null
@@ -7460,7 +7458,6 @@ export namespace Prisma {
     id: number
     juri_id: number
     submission_id: number
-    status_penilaian: number
     nilai_penilaian: number
     deskripsi_penilaian: number
     created_at: number
@@ -7480,7 +7477,6 @@ export namespace Prisma {
     id?: true
     juri_id?: true
     submission_id?: true
-    status_penilaian?: true
     nilai_penilaian?: true
     deskripsi_penilaian?: true
     created_at?: true
@@ -7490,7 +7486,6 @@ export namespace Prisma {
     id?: true
     juri_id?: true
     submission_id?: true
-    status_penilaian?: true
     nilai_penilaian?: true
     deskripsi_penilaian?: true
     created_at?: true
@@ -7500,7 +7495,6 @@ export namespace Prisma {
     id?: true
     juri_id?: true
     submission_id?: true
-    status_penilaian?: true
     nilai_penilaian?: true
     deskripsi_penilaian?: true
     created_at?: true
@@ -7597,7 +7591,6 @@ export namespace Prisma {
     id: string
     juri_id: string
     submission_id: string
-    status_penilaian: string
     nilai_penilaian: Decimal | null
     deskripsi_penilaian: string | null
     created_at: Date
@@ -7626,7 +7619,6 @@ export namespace Prisma {
     id?: boolean
     juri_id?: boolean
     submission_id?: boolean
-    status_penilaian?: boolean
     nilai_penilaian?: boolean
     deskripsi_penilaian?: boolean
     created_at?: boolean
@@ -7638,7 +7630,6 @@ export namespace Prisma {
     id?: boolean
     juri_id?: boolean
     submission_id?: boolean
-    status_penilaian?: boolean
     nilai_penilaian?: boolean
     deskripsi_penilaian?: boolean
     created_at?: boolean
@@ -7650,7 +7641,6 @@ export namespace Prisma {
     id?: boolean
     juri_id?: boolean
     submission_id?: boolean
-    status_penilaian?: boolean
     nilai_penilaian?: boolean
     deskripsi_penilaian?: boolean
     created_at?: boolean
@@ -7662,13 +7652,12 @@ export namespace Prisma {
     id?: boolean
     juri_id?: boolean
     submission_id?: boolean
-    status_penilaian?: boolean
     nilai_penilaian?: boolean
     deskripsi_penilaian?: boolean
     created_at?: boolean
   }
 
-  export type penilaianOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "juri_id" | "submission_id" | "status_penilaian" | "nilai_penilaian" | "deskripsi_penilaian" | "created_at", ExtArgs["result"]["penilaian"]>
+  export type penilaianOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "juri_id" | "submission_id" | "nilai_penilaian" | "deskripsi_penilaian" | "created_at", ExtArgs["result"]["penilaian"]>
   export type penilaianInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     juri?: boolean | juriDefaultArgs<ExtArgs>
     submission?: boolean | submissionDefaultArgs<ExtArgs>
@@ -7692,7 +7681,6 @@ export namespace Prisma {
       id: string
       juri_id: string
       submission_id: string
-      status_penilaian: string
       nilai_penilaian: Prisma.Decimal | null
       deskripsi_penilaian: string | null
       created_at: Date
@@ -8124,7 +8112,6 @@ export namespace Prisma {
     readonly id: FieldRef<"penilaian", 'String'>
     readonly juri_id: FieldRef<"penilaian", 'String'>
     readonly submission_id: FieldRef<"penilaian", 'String'>
-    readonly status_penilaian: FieldRef<"penilaian", 'String'>
     readonly nilai_penilaian: FieldRef<"penilaian", 'Decimal'>
     readonly deskripsi_penilaian: FieldRef<"penilaian", 'String'>
     readonly created_at: FieldRef<"penilaian", 'DateTime'>
@@ -12901,7 +12888,6 @@ export namespace Prisma {
     id: 'id',
     juri_id: 'juri_id',
     submission_id: 'submission_id',
-    status_penilaian: 'status_penilaian',
     nilai_penilaian: 'nilai_penilaian',
     deskripsi_penilaian: 'deskripsi_penilaian',
     created_at: 'created_at'
@@ -13381,7 +13367,6 @@ export namespace Prisma {
     id?: UuidFilter<"penilaian"> | string
     juri_id?: UuidFilter<"penilaian"> | string
     submission_id?: UuidFilter<"penilaian"> | string
-    status_penilaian?: StringFilter<"penilaian"> | string
     nilai_penilaian?: DecimalNullableFilter<"penilaian"> | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: StringNullableFilter<"penilaian"> | string | null
     created_at?: DateTimeFilter<"penilaian"> | Date | string
@@ -13393,7 +13378,6 @@ export namespace Prisma {
     id?: SortOrder
     juri_id?: SortOrder
     submission_id?: SortOrder
-    status_penilaian?: SortOrder
     nilai_penilaian?: SortOrderInput | SortOrder
     deskripsi_penilaian?: SortOrderInput | SortOrder
     created_at?: SortOrder
@@ -13408,7 +13392,6 @@ export namespace Prisma {
     NOT?: penilaianWhereInput | penilaianWhereInput[]
     juri_id?: UuidFilter<"penilaian"> | string
     submission_id?: UuidFilter<"penilaian"> | string
-    status_penilaian?: StringFilter<"penilaian"> | string
     nilai_penilaian?: DecimalNullableFilter<"penilaian"> | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: StringNullableFilter<"penilaian"> | string | null
     created_at?: DateTimeFilter<"penilaian"> | Date | string
@@ -13420,7 +13403,6 @@ export namespace Prisma {
     id?: SortOrder
     juri_id?: SortOrder
     submission_id?: SortOrder
-    status_penilaian?: SortOrder
     nilai_penilaian?: SortOrderInput | SortOrder
     deskripsi_penilaian?: SortOrderInput | SortOrder
     created_at?: SortOrder
@@ -13438,7 +13420,6 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"penilaian"> | string
     juri_id?: UuidWithAggregatesFilter<"penilaian"> | string
     submission_id?: UuidWithAggregatesFilter<"penilaian"> | string
-    status_penilaian?: StringWithAggregatesFilter<"penilaian"> | string
     nilai_penilaian?: DecimalNullableWithAggregatesFilter<"penilaian"> | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: StringNullableWithAggregatesFilter<"penilaian"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"penilaian"> | Date | string
@@ -13961,7 +13942,6 @@ export namespace Prisma {
 
   export type penilaianCreateInput = {
     id?: string
-    status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
     created_at?: Date | string
@@ -13973,7 +13953,6 @@ export namespace Prisma {
     id?: string
     juri_id: string
     submission_id: string
-    status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
     created_at?: Date | string
@@ -13981,7 +13960,6 @@ export namespace Prisma {
 
   export type penilaianUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13993,7 +13971,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     juri_id?: StringFieldUpdateOperationsInput | string
     submission_id?: StringFieldUpdateOperationsInput | string
-    status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14003,7 +13980,6 @@ export namespace Prisma {
     id?: string
     juri_id: string
     submission_id: string
-    status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
     created_at?: Date | string
@@ -14011,7 +13987,6 @@ export namespace Prisma {
 
   export type penilaianUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14021,7 +13996,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     juri_id?: StringFieldUpdateOperationsInput | string
     submission_id?: StringFieldUpdateOperationsInput | string
-    status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14634,7 +14608,6 @@ export namespace Prisma {
     id?: SortOrder
     juri_id?: SortOrder
     submission_id?: SortOrder
-    status_penilaian?: SortOrder
     nilai_penilaian?: SortOrder
     deskripsi_penilaian?: SortOrder
     created_at?: SortOrder
@@ -14648,7 +14621,6 @@ export namespace Prisma {
     id?: SortOrder
     juri_id?: SortOrder
     submission_id?: SortOrder
-    status_penilaian?: SortOrder
     nilai_penilaian?: SortOrder
     deskripsi_penilaian?: SortOrder
     created_at?: SortOrder
@@ -14658,7 +14630,6 @@ export namespace Prisma {
     id?: SortOrder
     juri_id?: SortOrder
     submission_id?: SortOrder
-    status_penilaian?: SortOrder
     nilai_penilaian?: SortOrder
     deskripsi_penilaian?: SortOrder
     created_at?: SortOrder
@@ -16131,7 +16102,6 @@ export namespace Prisma {
 
   export type penilaianCreateWithoutJuriInput = {
     id?: string
-    status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
     created_at?: Date | string
@@ -16141,7 +16111,6 @@ export namespace Prisma {
   export type penilaianUncheckedCreateWithoutJuriInput = {
     id?: string
     submission_id: string
-    status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
     created_at?: Date | string
@@ -16250,7 +16219,6 @@ export namespace Prisma {
     id?: UuidFilter<"penilaian"> | string
     juri_id?: UuidFilter<"penilaian"> | string
     submission_id?: UuidFilter<"penilaian"> | string
-    status_penilaian?: StringFilter<"penilaian"> | string
     nilai_penilaian?: DecimalNullableFilter<"penilaian"> | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: StringNullableFilter<"penilaian"> | string | null
     created_at?: DateTimeFilter<"penilaian"> | Date | string
@@ -16673,7 +16641,6 @@ export namespace Prisma {
 
   export type penilaianCreateWithoutSubmissionInput = {
     id?: string
-    status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
     created_at?: Date | string
@@ -16683,7 +16650,6 @@ export namespace Prisma {
   export type penilaianUncheckedCreateWithoutSubmissionInput = {
     id?: string
     juri_id: string
-    status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
     created_at?: Date | string
@@ -16939,7 +16905,6 @@ export namespace Prisma {
   export type penilaianCreateManyJuriInput = {
     id?: string
     submission_id: string
-    status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
     created_at?: Date | string
@@ -16947,7 +16912,6 @@ export namespace Prisma {
 
   export type penilaianUpdateWithoutJuriInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16957,7 +16921,6 @@ export namespace Prisma {
   export type penilaianUncheckedUpdateWithoutJuriInput = {
     id?: StringFieldUpdateOperationsInput | string
     submission_id?: StringFieldUpdateOperationsInput | string
-    status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16966,7 +16929,6 @@ export namespace Prisma {
   export type penilaianUncheckedUpdateManyWithoutJuriInput = {
     id?: StringFieldUpdateOperationsInput | string
     submission_id?: StringFieldUpdateOperationsInput | string
-    status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17021,7 +16983,6 @@ export namespace Prisma {
   export type penilaianCreateManySubmissionInput = {
     id?: string
     juri_id: string
-    status_penilaian: string
     nilai_penilaian?: Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: string | null
     created_at?: Date | string
@@ -17029,7 +16990,6 @@ export namespace Prisma {
 
   export type penilaianUpdateWithoutSubmissionInput = {
     id?: StringFieldUpdateOperationsInput | string
-    status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17039,7 +16999,6 @@ export namespace Prisma {
   export type penilaianUncheckedUpdateWithoutSubmissionInput = {
     id?: StringFieldUpdateOperationsInput | string
     juri_id?: StringFieldUpdateOperationsInput | string
-    status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17048,7 +17007,6 @@ export namespace Prisma {
   export type penilaianUncheckedUpdateManyWithoutSubmissionInput = {
     id?: StringFieldUpdateOperationsInput | string
     juri_id?: StringFieldUpdateOperationsInput | string
-    status_penilaian?: StringFieldUpdateOperationsInput | string
     nilai_penilaian?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     deskripsi_penilaian?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string

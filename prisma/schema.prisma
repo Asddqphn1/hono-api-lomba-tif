@@ -75,7 +75,6 @@ model penilaian {
   id                     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   juri_id                String   @db.Uuid
   submission_id          String   @db.Uuid
-  status_penilaian       String   @db.Char(1)
   nilai_penilaian        Decimal? @db.Decimal(5, 2)
   deskripsi_penilaian    String?  @db.VarChar(100)
   created_at             DateTime @default(now())
