@@ -4,6 +4,7 @@ import { cors } from "hono/cors";
 import authmiddleware from "../middleware/authmiddleware";
 import authadmin from "../middleware/authadmin";
 import { Jenis_lomba } from "../generated/prisma";
+import authpeserta from "../middleware/authpeserta";
 
 
 
@@ -303,5 +304,25 @@ daftarpeserta.get("/anggotatim/:id", authadmin, authmiddleware, async (c) => {
     });
   }
 });
+
+daftarpeserta.get("/:id", authmiddleware, authpeserta, async (c) => {
+  const idpeserta = c.req.param("id");
+  try {
+    const peserta = await prisma.peserta.findFirst({
+      where: { users_id: idpeserta },
+    });
+    return c.json({
+      status: "success",
+      message: "Berhasil ambil data peserta",
+      data: peserta,
+    });
+  } catch (error) {
+    return c.json({
+      status: "error",
+      message: error,
+    });
+  }
+
+})
 
 export default daftarpeserta;
