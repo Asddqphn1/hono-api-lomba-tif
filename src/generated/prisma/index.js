@@ -218,7 +218,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Ambis\\backend\\lombatif\\src\\generated\\prisma",
+      "value": "D:\\Web\\LombaTif\\hono-api-lomba-tif\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -232,7 +232,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Ambis\\backend\\lombatif\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Web\\LombaTif\\hono-api-lomba-tif\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
