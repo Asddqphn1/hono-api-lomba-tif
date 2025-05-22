@@ -24,7 +24,7 @@ const authjuri : MiddlewareHandler = async (c, next) => {
         if(role !== "JURI"){
             return c.json({
                 status : "error",
-                message : "Anda bukan admin"
+                message : "Anda bukan juri"
             },401)  
         }
         await next()

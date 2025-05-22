@@ -1,19 +1,23 @@
 import { Hono } from "hono";
 import prisma from "../db";
-import juri from "./juri";
 import { cors } from "hono/cors";
 import authmiddleware from "../middleware/authmiddleware";
 import authjuri from "../middleware/authjuri";
+import authpeserta from "../middleware/authpeserta";
+
 
 const penilaian = new Hono();
-penilaian.use("*", cors({
+penilaian.use(
+  "*",
+  cors({
     origin: "http://localhost:5173",
     allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowHeaders: ["Authorization", "Content-Type"],
-    credentials: true
-}));
+    credentials: true,
+  })
+);
 
-penilaian.get('/:juriId',authmiddleware,authjuri, async (c) => {
+penilaian.get('/:juriId',authmiddleware, authjuri, async (c) => {
   const { juriId } = c.req.param();
 
   // Ambil data juri + lomba yang dia handle
@@ -23,7 +27,7 @@ penilaian.get('/:juriId',authmiddleware,authjuri, async (c) => {
   });
 
   if (!juri) {
-    return c.json({ error: 'Juri tidak ditemukan' }, 404);
+    return c.json({ error: "Juri tidak ditemukan" }, 404);
   }
 
   // Ambil semua submission dari lomba yang dihandle juri
@@ -57,10 +61,8 @@ penilaian.get('/:juriId',authmiddleware,authjuri, async (c) => {
     },
   });
 
-  
-
   return c.json({
-    status: 'success',
+    status: "success",
     data: submissions,
   });
 });
@@ -68,7 +70,7 @@ penilaian.get('/:juriId',authmiddleware,authjuri, async (c) => {
 
 
 
-penilaian.post("/:submission_id/:juri_id",authmiddleware,authjuri,async (c) => {
+penilaian.post("/:submission_id/:juri_id",authmiddleware, authjuri,  async (c) => {
   try {
     const submission_id = c.req.param("submission_id");
     const juri_id = c.req.param("juri_id");
@@ -81,7 +83,10 @@ penilaian.post("/:submission_id/:juri_id",authmiddleware,authjuri,async (c) => {
 
     if (!juriData) {
       return c.json(
-        { status: "error", message: "Juri tidak ditemukan atau tidak terdaftar." },
+        {
+          status: "error",
+          message: "Juri tidak ditemukan atau tidak terdaftar.",
+        },
         403
       );
     }
@@ -129,8 +134,111 @@ penilaian.post("/:submission_id/:juri_id",authmiddleware,authjuri,async (c) => {
   }
 });
 
+penilaian.get(
+  "/daftarnilai/:lombaID",
+  authmiddleware,
+  authpeserta,
+  async (c) => {
+    try {
+      const { lombaID } = c.req.param();
+      if (!lombaID) {
+        return c.json(
+          { status: "error", message: "Lomba tidak ditemukan." },
+          404
+        );
+      }
+      const nilaiLomba = await prisma.penilaian.findMany({
+        where: {
+          submission: {
+            pesertalomba: {
+              lomba_id: lombaID,
+            },
+          },
+        },
+        include: {
+          juri: {
+            select: {
+              nama: true,
+              users: {
+                select: {
+                  email: true,
+                },
+              },
+            },
+          },
+          submission: {
+            include: {
+              pesertalomba: {
+                include: {
+                  peserta: {
+                    select: {
+                      nama: true,
+                      users: {
+                        select: {
+                          email: true,
+                        },
+                      },
+                    },
+                  },
+                  lomba: {
+                    select: {
+                      nama: true,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        orderBy: {
+          nilai_penilaian: "desc",
+        },
+      });
 
+      if (!nilaiLomba || nilaiLomba.length === 0) {
+        return c.json(
+          { status: "error", message: "Belum ada penilaian untuk lomba ini." },
+          404
+        );
+      }
 
+      // Format response
+      const formattedResponse = nilaiLomba.map((nilai) => ({
+        id_penilaian: nilai.id,
+        nilai: nilai.nilai_penilaian,
+        deskripsi: nilai.deskripsi_penilaian,
+        tanggal_penilaian: nilai.created_at,
+        juri: {
+          nama: nilai.juri.nama,
+          email: nilai.juri.users.email,
+        },
+        peserta: {
+          nama: nilai.submission.pesertalomba.peserta.nama,
+          email: nilai.submission.pesertalomba.peserta.users.email,
+        },
+        lomba: {
+          nama: nilai.submission.pesertalomba.lomba.nama,
+        },
+        submission: {
+          file_url: nilai.submission.file_url,
+          waktu_submission: nilai.submission.submission_time,
+        },
+      }));
 
+      return c.json({
+        success: true,
+        data: formattedResponse,
+      });
+    } catch (error) {
+      return c.json(
+        {
+          status: "error",
+          message: error,
+        },
+        500
+      );
+    }
+  }
+);
 
 export default penilaian;
