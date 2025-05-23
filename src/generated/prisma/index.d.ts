@@ -13152,7 +13152,7 @@ export namespace Prisma {
     AND?: sertifikatWhereInput | sertifikatWhereInput[]
     OR?: sertifikatWhereInput[]
     NOT?: sertifikatWhereInput | sertifikatWhereInput[]
-    id?: StringFilter<"sertifikat"> | string
+    id?: UuidFilter<"sertifikat"> | string
     url?: StringFilter<"sertifikat"> | string
     lomba_id?: StringFilter<"sertifikat"> | string
     lomba?: XOR<LombaScalarRelationFilter, lombaWhereInput>
@@ -13188,7 +13188,7 @@ export namespace Prisma {
     AND?: sertifikatScalarWhereWithAggregatesInput | sertifikatScalarWhereWithAggregatesInput[]
     OR?: sertifikatScalarWhereWithAggregatesInput[]
     NOT?: sertifikatScalarWhereWithAggregatesInput | sertifikatScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"sertifikat"> | string
+    id?: UuidWithAggregatesFilter<"sertifikat"> | string
     url?: StringWithAggregatesFilter<"sertifikat"> | string
     lomba_id?: StringWithAggregatesFilter<"sertifikat"> | string
   }
@@ -13733,13 +13733,13 @@ export namespace Prisma {
   }
 
   export type sertifikatCreateInput = {
-    id: string
+    id?: string
     url: string
     lomba: lombaCreateNestedOneWithoutSertifikatInput
   }
 
   export type sertifikatUncheckedCreateInput = {
-    id: string
+    id?: string
     url: string
     lomba_id: string
   }
@@ -13757,7 +13757,7 @@ export namespace Prisma {
   }
 
   export type sertifikatCreateManyInput = {
-    id: string
+    id?: string
     url: string
     lomba_id: string
   }
@@ -14415,6 +14415,18 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+  export type UuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidFilter<$PrismaModel> | string
+  }
+
   export type LombaScalarRelationFilter = {
     is?: lombaWhereInput
     isNot?: lombaWhereInput
@@ -14438,7 +14450,7 @@ export namespace Prisma {
     lomba_id?: SortOrder
   }
 
-  export type UuidFilter<$PrismaModel = never> = {
+  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
     notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -14447,7 +14459,10 @@ export namespace Prisma {
     gt?: string | StringFieldRefInput<$PrismaModel>
     gte?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
-    not?: NestedUuidFilter<$PrismaModel> | string
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type EnumRoleFilter<$PrismaModel = never> = {
@@ -14499,21 +14514,6 @@ export namespace Prisma {
     password?: SortOrder
     nama?: SortOrder
     role?: SortOrder
-  }
-
-  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
@@ -15572,13 +15572,6 @@ export namespace Prisma {
     not?: NestedUuidFilter<$PrismaModel> | string
   }
 
-  export type NestedEnumRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
-  }
-
   export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -15591,6 +15584,13 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedEnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
   export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
@@ -15679,12 +15679,12 @@ export namespace Prisma {
   }
 
   export type sertifikatCreateWithoutLombaInput = {
-    id: string
+    id?: string
     url: string
   }
 
   export type sertifikatUncheckedCreateWithoutLombaInput = {
-    id: string
+    id?: string
     url: string
   }
 
@@ -15770,7 +15770,7 @@ export namespace Prisma {
     AND?: sertifikatScalarWhereInput | sertifikatScalarWhereInput[]
     OR?: sertifikatScalarWhereInput[]
     NOT?: sertifikatScalarWhereInput | sertifikatScalarWhereInput[]
-    id?: StringFilter<"sertifikat"> | string
+    id?: UuidFilter<"sertifikat"> | string
     url?: StringFilter<"sertifikat"> | string
     lomba_id?: StringFilter<"sertifikat"> | string
   }
@@ -16765,7 +16765,7 @@ export namespace Prisma {
   }
 
   export type sertifikatCreateManyLombaInput = {
-    id: string
+    id?: string
     url: string
   }
 

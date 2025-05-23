@@ -26,7 +26,12 @@ daftarlomba.get("/", async (c) => {
       url: true,
       bataswaktu: true,
       jenis_lomba: true,
-      jumlah_tim: true
+      jumlah_tim: true,
+      sertifikat : {
+        select :{
+          url : true
+        }
+      }
     },
     orderBy: {
       tanggal: "asc",
