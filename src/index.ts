@@ -10,6 +10,7 @@ import auth from './routes/auth';
 import logout from './routes/logout';
 import penilaian from './routes/penilaian';
 import submit from './routes/submit';
+import sertifikat from './routes/sertifikat';
 
 app.route('/auth', auth)
 app.route('/register', register)
@@ -21,6 +22,7 @@ app.route('/submit', submit)
 app.route('/users', users)
 app.route('/logout', logout)
 app.route('/penilaian', penilaian)
+app.route('/sertifikat', sertifikat)
 // Di backend (Hono)
 
 export default app
