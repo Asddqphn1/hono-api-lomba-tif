@@ -1,9 +1,10 @@
 import { Hono } from "hono";
 import prisma from "../db";
-import juri from "./juri";
 import { cors } from "hono/cors";
 import authmiddleware from "../middleware/authmiddleware";
+import authjuri from "../middleware/authjuri";
 import authpeserta from "../middleware/authpeserta";
+
 
 const penilaian = new Hono();
 penilaian.use(
@@ -16,7 +17,7 @@ penilaian.use(
   })
 );
 
-penilaian.get("/:juriId", async (c) => {
+penilaian.get('/:juriId',authmiddleware, authjuri, async (c) => {
   const { juriId } = c.req.param();
 
   // Ambil data juri + lomba yang dia handle
@@ -66,7 +67,10 @@ penilaian.get("/:juriId", async (c) => {
   });
 });
 
-penilaian.post("/:submission_id/:juri_id", async (c) => {
+
+
+
+penilaian.post("/:submission_id/:juri_id",authmiddleware, authjuri,  async (c) => {
   try {
     const submission_id = c.req.param("submission_id");
     const juri_id = c.req.param("juri_id");
