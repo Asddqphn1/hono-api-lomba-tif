@@ -12,7 +12,7 @@ const daftarpeserta = new Hono();
 daftarpeserta.use(
   "*",
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://lomba-tif.vercel.app", "https://lomba-tif.my.id"],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowHeaders: ["Authorization", "Content-Type"],
     credentials: true,
@@ -20,7 +20,8 @@ daftarpeserta.use(
 );
 daftarpeserta.get("/", authmiddleware, authadmin, async (c) => {
   try {
-    const { jenis } = c.req.query();
+    const { jenis, lomba } = c.req.query();
+    
 
     // Filter dasar
     const baseFilter = {
@@ -42,10 +43,24 @@ daftarpeserta.get("/", authmiddleware, authadmin, async (c) => {
         }
       : {};
 
+      const lombaFilter = lomba
+        ? {
+            pesertalomba: {
+              some: {
+                lomba_id: lomba as string, // Filter berdasarkan ID lomba
+              },
+            },
+          }
+        : {};
+
+
+    
+
     const daftarpeserta = await prisma.peserta.findMany({
       where: {
         ...baseFilter,
         ...jenisFilter,
+        ...lombaFilter
       },
       select: {
         nama: true,

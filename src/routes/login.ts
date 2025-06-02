@@ -7,12 +7,19 @@ import { cors } from "hono/cors";
 import * as EmailValidator from "email-validator";
 const login = new Hono();
 
-login.use("*", cors({
-    origin: "http://localhost:5173",
+login.use(
+  "*",
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://lomba-tif.vercel.app",
+      "https://lomba-tif.my.id",
+    ],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowHeaders: ["Authorization", "Content-Type"],
-    credentials: true
-}));
+    credentials: true,
+  })
+);
 login.post("/", async (c) => {
     const { email, password } = await c.req.json();
     const emailValid = EmailValidator.validate(email);
@@ -61,7 +68,7 @@ login.post("/", async (c) => {
         const token = jwt.sign(payload, secreet);
         setCookie(c, "token", token, {
             httpOnly: true,
-            secure: false, // Set to true if using HTTPS
+            secure: true, // Set to true if using HTTPS
             sameSite: "strict",
             maxAge: 60 * 60 * 24,
             

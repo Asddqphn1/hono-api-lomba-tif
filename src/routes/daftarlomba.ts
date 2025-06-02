@@ -9,7 +9,11 @@ const daftarlomba = new Hono();
 daftarlomba.use(
   "*",
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://lomba-tif.vercel.app",
+      "https://lomba-tif.my.id",
+    ],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowHeaders: ["Authorization", "Content-Type"],
     credentials: true,
@@ -27,6 +31,11 @@ daftarlomba.get("/", async (c) => {
       bataswaktu: true,
       jenis_lomba: true,
       jumlah_tim: true,
+      pesertalomba : {
+        select :{
+          id : true
+        }
+      },
       sertifikat : {
         select :{
           url : true

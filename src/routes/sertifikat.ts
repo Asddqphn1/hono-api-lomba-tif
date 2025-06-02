@@ -8,13 +8,17 @@ import authpeserta from "../middleware/authpeserta";
 const sertifikat = new Hono();
 
 sertifikat.use(
-    "*",
-    cors({
-        origin: "http://localhost:5173",
-        allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-        allowHeaders: ["Authorization", "Content-Type"],
-        credentials: true,
-    })
+  "*",
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://lomba-tif.vercel.app",
+      "https://lomba-tif.my.id",
+    ],
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowHeaders: ["Authorization", "Content-Type"],
+    credentials: true,
+  })
 );
 
 sertifikat.post("/:idLomba", authmiddleware, authadmin, async (c) => {
@@ -83,7 +87,7 @@ sertifikat.post("/:idLomba", authmiddleware, authadmin, async (c) => {
     }
 })
 
-sertifikat.get("/sertifikat/:idLomba", authmiddleware, authpeserta, async (c) => {
+sertifikat.get("/:idLomba", authmiddleware, authpeserta, async (c) => {
     try{
         const idLomba = c.req.param("idLomba")
         const sertifikat = await prisma.sertifikat.findFirst({

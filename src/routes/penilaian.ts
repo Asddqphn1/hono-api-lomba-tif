@@ -9,7 +9,11 @@ const penilaian = new Hono();
 penilaian.use(
   "*",
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://lomba-tif.vercel.app",
+      "https://lomba-tif.my.id",
+    ],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowHeaders: ["Authorization", "Content-Type"],
     credentials: true,
@@ -230,6 +234,7 @@ penilaian.get("/peserta/:submissionid", async (c) => {
         created_at: true,
         juri: {
           select: {
+            nama: true,
             lomba: {
               select: {
                 nama: true,
@@ -280,6 +285,7 @@ penilaian.get("/peserta/:id/penilaian", async (c) => {
             },
             submission: {
               select: {
+                id: true,
                 penilaian: {
                   select: {
                     nilai_penilaian: true,

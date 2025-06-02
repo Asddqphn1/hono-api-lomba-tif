@@ -6,12 +6,19 @@ import * as EmailValidator from "email-validator";
 
 
 const register = new Hono();
-register.use("*", cors({
-    origin: "http://localhost:5173",
+register.use(
+  "*",
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://lomba-tif.vercel.app",
+      "https://lomba-tif.my.id",
+    ],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowHeaders: ["Authorization", "Content-Type"],
-    credentials: true
-}));
+    credentials: true,
+  })
+);
 
 register.post("/", async (c) => {
   const { nama, email, password } = await c.req.json();
