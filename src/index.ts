@@ -1,17 +1,17 @@
 import { Hono } from 'hono'
+import auth from 'routes/auth'
+import daftarlomba from 'routes/daftarlomba'
+import daftarpeserta from 'routes/daftarpeserta'
+import juri from 'routes/juri'
+import login from 'routes/login'
+import logout from 'routes/logout'
+import penilaian from 'routes/penilaian'
+import register from 'routes/register'
+import sertifikat from 'routes/sertifikat'
+import submit from 'routes/submit'
+import users from 'routes/users'
 const app = new Hono()
-import login from './routes/login';
 
-import daftarpeserta from './routes/daftarpeserta';
-import users from './routes/users';
-import juri from './routes/juri';
-import auth from './routes/auth';
-import logout from './routes/logout';
-import penilaian from './routes/penilaian';
-import submit from './routes/submit';
-import sertifikat from './routes/sertifikat';
-import register from 'routes/register';
-import daftarlomba from 'routes/daftarlomba';
 
 app.route('/auth', auth)
 app.route('/register', register)
