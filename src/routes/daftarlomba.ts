@@ -1,9 +1,11 @@
 import { Hono } from "hono";
-import authmiddleware from "../middleware/authmiddleware";
-import prisma from "../db";
+
+import prisma from "../db.js";
 import { cors } from "hono/cors";
-import authadmin from "../middleware/authadmin";
-import authpeserta from "../middleware/authpeserta";
+
+import authmiddleware from "../middleware/authmiddleware.js";
+import authpeserta from "../middleware/authpeserta.js";
+import authadmin from "../middleware/authadmin.js";
 
 const daftarlomba = new Hono();
 daftarlomba.use(
@@ -116,7 +118,7 @@ daftarlomba.get("/userlomba/:idUser", authmiddleware, authpeserta, async (c) => 
       {
         status: "success",
         message: "Berhasil ambil data lomba",
-        data: results.map((item) => ({
+        data: results.map((item: { id: any; lomba: any; peserta: any; }) => ({
           id_peserta_lomba: item.id, // Menambahkan id peserta lomba
           lomba: item.lomba, // Data lomba
           peserta: item.peserta, // Data peserta
@@ -234,7 +236,7 @@ daftarlomba.delete("/:id", authmiddleware, authadmin, async (c) => {
         lomba_id: id,
       },
     });
-    const userIds = juriLomba.map((juri) => juri.users_id);
+    const userIds = juriLomba.map((juri: { users_id: any; }) => juri.users_id);
     const updatedUsers = await prisma.users.updateMany({
       where: {
         id: {

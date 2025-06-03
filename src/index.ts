@@ -1,17 +1,18 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
-import auth from "./routes/auth";
-import daftarlomba from "./routes/daftarlomba";
-import daftarpeserta from "./routes/daftarpeserta";
-import juri from "./routes/juri";
-import login from "./routes/login";
-import logout from "./routes/logout";
-import penilaian from "./routes/penilaian";
-import register from "./routes/register";
-import sertifikat from "./routes/sertifikat";
-import submit from "./routes/submit";
-import users from "./routes/users";
-import { server } from 'typescript';
+
+
+import auth from './routes/auth.js';
+import register from './routes/register.js';
+import juri from './routes/juri.js';
+import daftarlomba from './routes/daftarlomba.js';
+import daftarpeserta from './routes/daftarpeserta.js';
+import submit from './routes/submit.js';
+import users from './routes/users.js';
+import logout from './routes/logout.js';
+import penilaian from './routes/penilaian.js';
+import sertifikat from './routes/sertifikat.js';
+import login from './routes/login.js';
 const app = new Hono()
 
 
