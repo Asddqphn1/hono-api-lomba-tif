@@ -1,9 +1,9 @@
 import { Hono } from "hono";
-import prisma from "../db";
+import prisma from "../db.js";
 import { cors } from "hono/cors";
-import authmiddleware from "../middleware/authmiddleware";
-import authadmin from "../middleware/authadmin";
-import authpeserta from "../middleware/authpeserta";
+import authmiddleware from "../middleware/authmiddleware.js";
+import authadmin from "../middleware/authadmin.js";
+import authpeserta from "../middleware/authpeserta.js";
 const daftarpeserta = new Hono();
 daftarpeserta.use("*", cors({
     origin: ["http://localhost:5173", "https://lomba-tif.vercel.app", "https://lomba-tif.my.id"],

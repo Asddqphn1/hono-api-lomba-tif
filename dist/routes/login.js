@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
 import { setCookie } from "hono/cookie";
-import prisma from "../db";
+import prisma from "../db.js";
 import { cors } from "hono/cors";
 import * as EmailValidator from "email-validator";
 const login = new Hono();

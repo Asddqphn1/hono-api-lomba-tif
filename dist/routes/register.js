@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import prisma from "../db";
+import prisma from "../db.js";
 import { cors } from "hono/cors";
 import * as bcrypt from "bcryptjs";
 import * as EmailValidator from "email-validator";
