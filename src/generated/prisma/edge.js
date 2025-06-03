@@ -217,7 +217,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Web\\LombaTif\\hono-api-lomba-tif\\src\\generated\\prisma",
+      "value": "C:\\Ambis\\backend\\lombatif\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -231,7 +231,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Web\\LombaTif\\hono-api-lomba-tif\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Ambis\\backend\\lombatif\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -245,12 +245,11 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "postgresql://postgres:hfpIFeFsyxWvoIDSYxgTMGhVaweoWoiH@shortline.proxy.rlwy.net:48614/railway"
       }
     }
   },
