@@ -97,7 +97,7 @@ login.post("/", async (c) => {
     setCookie(c, "token", token, {
       httpOnly: true,
       secure: true, // Set to true if using HTTPS
-      sameSite: "strict",
+      sameSite: "None",
       maxAge: 60 * 60 * 24, // 1 day
     });
 
