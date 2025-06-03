@@ -1,29 +1,29 @@
-import { Hono } from "hono";
-import auth from "./routes/auth";
-import register from "./routes/register";
-import login from "./routes/login";
-import juri from "./routes/juri";
-import daftarlomba from "./routes/daftarlomba";
-import daftarpeserta from "./routes/daftarpeserta";
-import submit from "./routes/submit";
-import users from "./routes/users";
-import logout from "./routes/logout";
-import penilaian from "./routes/penilaian";
-import sertifikat from "./routes/sertifikat";
+import { Hono } from 'hono';
+import auth from './routes/auth.js';
+import register from './routes/register.js';
+import login from './routes/login.js';
+import juri from './routes/juri.js';
+import daftarlomba from './routes/daftarlomba.js';
+import daftarpeserta from './routes/daftarpeserta.js';
+import submit from './routes/submit.js';
+import users from './routes/users.js';
+import logout from './routes/logout.js';
+import penilaian from './routes/penilaian.js';
+import sertifikat from './routes/sertifikat.js';
 
 const app = new Hono();
 
-app.route("/auth", auth);
-app.route("/register", register);
-app.route("/login", login);
-app.route("/juri", juri);
-app.route("/daftarlomba", daftarlomba);
-app.route("/daftarpeserta", daftarpeserta);
-app.route("/submit", submit);
-app.route("/users", users);
-app.route("/logout", logout);
-app.route("/penilaian", penilaian);
-app.route("/sertifikat", sertifikat);
+app.route('/auth', auth);
+app.route('/register', register);
+app.route('/login', login);
+app.route('/juri', juri);
+app.route('/daftarlomba', daftarlomba);
+app.route('/daftarpeserta', daftarpeserta);
+app.route('/submit', submit);
+app.route('/users', users);
+app.route('/logout', logout);
+app.route('/penilaian', penilaian);
+app.route('/sertifikat', sertifikat);
 
 // Ekspor aplikasi untuk digunakan di server
 export default app;
