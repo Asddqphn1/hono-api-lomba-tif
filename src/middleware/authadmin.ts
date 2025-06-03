@@ -4,7 +4,7 @@ import * as jwt from "jsonwebtoken";
 
 const authadmin : MiddlewareHandler = async (c, next) => {
     const tokencookie = getCookie(c, "token")
-    const secreet = Bun.env.ACCESS_TOKEN_SECRET
+    const secreet = process.env.ACCESS_TOKEN_SECRET
     if(!tokencookie){
         return c.json({
             status : "error",
