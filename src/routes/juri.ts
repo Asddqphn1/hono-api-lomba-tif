@@ -1,8 +1,8 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import authadmin from "../middleware/authadmin";
-import authmiddleware from "../middleware/authmiddleware";
-import prisma from "../db";
+import authadmin from "../middleware/authadmin.js";
+import authmiddleware from "../middleware/authmiddleware.js";
+import prisma from "../db.js";
 
 const juri = new Hono();
 

@@ -1,10 +1,10 @@
 import { Hono } from "hono";
-import prisma from "../db";
+import prisma from "../db.js";
 import { cors } from "hono/cors";
-import authmiddleware from "../middleware/authmiddleware";
-import authadmin from "../middleware/authadmin";
-import { Jenis_lomba } from "../generated/prisma";
-import authpeserta from "../middleware/authpeserta";
+import authmiddleware from "../middleware/authmiddleware.js";
+import authadmin from "../middleware/authadmin.js";
+import authpeserta from "../middleware/authpeserta.js";
+import { Jenis_lomba } from "../generated/prisma/index.js";
 
 
 
@@ -89,7 +89,7 @@ daftarpeserta.get("/", authmiddleware, authadmin, async (c) => {
 
     // Filter tambahan untuk memastikan data konsisten
     const filteredPeserta = daftarpeserta.filter(
-      (peserta) => peserta.pesertalomba.length > 0
+      (peserta: { pesertalomba: string | any[]; }) => peserta.pesertalomba.length > 0
     );
 
     return c.json({

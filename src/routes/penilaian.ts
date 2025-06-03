@@ -1,9 +1,9 @@
 import { Hono } from "hono";
-import prisma from "../db";
+import prisma from "../db.js";
 import { cors } from "hono/cors";
-import authmiddleware from "../middleware/authmiddleware";
-import authjuri from "../middleware/authjuri";
-import authpeserta from "../middleware/authpeserta";
+import authmiddleware from "../middleware/authmiddleware.js";
+import authjuri from "../middleware/authjuri.js";
+import authpeserta from "../middleware/authpeserta.js";
 
 
 const penilaian = new Hono();
@@ -198,7 +198,7 @@ penilaian.get(
       }
 
       // Format response
-      const formattedResponse = nilaiLomba.map((nilai) => ({
+      const formattedResponse = nilaiLomba.map((nilai: { nilai_penilaian: any; submission: { pesertalomba: { peserta: { nama: any; users: { email: any; }; }; lomba: { nama: any; }; }; }; }) => ({
         nilai: nilai.nilai_penilaian,
         peserta: {
           nama: nilai.submission.pesertalomba.peserta.nama,

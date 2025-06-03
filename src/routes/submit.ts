@@ -1,8 +1,8 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import authmiddleware from "../middleware/authmiddleware";
-import authpeserta from "../middleware/authpeserta";
-import prisma from "../db";
+import authmiddleware from "../middleware/authmiddleware.js";
+import authpeserta from "../middleware/authpeserta.js";
+import prisma from "../db.js";
 
 const submit = new Hono();
 submit.use(
