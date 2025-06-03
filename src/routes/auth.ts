@@ -28,7 +28,7 @@ auth.get("/me", async (c) => {
   }
 
   try {
-    const decoded = jwt.verify(token, Bun.env.ACCESS_TOKEN_SECRET!);
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!);
     return c.json({ user: decoded });
   } catch (error) {
     return c.json({ error: "Invalid token" }, 401);

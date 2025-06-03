@@ -1,3 +1,4 @@
+import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import auth from "./routes/auth";
 import daftarlomba from "./routes/daftarlomba";
@@ -10,6 +11,7 @@ import register from "./routes/register";
 import sertifikat from "./routes/sertifikat";
 import submit from "./routes/submit";
 import users from "./routes/users";
+import { server } from 'typescript';
 const app = new Hono()
 
 
@@ -24,6 +26,16 @@ app.route('/users', users)
 app.route('/logout', logout)
 app.route('/penilaian', penilaian)
 app.route('/sertifikat', sertifikat)
+
+
+const PORT = Number(process.env.PORT) || 3000
+
+serve({
+    fetch: app.fetch,
+    port: PORT,
+}, () => {
+    console.log(`Server running on port ${PORT}`)
+})
 // Di backend (Hono)
 
 export default app
