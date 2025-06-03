@@ -218,5 +218,87 @@ juri.patch("/hapus/:id", authadmin, authmiddleware, async (c) => {
     }, 500);
   }
 });
+juri.patch("/juri/:id", async (c) => {
+  const juriId = c.req.param("id");
+  const { nama, lomba_id } = await c.req.json();
+
+  try {
+    // Cek apakah juri sudah melakukan penilaian
+    const existingPenilaian = await prisma.penilaian.findFirst({
+      where: {
+        juri_id: juriId,
+      },
+    });
+
+    if (existingPenilaian) {
+      return c.json(
+        {
+          success: false,
+          message:
+            "Tidak dapat mengupdate juri karena sudah melakukan penilaian",
+        },
+        400
+      );
+    }
+
+    // Update data juri
+    const updatedJuri = await prisma.juri.update({
+      where: { id: juriId },
+      data: {
+        nama,
+        lomba_id,
+      },
+      select: {
+        id: true,
+        nama: true,
+        lomba_id: true,
+        created_at: true,
+      },
+    });
+
+    return c.json({
+      success: true,
+      data: updatedJuri,
+    });
+  } catch (error) {
+    console.error("Error updating juri:", error);
+
+    // Handle error untuk juri tidak ditemukan
+    if (
+      error instanceof Error &&
+      error.message.includes("Record to update not found")
+    ) {
+      return c.json(
+        {
+          success: false,
+          message: "Juri tidak ditemukan",
+        },
+        404
+      );
+    }
+
+    // Handle error untuk lomba tidak ditemukan
+    if (
+      error instanceof Error &&
+      error.message.includes("Foreign key constraint failed")
+    ) {
+      return c.json(
+        {
+          success: false,
+          message: "Lomba tidak ditemukan",
+        },
+        400
+      );
+    }
+
+    return c.json(
+      {
+        success: false,
+        message: "Terjadi kesalahan saat mengupdate juri",
+      },
+      500
+    );
+  }
+});
 
 export default juri;
