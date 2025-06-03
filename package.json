@@ -1,8 +1,9 @@
 {
   "name": "lombatif",
   "scripts": {
-    "dev": "node src/index.ts",
-    "start": "node src/index.ts"
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "@prisma/client": "^6.6.0",
