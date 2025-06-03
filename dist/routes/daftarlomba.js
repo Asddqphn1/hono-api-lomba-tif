@@ -1,9 +1,9 @@
 import { Hono } from "hono";
-import authmiddleware from "../middleware/authmiddleware.js";
-import prisma from "../db.js";
+import authmiddleware from "../middleware/authmiddleware";
+import prisma from "../db";
 import { cors } from "hono/cors";
-import authadmin from "../middleware/authadmin.js";
-import authpeserta from "../middleware/authpeserta.js";
+import authadmin from "../middleware/authadmin";
+import authpeserta from "../middleware/authpeserta";
 const daftarlomba = new Hono();
 daftarlomba.use("*", cors({
     origin: [

@@ -1,9 +1,9 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import authmiddleware from "../middleware/authmiddleware.js";
-import authadmin from "../middleware/authadmin.js";
-import prisma from "../db.js";
-import authpeserta from "../middleware/authpeserta.js";
+import authmiddleware from "../middleware/authmiddleware";
+import authadmin from "../middleware/authadmin";
+import prisma from "../db";
+import authpeserta from "../middleware/authpeserta";
 const sertifikat = new Hono();
 sertifikat.use("*", cors({
     origin: [
