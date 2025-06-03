@@ -1,10 +1,11 @@
 import { Hono } from "hono";
 import * as bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken"; // Correct import for jwt
-import { setCookie } from "hono/cookie";
+import  jwt from "jsonwebtoken"; // Correct import for jwt
+
 import prisma from "../db.js";
 import { cors } from "hono/cors";
 import * as EmailValidator from "email-validator";
+import { setCookie } from "hono/cookie";
 
 const login = new Hono();
 

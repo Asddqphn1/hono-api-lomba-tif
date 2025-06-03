@@ -1,7 +1,9 @@
+import { error } from "console";
 import { Hono } from "hono";
 import { getCookie } from "hono/cookie";
+
 import { cors } from "hono/cors";
-import * as jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 
 const auth = new Hono()
@@ -24,6 +26,7 @@ auth.get("/me", async (c) => {
   const token = getCookie(c, "token"); // Baca cookie httpOnly
   
   if (!token) {
+    console.log(error)
     return c.json({ error: "Unauthorized" }, 401);
   }
 
