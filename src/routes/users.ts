@@ -12,7 +12,7 @@ users.use(
     origin: [
       "http://localhost:5173",
       "https://lomba-tif.vercel.app",
-      "https://lomba-tif.my.id",
+      "https://www.lomba-tif.my.id",
     ],
     allowMethods: ["GET", "POST", "PUT", "DELETE"],
     allowHeaders: ["Authorization", "Content-Type"],
