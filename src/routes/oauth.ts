@@ -11,8 +11,7 @@ const oauth = new Hono();
 const googleClient = new OAuth2Client({
   clientId: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  redirectUri:
-    "https://hono-api-lomba-tif-production.up.railway.app/auth/google/callback",
+  redirectUri: "https://www.lomba-tif.my.id/auth/google/callback",
 });
 
 
@@ -65,7 +64,7 @@ oauth.get("/auth/google/callback", async (c) => {
 
     setCookie(c, "token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       maxAge: 60 * 60 * 24 * 7, // 7 hari
       path: "/",
     });
