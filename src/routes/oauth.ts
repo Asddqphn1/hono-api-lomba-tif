@@ -1,4 +1,4 @@
-// src/routes/auth.ts
+
 import { Hono } from "hono";
 import { OAuth2Client } from "google-auth-library";
 import prisma from "../db.js";
@@ -11,7 +11,7 @@ const oauth = new Hono();
 const googleClient = new OAuth2Client({
   clientId: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  redirectUri: `${process.env.BASE_URL}/auth/google/callback`,
+  redirectUri: "https://www.lomba-tif.my.id/auth/google/callback",
 });
 
 
