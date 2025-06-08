@@ -11,7 +11,7 @@ const oauth = new Hono();
 const googleClient = new OAuth2Client({
   clientId: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  redirectUri: "https://www.lomba-tif.my.id/auth/google/callback",
+  redirectUri: "https://hono-api-lomba-tif-production.up.railway.app/auth/google/callback",
 });
 
 
@@ -69,7 +69,8 @@ oauth.get("/auth/google/callback", async (c) => {
       path: "/",
     });
 
-    return c.redirect("/daftarlomba");
+    return c.redirect("https://www.lomba-tif.my.id/daftarlomba");
+
   } catch (error) {
     console.error("Google OAuth error:", error);
     return c.text("Authentication failed", 500);
