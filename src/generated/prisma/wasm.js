@@ -143,7 +143,8 @@ exports.Prisma.UsersScalarFieldEnum = {
   email: 'email',
   password: 'password',
   nama: 'nama',
-  role: 'role'
+  role: 'role',
+  provider: 'provider'
 };
 
 exports.Prisma.AdminScalarFieldEnum = {

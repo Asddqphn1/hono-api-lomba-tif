@@ -4178,6 +4178,7 @@ export namespace Prisma {
     password: string | null
     nama: string | null
     role: $Enums.Role | null
+    provider: string | null
   }
 
   export type UsersMaxAggregateOutputType = {
@@ -4186,6 +4187,7 @@ export namespace Prisma {
     password: string | null
     nama: string | null
     role: $Enums.Role | null
+    provider: string | null
   }
 
   export type UsersCountAggregateOutputType = {
@@ -4194,6 +4196,7 @@ export namespace Prisma {
     password: number
     nama: number
     role: number
+    provider: number
     _all: number
   }
 
@@ -4204,6 +4207,7 @@ export namespace Prisma {
     password?: true
     nama?: true
     role?: true
+    provider?: true
   }
 
   export type UsersMaxAggregateInputType = {
@@ -4212,6 +4216,7 @@ export namespace Prisma {
     password?: true
     nama?: true
     role?: true
+    provider?: true
   }
 
   export type UsersCountAggregateInputType = {
@@ -4220,6 +4225,7 @@ export namespace Prisma {
     password?: true
     nama?: true
     role?: true
+    provider?: true
     _all?: true
   }
 
@@ -4301,6 +4307,7 @@ export namespace Prisma {
     password: string
     nama: string
     role: $Enums.Role
+    provider: string | null
     _count: UsersCountAggregateOutputType | null
     _min: UsersMinAggregateOutputType | null
     _max: UsersMaxAggregateOutputType | null
@@ -4326,6 +4333,7 @@ export namespace Prisma {
     password?: boolean
     nama?: boolean
     role?: boolean
+    provider?: boolean
     juri?: boolean | users$juriArgs<ExtArgs>
     peserta?: boolean | users$pesertaArgs<ExtArgs>
     admin?: boolean | users$adminArgs<ExtArgs>
@@ -4338,6 +4346,7 @@ export namespace Prisma {
     password?: boolean
     nama?: boolean
     role?: boolean
+    provider?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4346,6 +4355,7 @@ export namespace Prisma {
     password?: boolean
     nama?: boolean
     role?: boolean
+    provider?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectScalar = {
@@ -4354,9 +4364,10 @@ export namespace Prisma {
     password?: boolean
     nama?: boolean
     role?: boolean
+    provider?: boolean
   }
 
-  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "nama" | "role", ExtArgs["result"]["users"]>
+  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "nama" | "role" | "provider", ExtArgs["result"]["users"]>
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     juri?: boolean | users$juriArgs<ExtArgs>
     peserta?: boolean | users$pesertaArgs<ExtArgs>
@@ -4379,6 +4390,7 @@ export namespace Prisma {
       password: string
       nama: string
       role: $Enums.Role
+      provider: string | null
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -4810,6 +4822,7 @@ export namespace Prisma {
     readonly password: FieldRef<"users", 'String'>
     readonly nama: FieldRef<"users", 'String'>
     readonly role: FieldRef<"users", 'Role'>
+    readonly provider: FieldRef<"users", 'String'>
   }
     
 
@@ -12858,7 +12871,8 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     nama: 'nama',
-    role: 'role'
+    role: 'role',
+    provider: 'provider'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -13202,6 +13216,7 @@ export namespace Prisma {
     password?: StringFilter<"users"> | string
     nama?: StringFilter<"users"> | string
     role?: EnumRoleFilter<"users"> | $Enums.Role
+    provider?: StringNullableFilter<"users"> | string | null
     juri?: JuriListRelationFilter
     peserta?: PesertaListRelationFilter
     admin?: AdminListRelationFilter
@@ -13213,6 +13228,7 @@ export namespace Prisma {
     password?: SortOrder
     nama?: SortOrder
     role?: SortOrder
+    provider?: SortOrderInput | SortOrder
     juri?: juriOrderByRelationAggregateInput
     peserta?: pesertaOrderByRelationAggregateInput
     admin?: adminOrderByRelationAggregateInput
@@ -13227,6 +13243,7 @@ export namespace Prisma {
     password?: StringFilter<"users"> | string
     nama?: StringFilter<"users"> | string
     role?: EnumRoleFilter<"users"> | $Enums.Role
+    provider?: StringNullableFilter<"users"> | string | null
     juri?: JuriListRelationFilter
     peserta?: PesertaListRelationFilter
     admin?: AdminListRelationFilter
@@ -13238,6 +13255,7 @@ export namespace Prisma {
     password?: SortOrder
     nama?: SortOrder
     role?: SortOrder
+    provider?: SortOrderInput | SortOrder
     _count?: usersCountOrderByAggregateInput
     _max?: usersMaxOrderByAggregateInput
     _min?: usersMinOrderByAggregateInput
@@ -13252,6 +13270,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"users"> | string
     nama?: StringWithAggregatesFilter<"users"> | string
     role?: EnumRoleWithAggregatesFilter<"users"> | $Enums.Role
+    provider?: StringNullableWithAggregatesFilter<"users"> | string | null
   }
 
   export type adminWhereInput = {
@@ -13779,6 +13798,7 @@ export namespace Prisma {
     password: string
     nama: string
     role?: $Enums.Role
+    provider?: string | null
     juri?: juriCreateNestedManyWithoutUsersInput
     peserta?: pesertaCreateNestedManyWithoutUsersInput
     admin?: adminCreateNestedManyWithoutUsersInput
@@ -13790,6 +13810,7 @@ export namespace Prisma {
     password: string
     nama: string
     role?: $Enums.Role
+    provider?: string | null
     juri?: juriUncheckedCreateNestedManyWithoutUsersInput
     peserta?: pesertaUncheckedCreateNestedManyWithoutUsersInput
     admin?: adminUncheckedCreateNestedManyWithoutUsersInput
@@ -13801,6 +13822,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     juri?: juriUpdateManyWithoutUsersNestedInput
     peserta?: pesertaUpdateManyWithoutUsersNestedInput
     admin?: adminUpdateManyWithoutUsersNestedInput
@@ -13812,6 +13834,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     juri?: juriUncheckedUpdateManyWithoutUsersNestedInput
     peserta?: pesertaUncheckedUpdateManyWithoutUsersNestedInput
     admin?: adminUncheckedUpdateManyWithoutUsersNestedInput
@@ -13823,6 +13846,7 @@ export namespace Prisma {
     password: string
     nama: string
     role?: $Enums.Role
+    provider?: string | null
   }
 
   export type usersUpdateManyMutationInput = {
@@ -13831,6 +13855,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type usersUncheckedUpdateManyInput = {
@@ -13839,6 +13864,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type adminCreateInput = {
@@ -14498,6 +14524,7 @@ export namespace Prisma {
     password?: SortOrder
     nama?: SortOrder
     role?: SortOrder
+    provider?: SortOrder
   }
 
   export type usersMaxOrderByAggregateInput = {
@@ -14506,6 +14533,7 @@ export namespace Prisma {
     password?: SortOrder
     nama?: SortOrder
     role?: SortOrder
+    provider?: SortOrder
   }
 
   export type usersMinOrderByAggregateInput = {
@@ -14514,6 +14542,7 @@ export namespace Prisma {
     password?: SortOrder
     nama?: SortOrder
     role?: SortOrder
+    provider?: SortOrder
   }
 
   export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
@@ -15992,6 +16021,7 @@ export namespace Prisma {
     password: string
     nama: string
     role?: $Enums.Role
+    provider?: string | null
     juri?: juriCreateNestedManyWithoutUsersInput
     peserta?: pesertaCreateNestedManyWithoutUsersInput
   }
@@ -16002,6 +16032,7 @@ export namespace Prisma {
     password: string
     nama: string
     role?: $Enums.Role
+    provider?: string | null
     juri?: juriUncheckedCreateNestedManyWithoutUsersInput
     peserta?: pesertaUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -16028,6 +16059,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     juri?: juriUpdateManyWithoutUsersNestedInput
     peserta?: pesertaUpdateManyWithoutUsersNestedInput
   }
@@ -16038,6 +16070,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     juri?: juriUncheckedUpdateManyWithoutUsersNestedInput
     peserta?: pesertaUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -16081,6 +16114,7 @@ export namespace Prisma {
     password: string
     nama: string
     role?: $Enums.Role
+    provider?: string | null
     peserta?: pesertaCreateNestedManyWithoutUsersInput
     admin?: adminCreateNestedManyWithoutUsersInput
   }
@@ -16091,6 +16125,7 @@ export namespace Prisma {
     password: string
     nama: string
     role?: $Enums.Role
+    provider?: string | null
     peserta?: pesertaUncheckedCreateNestedManyWithoutUsersInput
     admin?: adminUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -16182,6 +16217,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     peserta?: pesertaUpdateManyWithoutUsersNestedInput
     admin?: adminUpdateManyWithoutUsersNestedInput
   }
@@ -16192,6 +16228,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     peserta?: pesertaUncheckedUpdateManyWithoutUsersNestedInput
     admin?: adminUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -16322,6 +16359,7 @@ export namespace Prisma {
     password: string
     nama: string
     role?: $Enums.Role
+    provider?: string | null
     juri?: juriCreateNestedManyWithoutUsersInput
     admin?: adminCreateNestedManyWithoutUsersInput
   }
@@ -16332,6 +16370,7 @@ export namespace Prisma {
     password: string
     nama: string
     role?: $Enums.Role
+    provider?: string | null
     juri?: juriUncheckedCreateNestedManyWithoutUsersInput
     admin?: adminUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -16402,6 +16441,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     juri?: juriUpdateManyWithoutUsersNestedInput
     admin?: adminUpdateManyWithoutUsersNestedInput
   }
@@ -16412,6 +16452,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     juri?: juriUncheckedUpdateManyWithoutUsersNestedInput
     admin?: adminUncheckedUpdateManyWithoutUsersNestedInput
   }

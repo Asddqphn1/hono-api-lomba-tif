@@ -48,6 +48,7 @@ model users {
   password String   @db.VarChar(255)
   nama     String   @db.VarChar(30)
   role     Role     @default(USERS)
+  provider String?  @db.VarChar(20)
   juri     juri[]
   peserta  peserta[]
   admin    admin[]
