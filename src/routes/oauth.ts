@@ -1,11 +1,10 @@
 // src/routes/auth.ts
 import { Hono } from "hono";
 import { OAuth2Client } from "google-auth-library";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../db.js";
 import jwt from "jsonwebtoken";
 import { setCookie, getCookie } from "hono/cookie";
 
-const prisma = new PrismaClient();
 const oauth = new Hono();
 
 // Google OAuth Configuration
