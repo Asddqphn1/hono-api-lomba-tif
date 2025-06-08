@@ -246,12 +246,11 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "postgresql://postgres:hfpIFeFsyxWvoIDSYxgTMGhVaweoWoiH@shortline.proxy.rlwy.net:48614/railway"
       }
     }
   },
