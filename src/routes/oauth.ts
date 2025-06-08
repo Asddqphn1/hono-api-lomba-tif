@@ -88,6 +88,8 @@ oauth.get("/auth/google/callback", async (c) => {
       return c.json({ error: "No email found" }, 400);
     }
 
+    // Bersihkan nama dari karakter non-ASCII
+    const sanitizedName = sanitizeString(googlePayload.name || "User");
 
     // Cek atau buat user di database
     let user = await prisma.users.findUnique({
@@ -98,21 +100,26 @@ oauth.get("/auth/google/callback", async (c) => {
       user = await prisma.users.create({
         data: {
           email: googlePayload.email,
-          nama: googlePayload.name || "User",
+          nama: sanitizedName,
           password: "", // Password kosong untuk OAuth
           role: "USERS",
         },
       });
     }
 
+    // Buat payload untuk JWT
     const payload = {
-          id: user.id,
-          email: user.email,
-          nama: user.nama,
-          role: user.role,
-        };
-    
-        const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
+      id: user.id,
+      userId: user.id, // Tambah userId untuk kompatibilitas
+      email: user.email,
+      nama: user.nama,
+      role: user.role,
+    };
+
+    // Buat JWT token
+    const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: "1h",
+    });
 
     // Validasi token sebelum set cookie
     try {
@@ -135,8 +142,24 @@ oauth.get("/auth/google/callback", async (c) => {
       return c.json({ error: "Failed to set authentication cookie" }, 500);
     }
 
-    // Redirect ke frontend
-    return c.redirect("https://www.lomba-tif.my.id/daftarlomba?auth=success");
+    // Redirect berdasarkan role
+    let redirectUrl: string;
+    switch (user.role) {
+      case "USERS":
+        redirectUrl = "https://www.lomba-tif.my.id/daftarlomba";
+        break;
+      case "PESERTA":
+        redirectUrl = `https://www.lomba-tif.my.id/pesertadashboard/${user.id}`;
+        break;
+      case "JURI":
+        redirectUrl = "https://www.lomba-tif.my.id/juridashboard/";
+      default:
+        console.warn(`Unknown role: ${user.role}`);
+        redirectUrl = "https://www.lomba-tif.my.id?auth=success"; // Fallback
+        break;
+    }
+
+    return c.redirect(redirectUrl);
   } catch (error) {
     console.error("Google OAuth error:", error);
     return c.json(
