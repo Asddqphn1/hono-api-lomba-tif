@@ -13,6 +13,7 @@ import logout from './routes/logout.js';
 import penilaian from './routes/penilaian.js';
 import sertifikat from './routes/sertifikat.js';
 import login from './routes/login.js';
+import oauth from './routes/oauth.js';
 const app = new Hono()
 
 
@@ -27,6 +28,7 @@ app.route('/users', users)
 app.route('/logout', logout)
 app.route('/penilaian', penilaian)
 app.route('/sertifikat', sertifikat)
+app.route('/', oauth)
 
 
 const PORT = Number(process.env.PORT) || 3000

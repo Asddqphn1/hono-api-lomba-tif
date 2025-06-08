@@ -15,15 +15,6 @@ const googleClient = new OAuth2Client({
   redirectUri: `${process.env.BASE_URL}/auth/google/callback`,
 });
 
-// Facebook OAuth Configuration
-const facebookConfig = {
-  clientId: process.env.FACEBOOK_APP_ID,
-  clientSecret: process.env.FACEBOOK_APP_SECRET,
-  redirectUri: `${process.env.BASE_URL}/auth/facebook/callback`,
-  authorizationUrl: "https://www.facebook.com/v12.0/dialog/oauth",
-  tokenUrl: "https://graph.facebook.com/v12.0/oauth/access_token",
-  profileUrl: "https://graph.facebook.com/v12.0/me?fields=id,name,email",
-};
 
 // Google OAuth
 oauth.get("/auth/google", (c) => {
