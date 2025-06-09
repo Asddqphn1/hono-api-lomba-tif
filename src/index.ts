@@ -30,6 +30,12 @@ app.route('/logout', logout)
 app.route('/penilaian', penilaian)
 app.route('/sertifikat', sertifikat)
 app.route('/', oauth)
+app.get('/', (c) => {
+    return c.json({
+        status: "success",
+        message: "WELCOME TO LOMBATIF API 🚀🚀",
+    }, 200)
+})
 
 
 const PORT = Number(process.env.PORT) || 3000
