@@ -152,7 +152,11 @@ oauth.get("/auth/google/callback", async (c) => {
         redirectUrl = `https://www.lomba-tif.my.id/pesertadashboard/${user.id}`;
         break;
       case "JURI":
-        redirectUrl = "https://www.lomba-tif.my.id/juridashboard/";
+        redirectUrl = "https://www.lomba-tif.my.id/juridashboard";
+        break;
+      case "ADMIN":
+        redirectUrl = "https://www.lomba-tif.my.id/admindashboard";
+        break;
       default:
         console.warn(`Unknown role: ${user.role}`);
         redirectUrl = "https://www.lomba-tif.my.id?auth=success"; // Fallback
